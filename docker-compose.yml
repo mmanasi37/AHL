@@ -1,0 +1,21 @@
+services:
+  ahl-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ahl-website
+    image: ahl-website:latest
+    ports:
+      - "8081:80"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    labels:
+      com.ahl.company:  "Andro Holdings Limited"
+      com.ahl.service:  "website"
+      com.ahl.location: "Wewak, East Sepik Province, PNG"

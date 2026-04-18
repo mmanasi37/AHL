@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Andro Holdings Limited (AHL) — East Sepik's premier locally owned civil engineering contractor and licensed security services provider based in Wewak, Papua New Guinea. Delivering road sealing, bridge construction, highway works and professional security solutions." />
+  <meta name="keywords" content="Andro Holdings Limited, AHL, civil engineering PNG, road sealing Wewak, East Sepik contractor, PNG civil works, security services Wewak, bridge construction PNG, DDA projects East Sepik, Moses Warie, Papua New Guinea infrastructure" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Andro Holdings Limited" />
+  <meta property="og:title" content="Andro Holdings Limited (AHL) | Civil Engineering &amp; Security — Wewak, PNG" />
+  <meta property="og:description" content="East Sepik's premier locally owned civil engineering and licensed security company. Delivering roads, bridges, highways and professional security across Papua New Guinea." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.androholdings.com.pg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Andro Holdings Limited | Civil Engineering &amp; Security — PNG" />
+  <meta name="twitter:description" content="East Sepik's premier civil engineering and security company. Road sealing, bridges, highways and professional security in Papua New Guinea." />
+  <link rel="canonical" href="https://www.androholdings.com.pg" />
+  <title>Andro Holdings Limited (AHL) | Civil Engineering &amp; Security — Wewak, PNG</title>
+
+  <!-- Tailwind CSS (locally built — see Dockerfile) -->
+  <link rel="stylesheet" href="/dist/output.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Inline favicon as SVG data URI -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='38' fill='%230f2d5c' stroke='%23f97316' stroke-width='3'/%3E%3Cellipse cx='38' cy='52' rx='14' ry='18' fill='%230a0f1a'/%3E%3Cellipse cx='38' cy='47' rx='8' ry='10' fill='%23e8f0f9'/%3E%3Ccircle cx='50' cy='32' r='11' fill='%230a0f1a'/%3E%3Cpath d='M50 23 Q65 15 72 22 Q70 30 58 32 Q54 32 50 30Z' fill='%23f97316'/%3E%3Cpath d='M50 32 Q68 34 73 41 Q60 43 50 40Z' fill='%23fbbf24'/%3E%3Ccircle cx='56' cy='30' r='3.5' fill='%23f97316'/%3E%3Ccircle cx='56' cy='30' r='2' fill='%230a0f1a'/%3E%3C/svg%3E" />
+
+  <style>
+    /* Base */
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Montserrat', sans-serif; }
+
+    /* Gradient text helpers */
+    .text-grad-green {
+      background: linear-gradient(90deg, #22c55e, #4ade80);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .text-grad-orange {
+      background: linear-gradient(90deg, #ea580c, #f97316, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Hero background */
+    .bg-hero {
+      background: linear-gradient(135deg, #040c18 0%, #071428 30%, #0a1f42 65%, #0f2d5c 100%);
+    }
+    .bg-alt {
+      background: linear-gradient(160deg, #040c18 0%, #071428 60%, #0a1f42 100%);
+    }
+
+    /* Section divider */
+    .divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #22c55e 35%, #f97316 65%, transparent);
+    }
+
+    /* Card hover */
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-6px);
+    }
+
+    /* Navbar glass effect when scrolled */
+    .nav-glass {
+      background: rgba(4, 12, 24, 0.95) !important;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 2px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Nav link underline animation */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #22c55e, #f97316);
+      transition: width 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Fade-in on scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Pulse glow button */
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.45); }
+      50%       { box-shadow: 0 0 0 14px rgba(249, 115, 22, 0); }
+    }
+    .pulse-btn { animation: pulse-glow 2.5s infinite; }
+
+    /* Mobile menu animation */
+    #mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.35s ease, opacity 0.3s ease;
+    }
+    #mobile-menu.open {
+      max-height: 520px;
+      opacity: 1;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 7px; }
+    ::-webkit-scrollbar-track { background: #040c18; }
+    ::-webkit-scrollbar-thumb { background: #0f2d5c; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #22c55e; }
+
+    /* Form focus ring colour override */
+    input:focus, textarea:focus, select:focus {
+      border-color: #22c55e !important;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+    }
+
+    /* Animate stats on load */
+    @keyframes countIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .stat-box { animation: countIn 0.7s ease both; }
+    .stat-box:nth-child(2) { animation-delay: 0.15s; }
+    .stat-box:nth-child(3) { animation-delay: 0.3s; }
+    .stat-box:nth-child(4) { animation-delay: 0.45s; }
+  </style>
+</head>
+
+<body class="bg-navy-900 text-white antialiased">
+
+<!-- ═══════════════════════════════════════
+     TOP INFO BAR
+═══════════════════════════════════════ -->
+<div class="bg-navy-800 border-b border-navy-700 py-2 hidden md:block">
+  <div class="container mx-auto px-6 flex items-center justify-between text-xs text-gray-400">
+    <div class="flex items-center gap-6">
+      <span class="flex items-center gap-1.5">
+        <i class="fas fa-location-dot text-leaf-500"></i>
+        Wewak, East Sepik Province, Papua New Guinea
+      </span>
+      <span class="flex items-center gap-1.5">
+        <i class="fas fa-phone text-flame-500"></i>
+        +675 XXX XXXX
+      </span>
+    </div>
+    <div class="flex items-center gap-4">
+      <span class="flex items-center gap-1.5">
+        <i class="fas fa-envelope text-gold-500"></i>
+        info@androholdings.com.pg
+      </span>
+      <span class="text-gray-600">|</span>
+      <span class="text-flame-400 font-medium">SIA Lic: MR-SPL-24-00079</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 md:top-9 left-0 right-0 z-50 transition-all duration-300 py-3">
+  <div class="container mx-auto px-6">
+    <div class="flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-3 group">
+        <!-- Hornbill SVG Logo Badge -->
+        <div class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg shadow-black/40 overflow-hidden border-2 border-flame-500 flex-shrink-0">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="w-12 h-12">
+            <circle cx="40" cy="40" r="39" fill="#0f2d5c"/>
+            <!-- Ring highlight -->
+            <circle cx="40" cy="40" r="37" fill="none" stroke="#f97316" stroke-width="2.5"/>
+            <!-- Body -->
+            <ellipse cx="36" cy="54" rx="14" ry="18" fill="#0a0f1a"/>
+            <!-- Wing -->
+            <path d="M24 50 Q17 60 24 70 Q33 65 36 56 Z" fill="#1a4a8a" opacity="0.85"/>
+            <!-- Chest / throat (ivory) -->
+            <ellipse cx="36" cy="50" rx="8" ry="11" fill="#f0f4f8"/>
+            <!-- Head -->
+            <circle cx="49" cy="32" r="11" fill="#0a0f1a"/>
+            <!-- Casque (orange helmet on beak) -->
+            <path d="M49 22 Q64 14 71 21 Q69 29 57 31 Q53 32 49 29 Z" fill="#f97316"/>
+            <!-- Upper beak -->
+            <path d="M49 31 Q68 33 73 40 Q60 42 49 39 Z" fill="#fbbf24"/>
+            <!-- Lower beak -->
+            <path d="M49 39 Q62 41 65 46 Q56 46 49 43 Z" fill="#f59e0b"/>
+            <!-- Eye surround -->
+            <circle cx="55" cy="30" r="4" fill="#ea580c"/>
+            <!-- Eye pupil -->
+            <circle cx="55" cy="30" r="2.2" fill="#040c18"/>
+            <!-- Eye highlight -->
+            <circle cx="54" cy="29" r="0.8" fill="white"/>
+            <!-- Tail feathers -->
+            <path d="M28 66 Q26 76 30 78 Q34 74 32 66 Z" fill="#0a0f1a"/>
+            <path d="M34 68 Q32 80 36 82 Q40 78 38 68 Z" fill="#0a0f1a"/>
+            <path d="M40 66 Q38 76 42 78 Q46 74 44 66 Z" fill="#0a0f1a"/>
+            <!-- Tail white tips -->
+            <ellipse cx="30" cy="77" rx="2" ry="1.2" fill="white" opacity="0.85"/>
+            <ellipse cx="36" cy="80" rx="2" ry="1.2" fill="white" opacity="0.85"/>
+            <ellipse cx="42" cy="77" rx="2" ry="1.2" fill="white" opacity="0.85"/>
+            <!-- "AHL" tiny text at bottom -->
+            <text x="40" y="72" text-anchor="middle" fill="#fbbf24" font-family="Arial Black, sans-serif" font-weight="900" font-size="6" letter-spacing="1">AHL</text>
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <div class="text-white font-black font-display text-lg tracking-wide group-hover:text-gold-400 transition-colors">AHL</div>
+          <div class="text-leaf-400 text-xs font-semibold tracking-widest uppercase">Andro Holdings</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#about"     class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">About</a>
+        <a href="#services"  class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Services</a>
+        <a href="#why-ahl"   class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Why AHL</a>
+        <a href="#projects"  class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Projects</a>
+        <a href="#security"  class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Security</a>
+        <a href="#community" class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Community</a>
+        <a href="#contact"
+           class="pulse-btn bg-gradient-to-r from-flame-700 to-flame-500 hover:from-flame-600 hover:to-flame-400 text-white text-sm font-bold px-5 py-2 rounded-full transition-all hover:shadow-lg hover:shadow-flame-500/40">
+          Contact Us
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-btn" class="lg:hidden p-2 text-white" onclick="toggleMenu()" aria-label="Toggle menu">
+        <svg id="icon-open"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden bg-navy-800/98 backdrop-blur rounded-2xl mt-3 px-4 py-2 border border-navy-700">
+      <a href="#about"     class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">About AHL</a>
+      <a href="#services"  class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Services</a>
+      <a href="#why-ahl"   class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Why AHL</a>
+      <a href="#projects"  class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Projects</a>
+      <a href="#security"  class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Security</a>
+      <a href="#community" class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Community</a>
+      <a href="#contact"   class="block py-3 text-flame-400 font-bold text-sm"                                                      onclick="toggleMenu()">Contact Us →</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════ -->
+<section id="home" class="relative min-h-screen bg-hero flex items-center overflow-hidden pt-16">
+
+  <!-- Subtle grid overlay -->
+  <div class="absolute inset-0 opacity-[0.035] pointer-events-none">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="hero-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.6"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#hero-grid)"/>
+    </svg>
+  </div>
+
+  <!-- Ambient glow orbs -->
+  <div class="absolute top-16 right-0 w-[500px] h-[500px] bg-leaf-700 opacity-[0.07] rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-10 w-[400px] h-[400px] bg-flame-700 opacity-[0.07] rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-navy-600 opacity-[0.04] rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="container mx-auto px-6 py-28 relative z-10">
+    <div class="max-w-5xl">
+
+      <!-- Location badge -->
+      <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-leaf-500/25 rounded-full px-4 py-2 mb-8">
+        <span class="w-2 h-2 rounded-full bg-leaf-400 animate-pulse"></span>
+        <span class="text-leaf-400 text-sm font-medium">Wewak · East Sepik Province · Papua New Guinea</span>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="font-display font-black leading-tight text-5xl md:text-6xl lg:text-7xl text-white mb-6">
+        Building<br>
+        <span class="text-grad-green">East Sepik's</span><br>
+        Future
+      </h1>
+
+      <p class="text-xl text-gray-300 max-w-2xl mb-10 leading-relaxed">
+        Andro Holdings Limited is a proudly locally owned Papua New Guinean company delivering
+        world-class <span class="text-leaf-400 font-semibold">civil engineering</span> and professional
+        <span class="text-flame-400 font-semibold">security services</span> across East Sepik Province.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-wrap gap-4 mb-16">
+        <a href="#services"
+           class="pulse-btn bg-gradient-to-r from-flame-700 to-flame-500 hover:from-flame-600 hover:to-flame-400 text-white font-bold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-flame-500/40 text-base">
+          Our Services
+        </a>
+        <a href="#projects"
+           class="bg-white/10 backdrop-blur border border-white/20 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-full transition-all text-base">
+          View Projects
+        </a>
+        <a href="#contact"
+           class="border-2 border-leaf-500 hover:bg-leaf-500/20 text-leaf-400 hover:text-white font-bold px-8 py-4 rounded-full transition-all text-base">
+          Contact AHL
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="stat-box bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-5 text-center">
+          <div class="text-3xl font-black font-display text-flame-400">10+</div>
+          <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Years Active</div>
+        </div>
+        <div class="stat-box bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-5 text-center">
+          <div class="text-3xl font-black font-display text-leaf-400">50+</div>
+          <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Projects Done</div>
+        </div>
+        <div class="stat-box bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-5 text-center">
+          <div class="text-3xl font-black font-display text-gold-400">30+</div>
+          <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Heavy Machines</div>
+        </div>
+        <div class="stat-box bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-5 text-center">
+          <div class="text-3xl font-black font-display text-flame-400">200+</div>
+          <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Employees</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-600">
+    <span class="text-[10px] tracking-[0.2em] uppercase">Scroll</span>
+    <div class="w-px h-10 bg-gradient-to-b from-leaf-500 to-transparent animate-pulse"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     TRUSTED PARTNERS STRIP
+═══════════════════════════════════════ -->
+<section class="py-10 bg-navy-800/60 border-y border-navy-700">
+  <div class="container mx-auto px-6">
+    <p class="text-center text-xs text-gray-600 uppercase tracking-[0.25em] mb-8 font-semibold">Trusted By &amp; Working With</p>
+    <div class="flex flex-wrap items-center justify-center gap-8 md:gap-14">
+      <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+        <div class="w-10 h-10 rounded-xl bg-blue-900/60 border border-blue-700/40 flex items-center justify-center flex-shrink-0">
+          <i class="fas fa-anchor text-blue-400 text-sm"></i>
+        </div>
+        <div>
+          <div class="text-white font-bold text-sm leading-tight">PNG Ports</div>
+          <div class="text-gray-500 text-xs">Corporation</div>
+        </div>
+      </div>
+      <div class="w-px h-8 bg-navy-600 hidden md:block"></div>
+      <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+        <div class="w-10 h-10 rounded-xl bg-gold-900/40 border border-gold-700/30 flex items-center justify-center flex-shrink-0">
+          <i class="fas fa-landmark text-gold-400 text-sm"></i>
+        </div>
+        <div>
+          <div class="text-white font-bold text-sm leading-tight">East Sepik DDA</div>
+          <div class="text-gray-500 text-xs">District Authority</div>
+        </div>
+      </div>
+      <div class="w-px h-8 bg-navy-600 hidden md:block"></div>
+      <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+        <div class="w-10 h-10 rounded-xl bg-leaf-900/40 border border-leaf-700/30 flex items-center justify-center flex-shrink-0">
+          <i class="fas fa-road text-leaf-400 text-sm"></i>
+        </div>
+        <div>
+          <div class="text-white font-bold text-sm leading-tight">Dept. of Works</div>
+          <div class="text-gray-500 text-xs">Government of PNG</div>
+        </div>
+      </div>
+      <div class="w-px h-8 bg-navy-600 hidden md:block"></div>
+      <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+        <div class="w-10 h-10 rounded-xl bg-flame-900/40 border border-flame-700/30 flex items-center justify-center flex-shrink-0">
+          <i class="fas fa-certificate text-flame-400 text-sm"></i>
+        </div>
+        <div>
+          <div class="text-white font-bold text-sm leading-tight">Security Industry</div>
+          <div class="text-gray-500 text-xs">Authority PNG</div>
+        </div>
+      </div>
+      <div class="w-px h-8 bg-navy-600 hidden md:block"></div>
+      <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+        <div class="w-10 h-10 rounded-xl bg-navy-600/80 border border-navy-500/40 flex items-center justify-center flex-shrink-0">
+          <i class="fas fa-hospital text-blue-300 text-sm"></i>
+        </div>
+        <div>
+          <div class="text-white font-bold text-sm leading-tight">Health Dept.</div>
+          <div class="text-gray-500 text-xs">Hospital Road Works</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     ABOUT SECTION
+═══════════════════════════════════════ -->
+<section id="about" class="py-24 bg-navy-900">
+  <div class="container mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left -->
+      <div class="fade-in">
+        <div class="inline-block bg-leaf-500/10 border border-leaf-500/30 rounded-full px-4 py-1.5 text-leaf-400 text-sm font-semibold mb-6">
+          About AHL
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl text-white mb-6">
+          Home-Grown.<br>
+          <span class="text-grad-orange">Papua New Guinean.</span>
+        </h2>
+        <p class="text-gray-300 text-lg leading-relaxed mb-5">
+          Andro Holdings Limited (AHL) is a proudly locally owned company founded in Wewak, East Sepik Province.
+          For over a decade, AHL has been a key driver of infrastructure development across the province — delivering
+          government and DDA-funded civil works and professional security services that directly benefit communities.
+        </p>
+        <p class="text-gray-400 leading-relaxed mb-8">
+          Operating across two core divisions —
+          <span class="text-leaf-400 font-semibold">Civil Engineering</span> and
+          <span class="text-flame-400 font-semibold">Security Services</span> —
+          AHL employs hundreds of Papua New Guineans, champions local education, and builds lasting foundations
+          for a stronger East Sepik Province.
+        </p>
+
+        <!-- Pillars -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-leaf-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-check text-leaf-400 text-xs"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold text-sm">100% Locally Owned</div>
+              <div class="text-gray-500 text-xs">Proud PNG company</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-flame-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-check text-flame-400 text-xs"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold text-sm">Proven Quality</div>
+              <div class="text-gray-500 text-xs">Track record of delivery</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gold-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-check text-gold-400 text-xs"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold text-sm">Licensed &amp; Certified</div>
+              <div class="text-gray-500 text-xs">Fully compliant</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-navy-600/60 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-check text-blue-400 text-xs"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold text-sm">Community Focused</div>
+              <div class="text-gray-500 text-xs">Investing in East Sepik</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: MD card + division cards -->
+      <div class="fade-in space-y-5">
+        <!-- MD Profile -->
+        <div class="bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 rounded-3xl p-7">
+          <div class="flex items-start gap-5">
+            <div class="w-18 h-18 w-[72px] h-[72px] rounded-2xl bg-gradient-to-br from-flame-700 to-flame-900 flex items-center justify-center text-2xl font-black font-display text-white flex-shrink-0">
+              MW
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">Managing Director</div>
+              <div class="text-xl font-bold font-display text-white">Moses Warie</div>
+              <div class="text-flame-400 text-sm mt-0.5">Founder &amp; Managing Director</div>
+              <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                A visionary East Sepik entrepreneur, Moses Warie leads AHL with a commitment to quality infrastructure,
+                local employment, and building a better Papua New Guinea.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Division quick cards -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-gradient-to-br from-leaf-800/25 to-leaf-900/10 border border-leaf-700/30 rounded-2xl p-5">
+            <i class="fas fa-hard-hat text-leaf-400 text-2xl mb-3"></i>
+            <div class="text-white font-bold text-sm">Civil Division</div>
+            <div class="text-gray-400 text-xs mt-1 leading-relaxed">Roads, bridges &amp; infrastructure across East Sepik</div>
+          </div>
+          <div class="bg-gradient-to-br from-flame-800/25 to-flame-900/10 border border-flame-700/30 rounded-2xl p-5">
+            <i class="fas fa-shield-halved text-flame-400 text-2xl mb-3"></i>
+            <div class="text-white font-bold text-sm">Security Division</div>
+            <div class="text-gray-400 text-xs mt-1 leading-relaxed">SIA Lic. <span class="font-mono text-flame-400">MR-SPL-24-00079</span></div>
+          </div>
+        </div>
+
+        <!-- PNG-branded banner -->
+        <div class="bg-gradient-to-r from-navy-700/60 to-navy-800/80 border border-gold-500/20 rounded-2xl p-5 flex items-center gap-4">
+          <div class="text-3xl">🦅</div>
+          <div>
+            <div class="text-gold-400 font-bold text-sm font-display">East Sepik's Home-Grown Company</div>
+            <div class="text-gray-400 text-xs mt-0.5">Proudly based in Wewak since establishment — building PNG, one project at a time.</div>
+          </div>
+        </div>
+
+        <!-- Mission & Vision -->
+        <div class="grid grid-cols-2 gap-3 mt-3">
+          <div class="bg-navy-800/70 border border-leaf-500/20 rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <i class="fas fa-bullseye text-leaf-400 text-sm"></i>
+              <span class="text-white font-bold text-xs uppercase tracking-wider">Mission</span>
+            </div>
+            <p class="text-gray-400 text-xs leading-relaxed">To deliver quality civil infrastructure and trusted security services that uplift communities and drive sustainable development across East Sepik Province.</p>
+          </div>
+          <div class="bg-navy-800/70 border border-gold-500/20 rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <i class="fas fa-eye text-gold-400 text-sm"></i>
+              <span class="text-white font-bold text-xs uppercase tracking-wider">Vision</span>
+            </div>
+            <p class="text-gray-400 text-xs leading-relaxed">To be Papua New Guinea's most trusted locally owned civil and security company — setting the standard for excellence, integrity, and community impact.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     SERVICES SECTION
+═══════════════════════════════════════ -->
+<section id="services" class="py-24 bg-alt">
+  <div class="container mx-auto px-6">
+
+    <div class="text-center mb-16 fade-in">
+      <div class="inline-block bg-flame-500/10 border border-flame-500/30 rounded-full px-4 py-1.5 text-flame-400 text-sm font-semibold mb-4">
+        Our Services
+      </div>
+      <h2 class="font-display font-black text-4xl md:text-5xl text-white mb-4">
+        Two Divisions,<br><span class="text-grad-green">One Mission</span>
+      </h2>
+      <p class="text-gray-400 max-w-xl mx-auto">
+        AHL delivers excellence across civil engineering and security — the two pillars that power development
+        and stability in East Sepik Province.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+
+      <!-- Civil Engineering -->
+      <div class="card-hover group bg-gradient-to-br from-navy-700/90 to-navy-800/90 border border-leaf-500/20 hover:border-leaf-500/50 rounded-3xl p-10 cursor-default">
+        <div class="w-16 h-16 rounded-2xl bg-leaf-500/15 group-hover:bg-leaf-500/25 flex items-center justify-center mb-6 transition-colors">
+          <i class="fas fa-road text-leaf-400 text-2xl"></i>
+        </div>
+        <h3 class="font-display text-2xl font-bold text-white mb-4">Civil Engineering &amp; Construction</h3>
+        <p class="text-gray-400 leading-relaxed mb-8">
+          AHL is a premier civil engineering contractor in East Sepik Province, specialising in large-scale
+          infrastructure including road sealing, highway rehabilitation, bridge construction, and community
+          infrastructure development under government and DDA-funded contracts.
+        </p>
+        <div class="grid grid-cols-2 gap-2.5 mb-8">
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Road Sealing &amp; Bitumen</div>
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Bridge Construction</div>
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Highway Maintenance</div>
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Earthworks &amp; Grading</div>
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Drainage Systems</div>
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Hospital Road Upgrades</div>
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Infrastructure Development</div>
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>DDA-Funded Projects</div>
+        </div>
+        <div class="pt-6 border-t border-navy-600">
+          <a href="#projects" class="inline-flex items-center gap-2 text-leaf-400 hover:text-leaf-300 font-semibold text-sm transition-colors">
+            View Our Projects <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div class="card-hover group bg-gradient-to-br from-navy-700/90 to-navy-800/90 border border-flame-500/20 hover:border-flame-500/50 rounded-3xl p-10 cursor-default">
+        <div class="w-16 h-16 rounded-2xl bg-flame-500/15 group-hover:bg-flame-500/25 flex items-center justify-center mb-6 transition-colors">
+          <i class="fas fa-shield-halved text-flame-400 text-2xl"></i>
+        </div>
+        <h3 class="font-display text-2xl font-bold text-white mb-4">AHL Security Services</h3>
+        <p class="text-gray-400 leading-relaxed mb-8">
+          AHL's security division is fully licensed by the Security Industry Authority of Papua New Guinea,
+          delivering professional security services to major businesses and institutions in Wewak — including
+          a partnership with PNG Ports Corporation for Wewak Port security operations and training.
+        </p>
+        <div class="grid grid-cols-2 gap-2.5 mb-8">
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-flame-400 text-xs"></i>Guarding Services</div>
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-flame-400 text-xs"></i>Port Security</div>
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-flame-400 text-xs"></i>Corporate Protection</div>
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-flame-400 text-xs"></i>Asset Protection</div>
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-flame-400 text-xs"></i>Security Training</div>
+          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-flame-400 text-xs"></i>24/7 Operations</div>
+        </div>
+        <!-- Licence badge -->
+        <div class="bg-flame-500/10 border border-flame-500/20 rounded-xl p-4 mb-6">
+          <div class="flex items-center gap-3">
+            <i class="fas fa-id-badge text-flame-400 text-lg"></i>
+            <div>
+              <div class="text-white text-sm font-bold">Security Industry Authority — PNG</div>
+              <div class="text-flame-400 text-xs font-mono mt-0.5">Licence No: MR-SPL-24-00079</div>
+            </div>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-navy-600">
+          <a href="#security" class="inline-flex items-center gap-2 text-flame-400 hover:text-flame-300 font-semibold text-sm transition-colors">
+            Security Division Details <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     WHY PARTNER WITH AHL
+═══════════════════════════════════════ -->
+<section id="why-ahl" class="py-24 bg-navy-900">
+  <div class="container mx-auto px-6">
+
+    <div class="text-center mb-16 fade-in">
+      <div class="inline-block bg-gold-500/10 border border-gold-500/30 rounded-full px-4 py-1.5 text-gold-400 text-sm font-semibold mb-4">
+        Why Partner With AHL
+      </div>
+      <h2 class="font-display font-black text-4xl md:text-5xl text-white mb-4">
+        The AHL<br><span class="text-grad-orange">Advantage</span>
+      </h2>
+      <p class="text-gray-400 max-w-xl mx-auto">
+        When you choose AHL, you choose a company with proven capability, deep local knowledge,
+        and a genuine commitment to delivering results that matter for East Sepik.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14 fade-in">
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-leaf-500/20 hover:border-leaf-500/45 rounded-2xl p-7 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-leaf-500/15 flex items-center justify-center mx-auto mb-5">
+          <i class="fas fa-map-pin text-leaf-400 text-xl"></i>
+        </div>
+        <h3 class="font-display font-bold text-white text-base mb-2">Deep Local Knowledge</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">Born and operating in Wewak — AHL understands East Sepik terrain, communities, and project environments better than any outside contractor.</p>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-flame-500/20 hover:border-flame-500/45 rounded-2xl p-7 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-flame-500/15 flex items-center justify-center mx-auto mb-5">
+          <i class="fas fa-truck-fast text-flame-400 text-xl"></i>
+        </div>
+        <h3 class="font-display font-bold text-white text-base mb-2">Owned Fleet, Fast Mobilisation</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">Our extensive owned heavy machinery fleet means no hire delays — AHL can mobilise and commence projects faster than competitors.</p>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/20 hover:border-gold-500/45 rounded-2xl p-7 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-gold-500/15 flex items-center justify-center mx-auto mb-5">
+          <i class="fas fa-award text-gold-400 text-xl"></i>
+        </div>
+        <h3 class="font-display font-bold text-white text-base mb-2">Licensed &amp; Compliant</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">Fully licensed civil contractor and SIA-accredited security provider. AHL meets all PNG regulatory requirements for government and corporate contracts.</p>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-blue-500/20 hover:border-blue-500/45 rounded-2xl p-7 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-blue-500/15 flex items-center justify-center mx-auto mb-5">
+          <i class="fas fa-handshake text-blue-400 text-xl"></i>
+        </div>
+        <h3 class="font-display font-bold text-white text-base mb-2">Community &amp; CSR Commitment</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">Partnering with AHL means supporting a company that re-invests in East Sepik — creating jobs, funding education, and building a stronger province.</p>
+      </div>
+    </div>
+
+    <!-- Capabilities Statement Banner -->
+    <div class="fade-in bg-gradient-to-r from-navy-700/80 via-navy-800 to-navy-700/80 border border-gold-500/15 rounded-3xl p-8 md:p-10">
+      <div class="grid md:grid-cols-3 gap-8 items-center">
+        <div class="md:col-span-2">
+          <div class="inline-block bg-gold-500/10 border border-gold-500/25 rounded-full px-3 py-1 text-gold-400 text-xs font-semibold mb-3">Corporate Capabilities Statement</div>
+          <h3 class="font-display text-2xl font-bold text-white mb-3">Ready for Government, DDA &amp; Corporate Contracts</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-5">
+            AHL holds a strong track record of successful delivery on government and DDA-funded projects across East Sepik Province.
+            Our company profile, compliance documentation, and capabilities statement are available upon request for tender applications,
+            pre-qualification, and partnership evaluations.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <span class="inline-flex items-center gap-1.5 bg-leaf-500/10 border border-leaf-500/25 rounded-full px-3 py-1 text-leaf-400 text-xs font-medium"><i class="fas fa-circle-check text-[10px]"></i>Civil Works Contractor</span>
+            <span class="inline-flex items-center gap-1.5 bg-flame-500/10 border border-flame-500/25 rounded-full px-3 py-1 text-flame-400 text-xs font-medium"><i class="fas fa-circle-check text-[10px]"></i>SIA Licensed Security</span>
+            <span class="inline-flex items-center gap-1.5 bg-gold-500/10 border border-gold-500/25 rounded-full px-3 py-1 text-gold-400 text-xs font-medium"><i class="fas fa-circle-check text-[10px]"></i>Government Project Ready</span>
+            <span class="inline-flex items-center gap-1.5 bg-blue-500/10 border border-blue-500/25 rounded-full px-3 py-1 text-blue-400 text-xs font-medium"><i class="fas fa-circle-check text-[10px]"></i>DDA Approved Contractor</span>
+          </div>
+        </div>
+        <div class="text-center md:text-right">
+          <a href="#contact"
+             class="inline-block bg-gradient-to-r from-gold-700 to-gold-500 hover:from-gold-600 hover:to-gold-400 text-white font-bold px-7 py-4 rounded-xl transition-all hover:shadow-lg hover:shadow-gold-500/30 text-sm">
+            <i class="fas fa-file-contract mr-2"></i>Request Capabilities Statement
+          </a>
+          <p class="text-gray-600 text-xs mt-3">For tenders, pre-qualification &amp; partnerships</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     PROJECTS SECTION
+═══════════════════════════════════════ -->
+<section id="projects" class="py-24 bg-navy-900">
+  <div class="container mx-auto px-6">
+
+    <div class="text-center mb-16 fade-in">
+      <div class="inline-block bg-leaf-500/10 border border-leaf-500/30 rounded-full px-4 py-1.5 text-leaf-400 text-sm font-semibold mb-4">
+        Key Projects
+      </div>
+      <h2 class="font-display font-black text-4xl md:text-5xl text-white mb-4">
+        Shaping East Sepik's<br><span class="text-grad-green">Infrastructure</span>
+      </h2>
+      <p class="text-gray-400 max-w-xl mx-auto">
+        From mountain highways to river bridges, AHL has delivered critical infrastructure projects
+        across East Sepik Province under government and DDA-funded programs.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card 1 -->
+      <div class="card-hover group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-leaf-500/40 rounded-2xl overflow-hidden">
+        <div class="h-44 bg-gradient-to-br from-leaf-800/40 to-navy-800 flex items-center justify-center relative">
+          <i class="fas fa-road text-leaf-500 text-7xl opacity-20"></i>
+          <div class="absolute bottom-3 left-4">
+            <span class="bg-leaf-500/20 text-leaf-400 text-xs px-3 py-1 rounded-full border border-leaf-500/30 font-medium">Road Sealing</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-white text-lg mb-1">Sepik National Highway</h3>
+          <p class="text-leaf-400 text-xs font-semibold uppercase tracking-wide mb-3">Tuonimbu / Hanak Section</p>
+          <p class="text-gray-400 text-sm leading-relaxed">Road sealing and maintenance works on the Sepik National Highway between Tuonimbu and Hanak, improving connectivity for local communities.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card-hover group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-gold-500/40 rounded-2xl overflow-hidden">
+        <div class="h-44 bg-gradient-to-br from-gold-800/30 to-navy-800 flex items-center justify-center relative">
+          <i class="fas fa-road text-gold-500 text-7xl opacity-20"></i>
+          <div class="absolute bottom-3 left-4">
+            <span class="bg-gold-500/20 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30 font-medium">Highway Works</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-white text-lg mb-1">Kusambuk Section</h3>
+          <p class="text-gold-400 text-xs font-semibold uppercase tracking-wide mb-3">Sepik National Highway</p>
+          <p class="text-gray-400 text-sm leading-relaxed">Civil works and road rehabilitation on the Kusambuk section, funded through government infrastructure programs to improve provincial transport.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card-hover group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-flame-500/40 rounded-2xl overflow-hidden">
+        <div class="h-44 bg-gradient-to-br from-flame-800/30 to-navy-800 flex items-center justify-center relative">
+          <i class="fas fa-bridge text-flame-500 text-7xl opacity-20"></i>
+          <div class="absolute bottom-3 left-4">
+            <span class="bg-flame-500/20 text-flame-400 text-xs px-3 py-1 rounded-full border border-flame-500/30 font-medium">Bridge Works</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-white text-lg mb-1">Pasik Bridge – Tuonumbu</h3>
+          <p class="text-flame-400 text-xs font-semibold uppercase tracking-wide mb-3">Bridge Construction</p>
+          <p class="text-gray-400 text-sm leading-relaxed">Bridge construction and road sealing from Pasik Bridge to Tuonumbu — a critical link in East Sepik's transport and trade network.</p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card-hover group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-blue-500/40 rounded-2xl overflow-hidden">
+        <div class="h-44 bg-gradient-to-br from-blue-800/25 to-navy-800 flex items-center justify-center relative">
+          <i class="fas fa-hospital text-blue-400 text-7xl opacity-20"></i>
+          <div class="absolute bottom-3 left-4">
+            <span class="bg-blue-500/20 text-blue-400 text-xs px-3 py-1 rounded-full border border-blue-500/30 font-medium">Health Infrastructure</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-white text-lg mb-1">Hospital Road Upgrades</h3>
+          <p class="text-blue-400 text-xs font-semibold uppercase tracking-wide mb-3">Health Access Works</p>
+          <p class="text-gray-400 text-sm leading-relaxed">Road upgrades and access improvement works for hospital facilities, ensuring reliable access to critical health services for East Sepik communities.</p>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card-hover group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-purple-500/40 rounded-2xl overflow-hidden">
+        <div class="h-44 bg-gradient-to-br from-purple-800/25 to-navy-800 flex items-center justify-center relative">
+          <i class="fas fa-trowel-bricks text-purple-400 text-7xl opacity-20"></i>
+          <div class="absolute bottom-3 left-4">
+            <span class="bg-purple-500/20 text-purple-400 text-xs px-3 py-1 rounded-full border border-purple-500/30 font-medium">DDA Funded</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-white text-lg mb-1">DDA Infrastructure Projects</h3>
+          <p class="text-purple-400 text-xs font-semibold uppercase tracking-wide mb-3">Government Works</p>
+          <p class="text-gray-400 text-sm leading-relaxed">Multiple DDA-funded infrastructure projects across East Sepik Province, contributing to regional development and community connectivity.</p>
+        </div>
+      </div>
+
+      <!-- Placeholder -->
+      <div class="card-hover bg-navy-800/50 border border-dashed border-navy-600 rounded-2xl flex items-center justify-center min-h-64">
+        <div class="text-center p-8">
+          <div class="w-14 h-14 rounded-2xl bg-navy-700/60 flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-plus text-gray-600 text-xl"></i>
+          </div>
+          <p class="text-gray-500 font-semibold text-sm">Ongoing Works</p>
+          <p class="text-gray-600 text-xs mt-1">More projects across East Sepik Province</p>
+          <a href="#contact" class="mt-4 inline-block text-leaf-500 text-xs hover:text-leaf-400 transition-colors font-medium">Enquire about tenders →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     LEAD-GEN CTA BAND
+═══════════════════════════════════════ -->
+<section class="py-16 bg-gradient-to-r from-flame-900/60 via-navy-800 to-leaf-900/40 border-y border-white/5">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="text-center md:text-left">
+        <div class="inline-flex items-center gap-2 bg-flame-500/15 border border-flame-500/30 rounded-full px-3 py-1 text-flame-400 text-xs font-semibold mb-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-flame-400 animate-pulse"></span>Now Accepting New Projects
+        </div>
+        <h2 class="font-display font-black text-3xl md:text-4xl text-white mb-2">Have a Project in Mind?</h2>
+        <p class="text-gray-400 text-sm max-w-lg">From road sealing and bridge works to corporate security — get a professional quote from AHL's team in Wewak today.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+        <a href="#contact"
+           class="pulse-btn bg-gradient-to-r from-flame-700 to-flame-500 hover:from-flame-600 hover:to-flame-400 text-white font-bold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-flame-500/40 text-sm text-center">
+          <i class="fas fa-paper-plane mr-2"></i>Request a Quote
+        </a>
+        <a href="tel:+675XXXXXXXX"
+           class="bg-white/10 backdrop-blur border border-white/20 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-full transition-all text-sm text-center">
+          <i class="fas fa-phone mr-2 text-leaf-400"></i>Call Us Now
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     MACHINERY SECTION
+═══════════════════════════════════════ -->
+<section id="machinery" class="py-24 bg-alt">
+  <div class="container mx-auto px-6">
+
+    <div class="text-center mb-16 fade-in">
+      <div class="inline-block bg-gold-500/10 border border-gold-500/30 rounded-full px-4 py-1.5 text-gold-400 text-sm font-semibold mb-4">
+        Our Fleet
+      </div>
+      <h2 class="font-display font-black text-4xl md:text-5xl text-white mb-4">
+        Heavy Machinery &amp;<br><span class="text-grad-orange">Equipment Fleet</span>
+      </h2>
+      <p class="text-gray-400 max-w-xl mx-auto">
+        AHL operates an extensive fleet of heavy machinery and specialised equipment, giving us the capacity
+        to independently mobilise and complete large-scale civil engineering projects.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-12 fade-in">
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+        <div class="text-4xl mb-3">🚧</div>
+        <div class="text-white font-semibold text-sm">Motor Grader</div>
+        <div class="text-gray-500 text-xs mt-1">Road grading &amp; levelling</div>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+        <div class="text-4xl mb-3">🏗️</div>
+        <div class="text-white font-semibold text-sm">Excavator</div>
+        <div class="text-gray-500 text-xs mt-1">Earthworks &amp; trenching</div>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+        <div class="text-4xl mb-3">🚛</div>
+        <div class="text-white font-semibold text-sm">Tipper Trucks</div>
+        <div class="text-gray-500 text-xs mt-1">Material haulage</div>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+        <div class="text-4xl mb-3">🛢️</div>
+        <div class="text-white font-semibold text-sm">Bitumen Sprayer</div>
+        <div class="text-gray-500 text-xs mt-1">Road sealing equipment</div>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+        <div class="text-4xl mb-3">🔩</div>
+        <div class="text-white font-semibold text-sm">Road Roller</div>
+        <div class="text-gray-500 text-xs mt-1">Compaction works</div>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+        <div class="text-4xl mb-3">🚜</div>
+        <div class="text-white font-semibold text-sm">Bulldozer</div>
+        <div class="text-gray-500 text-xs mt-1">Land clearing &amp; pushing</div>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+        <div class="text-4xl mb-3">🏛️</div>
+        <div class="text-white font-semibold text-sm">Concrete Equipment</div>
+        <div class="text-gray-500 text-xs mt-1">Batching &amp; placement</div>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+        <div class="text-4xl mb-3">🔧</div>
+        <div class="text-white font-semibold text-sm">Support Fleet</div>
+        <div class="text-gray-500 text-xs mt-1">Maintenance &amp; logistics</div>
+      </div>
+    </div>
+
+    <!-- Capability Banner -->
+    <div class="fade-in bg-gradient-to-r from-gold-900/15 via-navy-700 to-gold-900/15 border border-gold-500/20 rounded-3xl p-8 text-center">
+      <i class="fas fa-cogs text-gold-400 text-4xl mb-4"></i>
+      <h3 class="font-display text-2xl font-bold text-white mb-3">Full-Scale Project Capability</h3>
+      <p class="text-gray-400 max-w-xl mx-auto text-sm leading-relaxed">
+        Our fleet is maintained to the highest standards, giving AHL the independent capacity to mobilise
+        and deliver complex, multi-phase civil engineering projects anywhere across East Sepik Province.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     SECURITY SECTION
+═══════════════════════════════════════ -->
+<section id="security" class="py-24 bg-navy-900">
+  <div class="container mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left info -->
+      <div class="fade-in">
+        <div class="inline-block bg-flame-500/10 border border-flame-500/30 rounded-full px-4 py-1.5 text-flame-400 text-sm font-semibold mb-6">
+          Security Division
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl text-white mb-6">
+          Professional<br><span class="text-grad-orange">Security Services</span>
+        </h2>
+        <p class="text-gray-300 text-lg leading-relaxed mb-5">
+          AHL's Security Division is a fully licensed and accredited security provider operating under the
+          Security Industry Authority of Papua New Guinea. We deliver trusted professional security to
+          major businesses and institutions in Wewak and East Sepik Province.
+        </p>
+        <p class="text-gray-400 leading-relaxed mb-8">
+          Our security personnel undergo rigorous training and are equipped to handle diverse challenges.
+          Notable partnerships include security operations at the Wewak Port in collaboration with
+          <strong class="text-white">PNG Ports Corporation</strong>.
+        </p>
+
+        <!-- SIA Licence card -->
+        <div class="bg-gradient-to-r from-flame-900/30 to-navy-800 border border-flame-500/30 rounded-2xl p-5 mb-8 flex items-center gap-4">
+          <div class="w-14 h-14 rounded-xl bg-flame-500/20 flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-certificate text-flame-400 text-2xl"></i>
+          </div>
+          <div>
+            <div class="text-xs text-gray-500 uppercase tracking-widest mb-0.5">Official Licence</div>
+            <div class="text-white font-bold">Security Industry Authority, PNG</div>
+            <div class="text-flame-400 font-mono text-sm mt-0.5">MR-SPL-24-00079</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-navy-800 border border-navy-600 rounded-xl p-4">
+            <i class="fas fa-user-shield text-flame-400 text-xl mb-2"></i>
+            <div class="text-white font-semibold text-sm mb-1">Trained Personnel</div>
+            <p class="text-gray-500 text-xs">Professionally certified security officers</p>
+          </div>
+          <div class="bg-navy-800 border border-navy-600 rounded-xl p-4">
+            <i class="fas fa-anchor text-gold-400 text-xl mb-2"></i>
+            <div class="text-white font-semibold text-sm mb-1">Port Security</div>
+            <p class="text-gray-500 text-xs">PNG Ports Corporation partner for Wewak Port</p>
+          </div>
+          <div class="bg-navy-800 border border-navy-600 rounded-xl p-4">
+            <i class="fas fa-building text-leaf-400 text-xl mb-2"></i>
+            <div class="text-white font-semibold text-sm mb-1">Corporate Security</div>
+            <p class="text-gray-500 text-xs">Protection for major business partners in Wewak</p>
+          </div>
+          <div class="bg-navy-800 border border-navy-600 rounded-xl p-4">
+            <i class="fas fa-graduation-cap text-blue-400 text-xl mb-2"></i>
+            <div class="text-white font-semibold text-sm mb-1">Security Training</div>
+            <p class="text-gray-500 text-xs">Comprehensive staff training programs</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right visual -->
+      <div class="fade-in">
+        <div class="bg-gradient-to-br from-flame-900/20 to-navy-800 border border-flame-500/20 rounded-3xl p-10 text-center">
+          <div class="w-28 h-28 rounded-full bg-gradient-to-br from-flame-600/30 to-flame-900/20 border-2 border-flame-500/40 flex items-center justify-center mx-auto mb-7">
+            <i class="fas fa-shield-halved text-flame-400" style="font-size: 3.5rem;"></i>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-white mb-3">Trusted Protection</h3>
+          <p class="text-gray-400 text-sm mb-8 leading-relaxed">
+            AHL Security provides round-the-clock protection to Wewak's most important organisations —
+            ensuring safety, security, and peace of mind.
+          </p>
+          <div class="space-y-3 text-left">
+            <div class="flex items-center gap-3 bg-navy-800/60 rounded-xl p-3">
+              <i class="fas fa-circle-check text-flame-400 flex-shrink-0"></i>
+              <span class="text-sm text-gray-300">24/7 Security Operations</span>
+            </div>
+            <div class="flex items-center gap-3 bg-navy-800/60 rounded-xl p-3">
+              <i class="fas fa-circle-check text-flame-400 flex-shrink-0"></i>
+              <span class="text-sm text-gray-300">Licensed Under Security Industry Authority PNG</span>
+            </div>
+            <div class="flex items-center gap-3 bg-navy-800/60 rounded-xl p-3">
+              <i class="fas fa-circle-check text-flame-400 flex-shrink-0"></i>
+              <span class="text-sm text-gray-300">PNG Ports Corporation Partnership</span>
+            </div>
+            <div class="flex items-center gap-3 bg-navy-800/60 rounded-xl p-3">
+              <i class="fas fa-circle-check text-flame-400 flex-shrink-0"></i>
+              <span class="text-sm text-gray-300">East Sepik's Trusted Security Partner</span>
+            </div>
+          </div>
+          <a href="#contact"
+             class="mt-8 inline-block w-full bg-gradient-to-r from-flame-700 to-flame-600 hover:from-flame-600 hover:to-flame-500 text-white font-bold px-6 py-3.5 rounded-xl transition-all hover:shadow-lg hover:shadow-flame-500/30 text-sm">
+            Enquire About Security Services
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     COMMUNITY SECTION
+═══════════════════════════════════════ -->
+<section id="community" class="py-24 bg-alt">
+  <div class="container mx-auto px-6">
+
+    <div class="text-center mb-16 fade-in">
+      <div class="inline-block bg-leaf-500/10 border border-leaf-500/30 rounded-full px-4 py-1.5 text-leaf-400 text-sm font-semibold mb-4">
+        Community Investment
+      </div>
+      <h2 class="font-display font-black text-4xl md:text-5xl text-white mb-4">
+        Investing in Our<br><span class="text-grad-green">People &amp; Province</span>
+      </h2>
+      <p class="text-gray-400 max-w-xl mx-auto">
+        AHL is more than a company — we are a community stakeholder committed to building
+        a better East Sepik for future generations.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 fade-in mb-12">
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-leaf-500/20 rounded-3xl p-8">
+        <div class="w-14 h-14 rounded-2xl bg-leaf-500/20 flex items-center justify-center mb-5">
+          <i class="fas fa-graduation-cap text-leaf-400 text-2xl"></i>
+        </div>
+        <h3 class="font-display text-xl font-bold text-white mb-3">Education &amp; Scholarships</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+          AHL actively sponsors students and education initiatives across East Sepik Province —
+          investing in the next generation of Papua New Guinean leaders, engineers, and professionals.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-leaf-600 text-[7px] mt-1.5 flex-shrink-0"></i>Student scholarship sponsorships</li>
+          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-leaf-600 text-[7px] mt-1.5 flex-shrink-0"></i>Supporting school infrastructure</li>
+          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-leaf-600 text-[7px] mt-1.5 flex-shrink-0"></i>Mentoring young East Sepik talent</li>
+        </ul>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/20 rounded-3xl p-8">
+        <div class="w-14 h-14 rounded-2xl bg-gold-500/20 flex items-center justify-center mb-5">
+          <i class="fas fa-people-group text-gold-400 text-2xl"></i>
+        </div>
+        <h3 class="font-display text-xl font-bold text-white mb-3">Local Employment &amp; Skills</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+          As a 100% locally owned company, AHL prioritises Papua New Guinean employment — providing
+          skilled jobs, professional training, and long-term career pathways across East Sepik.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-gold-600 text-[7px] mt-1.5 flex-shrink-0"></i>200+ PNG nationals employed</li>
+          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-gold-600 text-[7px] mt-1.5 flex-shrink-0"></i>On-the-job heavy machinery training</li>
+          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-gold-600 text-[7px] mt-1.5 flex-shrink-0"></i>Security officer professional certification</li>
+        </ul>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-flame-500/20 rounded-3xl p-8">
+        <div class="w-14 h-14 rounded-2xl bg-flame-500/20 flex items-center justify-center mb-5">
+          <i class="fas fa-map-location-dot text-flame-400 text-2xl"></i>
+        </div>
+        <h3 class="font-display text-xl font-bold text-white mb-3">Future Leaders Program</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+          AHL champions East Sepik's future by identifying, supporting, and developing talented
+          young Papua New Guineans — the engineers, builders, and leaders of tomorrow.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-flame-600 text-[7px] mt-1.5 flex-shrink-0"></i>Graduate internship placements</li>
+          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-flame-600 text-[7px] mt-1.5 flex-shrink-0"></i>Youth leadership recognition</li>
+          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-flame-600 text-[7px] mt-1.5 flex-shrink-0"></i>Community project volunteering</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Community Impact Banner -->
+    <div class="fade-in bg-gradient-to-r from-leaf-900/20 via-navy-700 to-leaf-900/10 border border-leaf-500/15 rounded-3xl p-8 md:p-10">
+      <div class="grid md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="text-3xl font-black font-display text-leaf-400">200+</div>
+          <div class="text-gray-400 text-xs mt-1 uppercase tracking-wide">PNG Nationals Employed</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black font-display text-gold-400">50+</div>
+          <div class="text-gray-400 text-xs mt-1 uppercase tracking-wide">Students Supported</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black font-display text-flame-400">10+</div>
+          <div class="text-gray-400 text-xs mt-1 uppercase tracking-wide">Communities Connected</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black font-display text-blue-400">100%</div>
+          <div class="text-gray-400 text-xs mt-1 uppercase tracking-wide">PNG Owned &amp; Operated</div>
+        </div>
+      </div>
+      <div class="border-t border-navy-600 mt-8 pt-8 text-center">
+        <p class="text-gray-400 text-sm max-w-2xl mx-auto leading-relaxed">
+          <span class="text-white font-semibold">"AHL is more than a contractor — we are East Sepik's partner in progress."</span><br>
+          Every project we deliver, every person we employ, and every student we support is an investment
+          in a stronger, more prosperous Papua New Guinea.
+        </p>
+        <div class="mt-4 text-xs text-flame-400 font-semibold">— Moses Warie, Founder &amp; Managing Director</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     CONTACT SECTION
+═══════════════════════════════════════ -->
+<section id="contact" class="py-24 bg-navy-900">
+  <div class="container mx-auto px-6">
+
+    <div class="text-center mb-16 fade-in">
+      <div class="inline-block bg-flame-500/10 border border-flame-500/30 rounded-full px-4 py-1.5 text-flame-400 text-sm font-semibold mb-4">
+        Get In Touch
+      </div>
+      <h2 class="font-display font-black text-4xl md:text-5xl text-white mb-4">
+        Let's Work<br><span class="text-grad-orange">Together</span>
+      </h2>
+      <p class="text-gray-400 max-w-xl mx-auto">
+        Ready to discuss your next civil engineering or security project? Contact the AHL team in Wewak today.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12">
+
+      <!-- Contact info -->
+      <div class="fade-in">
+        <h3 class="font-display text-2xl font-bold text-white mb-8">Contact Information</h3>
+        <div class="space-y-6 mb-10">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-leaf-500/20 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-location-dot text-leaf-400"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Registered Address</div>
+              <div class="text-gray-400 text-sm leading-relaxed">Wewak, East Sepik Province<br>Papua New Guinea</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-flame-500/20 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-phone text-flame-400"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Phone</div>
+              <div class="text-gray-400 text-sm">+675 XXX XXXX</div>
+              <div class="text-gray-600 text-xs mt-0.5">Update with current contact number</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-gold-500/20 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-envelope text-gold-400"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Email</div>
+              <div class="text-gray-400 text-sm">info@androholdings.com.pg</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+              <i class="fab fa-facebook text-blue-400"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Facebook</div>
+              <div class="text-gray-400 text-sm">Search "Andro Holdings Limited" on Facebook</div>
+              <div class="text-gray-600 text-xs mt-0.5">Project updates and company news</div>
+            </div>
+          </div>
+        </div>
+        <!-- Business hours -->
+        <div class="bg-navy-800 border border-navy-600 rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <i class="fas fa-clock text-leaf-400"></i>
+            <h4 class="font-bold text-white">Business Hours</h4>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between text-gray-300">
+              <span>Monday – Friday</span>
+              <span class="text-leaf-400 font-medium">8:00 AM – 5:00 PM</span>
+            </div>
+            <div class="flex justify-between text-gray-300">
+              <span>Saturday</span>
+              <span class="text-gold-400 font-medium">8:00 AM – 12:00 PM</span>
+            </div>
+            <div class="flex justify-between text-gray-400">
+              <span>Sunday</span>
+              <span class="text-gray-600">Closed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact form -->
+      <div class="fade-in">
+        <form id="contact-form" class="bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 rounded-3xl p-8" onsubmit="handleSubmit(event)" novalidate>
+          <h3 class="font-display text-2xl font-bold text-white mb-6">Send a Message</h3>
+
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm text-gray-400 mb-1.5" for="firstName">First Name</label>
+              <input id="firstName" type="text" name="firstName" placeholder="John" required autocomplete="given-name"
+                class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm" />
+            </div>
+            <div>
+              <label class="block text-sm text-gray-400 mb-1.5" for="lastName">Last Name</label>
+              <input id="lastName" type="text" name="lastName" placeholder="Doe" required autocomplete="family-name"
+                class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm" />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm text-gray-400 mb-1.5" for="email">Email Address</label>
+            <input id="email" type="email" name="email" placeholder="your@email.com" required autocomplete="email"
+              class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm" />
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm text-gray-400 mb-1.5" for="company">Company / Organisation</label>
+            <input id="company" type="text" name="company" placeholder="Your company name" autocomplete="organization"
+              class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm" />
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm text-gray-400 mb-1.5" for="phone">Phone (Optional)</label>
+            <input id="phone" type="tel" name="phone" placeholder="+675 XXX XXXX" autocomplete="tel"
+              class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm" />
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm text-gray-400 mb-1.5" for="service">Service Required</label>
+            <select id="service" name="service" required
+              class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white outline-none transition-all text-sm appearance-none">
+              <option value="" disabled selected>Select a service…</option>
+              <option value="civil">Civil Engineering &amp; Construction</option>
+              <option value="security">Security Services</option>
+              <option value="both">Civil &amp; Security (Both)</option>
+              <option value="tender">Tender / Project Enquiry</option>
+              <option value="other">Other Enquiry</option>
+            </select>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-sm text-gray-400 mb-1.5" for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us about your project or enquiry…" required
+              class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm resize-none"></textarea>
+          </div>
+
+          <button type="submit"
+            class="w-full bg-gradient-to-r from-leaf-700 to-leaf-600 hover:from-leaf-600 hover:to-leaf-500 text-white font-bold px-6 py-4 rounded-xl transition-all hover:shadow-lg hover:shadow-leaf-500/30 text-sm">
+            <span id="submit-text">Send Message →</span>
+          </button>
+
+          <!-- Success message -->
+          <div id="success-msg" class="hidden mt-4 bg-leaf-500/10 border border-leaf-500/30 rounded-xl p-4 text-center">
+            <i class="fas fa-circle-check text-leaf-400 text-xl mb-2"></i>
+            <p class="text-leaf-400 text-sm font-semibold">Message sent! The AHL team will be in touch soon.</p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer class="bg-black/70 border-t border-navy-800 pt-16 pb-8">
+  <div class="container mx-auto px-6">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-flame-500 flex-shrink-0">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="w-12 h-12">
+              <circle cx="40" cy="40" r="39" fill="#0f2d5c"/>
+              <circle cx="40" cy="40" r="37" fill="none" stroke="#f97316" stroke-width="2.5"/>
+              <ellipse cx="36" cy="54" rx="14" ry="18" fill="#0a0f1a"/>
+              <path d="M24 50 Q17 60 24 70 Q33 65 36 56 Z" fill="#1a4a8a" opacity="0.85"/>
+              <ellipse cx="36" cy="50" rx="8" ry="11" fill="#f0f4f8"/>
+              <circle cx="49" cy="32" r="11" fill="#0a0f1a"/>
+              <path d="M49 22 Q64 14 71 21 Q69 29 57 31 Q53 32 49 29 Z" fill="#f97316"/>
+              <path d="M49 31 Q68 33 73 40 Q60 42 49 39 Z" fill="#fbbf24"/>
+              <path d="M49 39 Q62 41 65 46 Q56 46 49 43 Z" fill="#f59e0b"/>
+              <circle cx="55" cy="30" r="4" fill="#ea580c"/>
+              <circle cx="55" cy="30" r="2.2" fill="#040c18"/>
+              <circle cx="54" cy="29" r="0.8" fill="white"/>
+              <path d="M28 66 Q26 76 30 78 Q34 74 32 66 Z" fill="#0a0f1a"/>
+              <path d="M34 68 Q32 80 36 82 Q40 78 38 68 Z" fill="#0a0f1a"/>
+              <path d="M40 66 Q38 76 42 78 Q46 74 44 66 Z" fill="#0a0f1a"/>
+              <ellipse cx="30" cy="77" rx="2" ry="1.2" fill="white" opacity="0.85"/>
+              <ellipse cx="36" cy="80" rx="2" ry="1.2" fill="white" opacity="0.85"/>
+              <ellipse cx="42" cy="77" rx="2" ry="1.2" fill="white" opacity="0.85"/>
+              <text x="40" y="72" text-anchor="middle" fill="#fbbf24" font-family="Arial Black, sans-serif" font-weight="900" font-size="6" letter-spacing="1">AHL</text>
+            </svg>
+          </div>
+          <div>
+            <div class="text-white font-black font-display text-base">Andro Holdings Limited</div>
+            <div class="text-leaf-400 text-xs tracking-wider">Wewak · East Sepik Province · PNG</div>
+          </div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed max-w-sm mb-5">
+          A locally owned Papua New Guinean company delivering excellence in civil engineering and security
+          services across East Sepik Province.
+        </p>
+        <div class="flex gap-3">
+          <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-xl bg-navy-700 hover:bg-blue-700 border border-navy-600 flex items-center justify-center transition-all">
+            <i class="fab fa-facebook text-gray-400 hover:text-white text-sm"></i>
+          </a>
+          <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-xl bg-navy-700 hover:bg-blue-600 border border-navy-600 flex items-center justify-center transition-all">
+            <i class="fab fa-linkedin-in text-gray-400 hover:text-white text-sm"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-5">Quick Links</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#about"     class="text-gray-500 hover:text-leaf-400 text-sm transition-colors">About AHL</a></li>
+          <li><a href="#services"  class="text-gray-500 hover:text-leaf-400 text-sm transition-colors">Our Services</a></li>
+          <li><a href="#projects"  class="text-gray-500 hover:text-leaf-400 text-sm transition-colors">Projects</a></li>
+          <li><a href="#machinery" class="text-gray-500 hover:text-leaf-400 text-sm transition-colors">Machinery Fleet</a></li>
+          <li><a href="#security"  class="text-gray-500 hover:text-leaf-400 text-sm transition-colors">Security Division</a></li>
+          <li><a href="#community" class="text-gray-500 hover:text-leaf-400 text-sm transition-colors">Community</a></li>
+          <li><a href="#contact"   class="text-gray-500 hover:text-leaf-400 text-sm transition-colors">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Services + Licence -->
+      <div>
+        <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-5">Services</h4>
+        <ul class="space-y-2 mb-6">
+          <li class="flex items-center gap-2 text-gray-500 text-sm"><i class="fas fa-circle text-leaf-600 text-[8px]"></i>Road Sealing &amp; Maintenance</li>
+          <li class="flex items-center gap-2 text-gray-500 text-sm"><i class="fas fa-circle text-leaf-600 text-[8px]"></i>Bridge Construction</li>
+          <li class="flex items-center gap-2 text-gray-500 text-sm"><i class="fas fa-circle text-leaf-600 text-[8px]"></i>Highway Development</li>
+          <li class="flex items-center gap-2 text-gray-500 text-sm"><i class="fas fa-circle text-flame-600 text-[8px]"></i>Security Services</li>
+          <li class="flex items-center gap-2 text-gray-500 text-sm"><i class="fas fa-circle text-flame-600 text-[8px]"></i>Port &amp; Corporate Security</li>
+        </ul>
+        <div class="bg-flame-500/10 border border-flame-500/20 rounded-xl p-3">
+          <div class="text-xs text-gray-600 mb-0.5">Security Industry Authority</div>
+          <div class="text-flame-400 font-mono text-xs font-bold">MR-SPL-24-00079</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-gray-600 text-xs text-center md:text-left">
+        &copy; 2026 Andro Holdings Limited (AHL). All rights reserved. Wewak, East Sepik Province, PNG.
+      </p>
+      <div class="flex items-center gap-3 text-xs text-gray-700">
+        <span>Civil Engineering</span>
+        <span class="text-leaf-700">•</span>
+        <span>Security Services</span>
+        <span class="text-flame-700">•</span>
+        <span>Papua New Guinea</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════ -->
+<script>
+  // ── Navbar glass effect on scroll ──────────────────────
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('nav-glass', window.scrollY > 60);
+  }, { passive: true });
+
+  // ── Mobile menu toggle ──────────────────────────────────
+  let menuOpen = false;
+  function toggleMenu() {
+    menuOpen = !menuOpen;
+    document.getElementById('mobile-menu').classList.toggle('open', menuOpen);
+    document.getElementById('icon-open').classList.toggle('hidden', menuOpen);
+    document.getElementById('icon-close').classList.toggle('hidden', !menuOpen);
+  }
+
+  // ── Fade-in on scroll (Intersection Observer) ──────────
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+  // ── Contact form (client-side simulation) ──────────────
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-text');
+    const success = document.getElementById('success-msg');
+    btn.textContent = 'Sending…';
+    // Simulate async submission delay
+    setTimeout(() => {
+      success.classList.remove('hidden');
+      btn.textContent = 'Send Message →';
+      e.target.reset();
+      // Scroll success into view
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 1000);
+  }
+
+  // ── Smooth scroll for all anchor links ─────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Close mobile menu if open
+        if (menuOpen) toggleMenu();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
