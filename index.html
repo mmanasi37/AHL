@@ -28,8 +28,11 @@
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- Inline favicon as SVG data URI -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='38' fill='%230f2d5c' stroke='%23f97316' stroke-width='3'/%3E%3Cellipse cx='38' cy='52' rx='14' ry='18' fill='%230a0f1a'/%3E%3Cellipse cx='38' cy='47' rx='8' ry='10' fill='%23e8f0f9'/%3E%3Ccircle cx='50' cy='32' r='11' fill='%230a0f1a'/%3E%3Cpath d='M50 23 Q65 15 72 22 Q70 30 58 32 Q54 32 50 30Z' fill='%23f97316'/%3E%3Cpath d='M50 32 Q68 34 73 41 Q60 43 50 40Z' fill='%23fbbf24'/%3E%3Ccircle cx='56' cy='30' r='3.5' fill='%23f97316'/%3E%3Ccircle cx='56' cy='30' r='2' fill='%230a0f1a'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/jpeg" href="images/AHL-logo.jpg" />
+  <link rel="apple-touch-icon" href="images/AHL-logo.jpg" />
+  <meta name="theme-color" content="#0f2d5c" />
+  <meta property="og:image" content="images/AHL-logo.jpg" />
+  <meta name="twitter:image" content="images/AHL-logo.jpg" />
 
   <style>
     /* Base */
@@ -142,10 +145,118 @@
     .stat-box:nth-child(2) { animation-delay: 0.15s; }
     .stat-box:nth-child(3) { animation-delay: 0.3s; }
     .stat-box:nth-child(4) { animation-delay: 0.45s; }
+
+    /* Skip navigation link */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      z-index: 9999;
+      background: #22c55e;
+      color: #040c18;
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 0.5rem 1.25rem;
+      border-radius: 0 0 0.5rem 0.5rem;
+      transition: top 0.2s;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* Focus visible ring */
+    :focus-visible {
+      outline: 2px solid #22c55e;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* Active nav link */
+    .nav-link.active { color: #fff; }
+    .nav-link.active::after { width: 100%; }
+
+    /* Back-to-top button */
+    #back-to-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 40;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0f2d5c 0%, #1a4a8a 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.3s, transform 0.3s, background 0.2s;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    #back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    #back-to-top:hover { background: linear-gradient(135deg, #1a4a8a, #22c55e); }
+
+    /* WhatsApp floating button */
+    #wa-fab {
+      position: fixed;
+      bottom: 5rem;
+      right: 1.5rem;
+      z-index: 40;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    #wa-fab:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37, 211, 102, 0.6); }
+
+    /* Machinery icon container */
+    .machine-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 1rem;
+      background: rgba(234, 179, 8, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      transition: background 0.2s;
+    }
+    .card-hover:hover .machine-icon { background: rgba(234, 179, 8, 0.22); }
+
+    /* Hero logo glow ring */
+    @keyframes logo-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.25); }
+      50%       { box-shadow: 0 0 0 18px rgba(249, 115, 22, 0); }
+    }
+    .logo-ring { animation: logo-pulse 3.5s ease-in-out infinite; }
+
+    /* Prefers reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .fade-in { opacity: 1 !important; transform: none !important; }
+      .pulse-btn { animation: none !important; }
+      .stat-box { animation: none !important; }
+      .logo-ring { animation: none !important; }
+    }
   </style>
 </head>
 
 <body class="bg-navy-900 text-white antialiased">
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- ═══════════════════════════════════════
      TOP INFO BAR
@@ -155,18 +266,18 @@
     <div class="flex items-center gap-6">
       <span class="flex items-center gap-1.5">
         <i class="fas fa-location-dot text-leaf-500"></i>
-        Wewak, East Sepik Province, Papua New Guinea
+        PO Box 860, Wewak, East Sepik Province, PNG
       </span>
-      <span class="flex items-center gap-1.5">
+      <a href="tel:+67571246446" class="flex items-center gap-1.5 hover:text-white transition-colors">
         <i class="fas fa-phone text-flame-500"></i>
-        +675 XXX XXXX
-      </span>
+        +675 7124 6446
+      </a>
     </div>
     <div class="flex items-center gap-4">
-      <span class="flex items-center gap-1.5">
+      <a href="mailto:androholdingsltd@gmail.com" class="flex items-center gap-1.5 hover:text-white transition-colors">
         <i class="fas fa-envelope text-gold-500"></i>
-        info@androholdings.com.pg
-      </span>
+        androholdingsltd@gmail.com
+      </a>
       <span class="text-gray-600">|</span>
       <span class="text-flame-400 font-medium">SIA Lic: MR-SPL-24-00079</span>
     </div>
@@ -176,50 +287,13 @@
 <!-- ═══════════════════════════════════════
      NAVIGATION
 ═══════════════════════════════════════ -->
-<nav id="navbar" class="fixed top-0 md:top-9 left-0 right-0 z-50 transition-all duration-300 py-3">
+<nav id="navbar" aria-label="Main navigation" class="fixed top-0 md:top-9 left-0 right-0 z-50 transition-all duration-300 py-3">
   <div class="container mx-auto px-6">
     <div class="flex items-center justify-between">
 
       <!-- Logo -->
       <a href="#home" class="flex items-center gap-3 group">
-        <!-- Hornbill SVG Logo Badge -->
-        <div class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg shadow-black/40 overflow-hidden border-2 border-flame-500 flex-shrink-0">
-          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="w-12 h-12">
-            <circle cx="40" cy="40" r="39" fill="#0f2d5c"/>
-            <!-- Ring highlight -->
-            <circle cx="40" cy="40" r="37" fill="none" stroke="#f97316" stroke-width="2.5"/>
-            <!-- Body -->
-            <ellipse cx="36" cy="54" rx="14" ry="18" fill="#0a0f1a"/>
-            <!-- Wing -->
-            <path d="M24 50 Q17 60 24 70 Q33 65 36 56 Z" fill="#1a4a8a" opacity="0.85"/>
-            <!-- Chest / throat (ivory) -->
-            <ellipse cx="36" cy="50" rx="8" ry="11" fill="#f0f4f8"/>
-            <!-- Head -->
-            <circle cx="49" cy="32" r="11" fill="#0a0f1a"/>
-            <!-- Casque (orange helmet on beak) -->
-            <path d="M49 22 Q64 14 71 21 Q69 29 57 31 Q53 32 49 29 Z" fill="#f97316"/>
-            <!-- Upper beak -->
-            <path d="M49 31 Q68 33 73 40 Q60 42 49 39 Z" fill="#fbbf24"/>
-            <!-- Lower beak -->
-            <path d="M49 39 Q62 41 65 46 Q56 46 49 43 Z" fill="#f59e0b"/>
-            <!-- Eye surround -->
-            <circle cx="55" cy="30" r="4" fill="#ea580c"/>
-            <!-- Eye pupil -->
-            <circle cx="55" cy="30" r="2.2" fill="#040c18"/>
-            <!-- Eye highlight -->
-            <circle cx="54" cy="29" r="0.8" fill="white"/>
-            <!-- Tail feathers -->
-            <path d="M28 66 Q26 76 30 78 Q34 74 32 66 Z" fill="#0a0f1a"/>
-            <path d="M34 68 Q32 80 36 82 Q40 78 38 68 Z" fill="#0a0f1a"/>
-            <path d="M40 66 Q38 76 42 78 Q46 74 44 66 Z" fill="#0a0f1a"/>
-            <!-- Tail white tips -->
-            <ellipse cx="30" cy="77" rx="2" ry="1.2" fill="white" opacity="0.85"/>
-            <ellipse cx="36" cy="80" rx="2" ry="1.2" fill="white" opacity="0.85"/>
-            <ellipse cx="42" cy="77" rx="2" ry="1.2" fill="white" opacity="0.85"/>
-            <!-- "AHL" tiny text at bottom -->
-            <text x="40" y="72" text-anchor="middle" fill="#fbbf24" font-family="Arial Black, sans-serif" font-weight="900" font-size="6" letter-spacing="1">AHL</text>
-          </svg>
-        </div>
+        <img src="images/AHL-logo.jpg" alt="AHL Civil Works Logo" class="w-12 h-12 rounded-full object-cover shadow-lg shadow-black/40 flex-shrink-0" />
         <div class="leading-tight">
           <div class="text-white font-black font-display text-lg tracking-wide group-hover:text-gold-400 transition-colors">AHL</div>
           <div class="text-leaf-400 text-xs font-semibold tracking-widest uppercase">Andro Holdings</div>
@@ -241,7 +315,7 @@
       </div>
 
       <!-- Mobile hamburger -->
-      <button id="menu-btn" class="lg:hidden p-2 text-white" onclick="toggleMenu()" aria-label="Toggle menu">
+      <button id="menu-btn" class="lg:hidden p-2 text-white" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg id="icon-open"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
@@ -260,6 +334,7 @@
   </div>
 </nav>
 
+<main id="main-content">
 
 <!-- ═══════════════════════════════════════
      HERO SECTION
@@ -283,8 +358,8 @@
   <div class="absolute bottom-0 left-10 w-[400px] h-[400px] bg-flame-700 opacity-[0.07] rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-navy-600 opacity-[0.04] rounded-full blur-3xl pointer-events-none"></div>
 
-  <div class="container mx-auto px-6 py-28 relative z-10">
-    <div class="max-w-5xl">
+  <div class="container mx-auto px-6 py-28 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+    <div>
 
       <!-- Location badge -->
       <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-leaf-500/25 rounded-full px-4 py-2 mb-8">
@@ -324,24 +399,40 @@
       <!-- Stats -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div class="stat-box bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-5 text-center">
-          <div class="text-3xl font-black font-display text-flame-400">10+</div>
+          <div class="text-3xl font-black font-display text-flame-400" data-count="10" data-suffix="+">10+</div>
           <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Years Active</div>
         </div>
         <div class="stat-box bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-5 text-center">
-          <div class="text-3xl font-black font-display text-leaf-400">50+</div>
+          <div class="text-3xl font-black font-display text-leaf-400" data-count="50" data-suffix="+">50+</div>
           <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Projects Done</div>
         </div>
         <div class="stat-box bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-5 text-center">
-          <div class="text-3xl font-black font-display text-gold-400">30+</div>
+          <div class="text-3xl font-black font-display text-gold-400" data-count="30" data-suffix="+">30+</div>
           <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Heavy Machines</div>
         </div>
         <div class="stat-box bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-5 text-center">
-          <div class="text-3xl font-black font-display text-flame-400">200+</div>
+          <div class="text-3xl font-black font-display text-flame-400" data-count="200" data-suffix="+">200+</div>
           <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Employees</div>
         </div>
       </div>
+    </div><!-- text column -->
+
+    <!-- Logo visual column -->
+    <div class="hidden lg:flex items-center justify-center">
+      <div class="relative">
+        <div class="absolute inset-0 rounded-full bg-blue-600/15 blur-3xl scale-125 pointer-events-none"></div>
+        <div class="absolute inset-0 rounded-full bg-flame-700/10 blur-2xl scale-110 pointer-events-none"></div>
+        <img src="images/AHL-logo.jpg"
+             alt="Andro Holdings Limited — AHL Civil Works"
+             loading="eager"
+             class="logo-ring relative w-80 h-80 rounded-full object-cover shadow-2xl shadow-black/70 ring-4 ring-white/10" />
+        <div class="absolute -bottom-4 -right-2 bg-gradient-to-r from-leaf-600 to-leaf-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-leaf-500/40 whitespace-nowrap">
+          <i class="fas fa-map-pin mr-1.5 text-[10px]"></i>East Sepik's Own
+        </div>
+      </div>
     </div>
-  </div>
+
+  </div><!-- container grid -->
 
   <!-- Scroll cue -->
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-600">
@@ -355,59 +446,74 @@
 <!-- ═══════════════════════════════════════
      TRUSTED PARTNERS STRIP
 ═══════════════════════════════════════ -->
-<section class="py-10 bg-navy-800/60 border-y border-navy-700">
+<section class="py-12 bg-navy-800/60 border-y border-navy-700">
   <div class="container mx-auto px-6">
-    <p class="text-center text-xs text-gray-600 uppercase tracking-[0.25em] mb-8 font-semibold">Trusted By &amp; Working With</p>
-    <div class="flex flex-wrap items-center justify-center gap-8 md:gap-14">
-      <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
-        <div class="w-10 h-10 rounded-xl bg-blue-900/60 border border-blue-700/40 flex items-center justify-center flex-shrink-0">
-          <i class="fas fa-anchor text-blue-400 text-sm"></i>
+    <p class="text-center text-xs text-gray-600 uppercase tracking-[0.25em] mb-10 font-semibold">Trusted By &amp; Working With</p>
+    <div class="flex flex-wrap items-center justify-center gap-10 md:gap-16">
+
+      <!-- PNG Ports Corporation -->
+      <div class="group flex flex-col items-center gap-3 opacity-60 hover:opacity-100 transition-all duration-300">
+        <div class="w-16 h-16 rounded-2xl bg-white/8 border border-white/10 group-hover:border-white/25 group-hover:bg-white/15 flex items-center justify-center p-2 transition-all duration-300 overflow-hidden">
+          <img src="images/PNG-Ports.png" alt="PNG Ports Corporation" class="w-full h-full object-contain" loading="lazy" />
         </div>
-        <div>
-          <div class="text-white font-bold text-sm leading-tight">PNG Ports</div>
-          <div class="text-gray-500 text-xs">Corporation</div>
-        </div>
-      </div>
-      <div class="w-px h-8 bg-navy-600 hidden md:block"></div>
-      <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
-        <div class="w-10 h-10 rounded-xl bg-gold-900/40 border border-gold-700/30 flex items-center justify-center flex-shrink-0">
-          <i class="fas fa-landmark text-gold-400 text-sm"></i>
-        </div>
-        <div>
-          <div class="text-white font-bold text-sm leading-tight">East Sepik DDA</div>
-          <div class="text-gray-500 text-xs">District Authority</div>
+        <div class="text-center">
+          <div class="text-white font-bold text-xs leading-tight">PNG Ports</div>
+          <div class="text-gray-500 text-[10px]">Corporation</div>
         </div>
       </div>
-      <div class="w-px h-8 bg-navy-600 hidden md:block"></div>
-      <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
-        <div class="w-10 h-10 rounded-xl bg-leaf-900/40 border border-leaf-700/30 flex items-center justify-center flex-shrink-0">
-          <i class="fas fa-road text-leaf-400 text-sm"></i>
+
+      <div class="w-px h-10 bg-navy-600 hidden md:block"></div>
+
+      <!-- East Sepik DDA -->
+      <div class="group flex flex-col items-center gap-3 opacity-60 hover:opacity-100 transition-all duration-300">
+        <div class="w-16 h-16 rounded-2xl bg-white/8 border border-white/10 group-hover:border-white/25 group-hover:bg-white/15 flex items-center justify-center p-2 transition-all duration-300 overflow-hidden">
+          <img src="images/ESPDDA.jpg" alt="East Sepik Provincial DDA" class="w-full h-full object-contain" loading="lazy" />
         </div>
-        <div>
-          <div class="text-white font-bold text-sm leading-tight">Dept. of Works</div>
-          <div class="text-gray-500 text-xs">Government of PNG</div>
-        </div>
-      </div>
-      <div class="w-px h-8 bg-navy-600 hidden md:block"></div>
-      <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
-        <div class="w-10 h-10 rounded-xl bg-flame-900/40 border border-flame-700/30 flex items-center justify-center flex-shrink-0">
-          <i class="fas fa-certificate text-flame-400 text-sm"></i>
-        </div>
-        <div>
-          <div class="text-white font-bold text-sm leading-tight">Security Industry</div>
-          <div class="text-gray-500 text-xs">Authority PNG</div>
+        <div class="text-center">
+          <div class="text-white font-bold text-xs leading-tight">East Sepik DDA</div>
+          <div class="text-gray-500 text-[10px]">District Authority</div>
         </div>
       </div>
-      <div class="w-px h-8 bg-navy-600 hidden md:block"></div>
-      <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
-        <div class="w-10 h-10 rounded-xl bg-navy-600/80 border border-navy-500/40 flex items-center justify-center flex-shrink-0">
-          <i class="fas fa-hospital text-blue-300 text-sm"></i>
+
+      <div class="w-px h-10 bg-navy-600 hidden md:block"></div>
+
+      <!-- Dept. of Works & Highways -->
+      <div class="group flex flex-col items-center gap-3 opacity-60 hover:opacity-100 transition-all duration-300">
+        <div class="w-16 h-16 rounded-2xl bg-white/8 border border-white/10 group-hover:border-white/25 group-hover:bg-white/15 flex items-center justify-center p-2 transition-all duration-300 overflow-hidden">
+          <img src="images/DOWH.jpg" alt="Department of Works & Highways PNG" class="w-full h-full object-contain" loading="lazy" />
         </div>
-        <div>
-          <div class="text-white font-bold text-sm leading-tight">Health Dept.</div>
-          <div class="text-gray-500 text-xs">Hospital Road Works</div>
+        <div class="text-center">
+          <div class="text-white font-bold text-xs leading-tight">Dept. of Works</div>
+          <div class="text-gray-500 text-[10px]">&amp; Highways, PNG</div>
         </div>
       </div>
+
+      <div class="w-px h-10 bg-navy-600 hidden md:block"></div>
+
+      <!-- Security Industry Authority -->
+      <div class="group flex flex-col items-center gap-3 opacity-60 hover:opacity-100 transition-all duration-300">
+        <div class="w-16 h-16 rounded-2xl bg-white/8 border border-white/10 group-hover:border-white/25 group-hover:bg-white/15 flex items-center justify-center p-2 transition-all duration-300 overflow-hidden">
+          <img src="images/SecurityLiceApp.png" alt="Security Industry Authority PNG" class="w-full h-full object-contain" loading="lazy" />
+        </div>
+        <div class="text-center">
+          <div class="text-white font-bold text-xs leading-tight">Security Industry</div>
+          <div class="text-gray-500 text-[10px]">Authority PNG</div>
+        </div>
+      </div>
+
+      <div class="w-px h-10 bg-navy-600 hidden md:block"></div>
+
+      <!-- East Sepik Provincial Health Authority -->
+      <div class="group flex flex-col items-center gap-3 opacity-60 hover:opacity-100 transition-all duration-300">
+        <div class="w-16 h-16 rounded-2xl bg-white/8 border border-white/10 group-hover:border-white/25 group-hover:bg-white/15 flex items-center justify-center p-2 transition-all duration-300 overflow-hidden">
+          <img src="images/ESPHA.jpeg" alt="East Sepik Provincial Health Authority" class="w-full h-full object-contain" loading="lazy" />
+        </div>
+        <div class="text-center">
+          <div class="text-white font-bold text-xs leading-tight">ESPHA</div>
+          <div class="text-gray-500 text-[10px]">Health Authority</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -858,7 +964,7 @@
            class="pulse-btn bg-gradient-to-r from-flame-700 to-flame-500 hover:from-flame-600 hover:to-flame-400 text-white font-bold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-flame-500/40 text-sm text-center">
           <i class="fas fa-paper-plane mr-2"></i>Request a Quote
         </a>
-        <a href="tel:+675XXXXXXXX"
+        <a href="tel:+67571246446"
            class="bg-white/10 backdrop-blur border border-white/20 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-full transition-all text-sm text-center">
           <i class="fas fa-phone mr-2 text-leaf-400"></i>Call Us Now
         </a>
@@ -890,42 +996,42 @@
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-12 fade-in">
       <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="text-4xl mb-3">🚧</div>
+        <div class="machine-icon"><i class="fas fa-tractor text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Motor Grader</div>
         <div class="text-gray-500 text-xs mt-1">Road grading &amp; levelling</div>
       </div>
       <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="text-4xl mb-3">🏗️</div>
+        <div class="machine-icon"><i class="fas fa-person-digging text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Excavator</div>
         <div class="text-gray-500 text-xs mt-1">Earthworks &amp; trenching</div>
       </div>
       <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="text-4xl mb-3">🚛</div>
+        <div class="machine-icon"><i class="fas fa-truck text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Tipper Trucks</div>
         <div class="text-gray-500 text-xs mt-1">Material haulage</div>
       </div>
       <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="text-4xl mb-3">🛢️</div>
+        <div class="machine-icon"><i class="fas fa-paint-roller text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Bitumen Sprayer</div>
         <div class="text-gray-500 text-xs mt-1">Road sealing equipment</div>
       </div>
       <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="text-4xl mb-3">🔩</div>
+        <div class="machine-icon"><i class="fas fa-circle-dot text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Road Roller</div>
         <div class="text-gray-500 text-xs mt-1">Compaction works</div>
       </div>
       <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="text-4xl mb-3">🚜</div>
+        <div class="machine-icon"><i class="fas fa-gears text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Bulldozer</div>
         <div class="text-gray-500 text-xs mt-1">Land clearing &amp; pushing</div>
       </div>
       <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="text-4xl mb-3">🏛️</div>
+        <div class="machine-icon"><i class="fas fa-industry text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Concrete Equipment</div>
         <div class="text-gray-500 text-xs mt-1">Batching &amp; placement</div>
       </div>
       <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="text-4xl mb-3">🔧</div>
+        <div class="machine-icon"><i class="fas fa-screwdriver-wrench text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Support Fleet</div>
         <div class="text-gray-500 text-xs mt-1">Maintenance &amp; logistics</div>
       </div>
@@ -1121,19 +1227,19 @@
     <div class="fade-in bg-gradient-to-r from-leaf-900/20 via-navy-700 to-leaf-900/10 border border-leaf-500/15 rounded-3xl p-8 md:p-10">
       <div class="grid md:grid-cols-4 gap-6 text-center">
         <div>
-          <div class="text-3xl font-black font-display text-leaf-400">200+</div>
+          <div class="text-3xl font-black font-display text-leaf-400" data-count="200" data-suffix="+">200+</div>
           <div class="text-gray-400 text-xs mt-1 uppercase tracking-wide">PNG Nationals Employed</div>
         </div>
         <div>
-          <div class="text-3xl font-black font-display text-gold-400">50+</div>
+          <div class="text-3xl font-black font-display text-gold-400" data-count="50" data-suffix="+">50+</div>
           <div class="text-gray-400 text-xs mt-1 uppercase tracking-wide">Students Supported</div>
         </div>
         <div>
-          <div class="text-3xl font-black font-display text-flame-400">10+</div>
+          <div class="text-3xl font-black font-display text-flame-400" data-count="10" data-suffix="+">10+</div>
           <div class="text-gray-400 text-xs mt-1 uppercase tracking-wide">Communities Connected</div>
         </div>
         <div>
-          <div class="text-3xl font-black font-display text-blue-400">100%</div>
+          <div class="text-3xl font-black font-display text-blue-400" data-count="100" data-suffix="%">100%</div>
           <div class="text-gray-400 text-xs mt-1 uppercase tracking-wide">PNG Owned &amp; Operated</div>
         </div>
       </div>
@@ -1182,7 +1288,7 @@
             </div>
             <div>
               <div class="text-white font-semibold mb-1">Registered Address</div>
-              <div class="text-gray-400 text-sm leading-relaxed">Wewak, East Sepik Province<br>Papua New Guinea</div>
+              <div class="text-gray-400 text-sm leading-relaxed">PO Box 860, Wewak<br>East Sepik Province, Papua New Guinea</div>
             </div>
           </div>
           <div class="flex items-start gap-4">
@@ -1190,9 +1296,8 @@
               <i class="fas fa-phone text-flame-400"></i>
             </div>
             <div>
-              <div class="text-white font-semibold mb-1">Phone</div>
-              <div class="text-gray-400 text-sm">+675 XXX XXXX</div>
-              <div class="text-gray-600 text-xs mt-0.5">Update with current contact number</div>
+              <div class="text-white font-semibold mb-1">Mobile</div>
+              <a href="tel:+67571246446" class="text-gray-400 text-sm hover:text-leaf-400 transition-colors">+675 7124 6446</a>
             </div>
           </div>
           <div class="flex items-start gap-4">
@@ -1201,7 +1306,16 @@
             </div>
             <div>
               <div class="text-white font-semibold mb-1">Email</div>
-              <div class="text-gray-400 text-sm">info@androholdings.com.pg</div>
+              <a href="mailto:androholdingsltd@gmail.com" class="text-gray-400 text-sm hover:text-leaf-400 transition-colors">androholdingsltd@gmail.com</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center flex-shrink-0">
+              <i class="fab fa-whatsapp text-green-400"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">WhatsApp</div>
+              <a href="https://wa.me/71246446" target="_blank" rel="noopener" class="text-gray-400 text-sm hover:text-leaf-400 transition-colors">Message us on WhatsApp</a>
             </div>
           </div>
           <div class="flex items-start gap-4">
@@ -1211,7 +1325,7 @@
             <div>
               <div class="text-white font-semibold mb-1">Facebook</div>
               <div class="text-gray-400 text-sm">Search "Andro Holdings Limited" on Facebook</div>
-              <div class="text-gray-600 text-xs mt-0.5">Project updates and company news</div>
+              <div class="text-gray-500 text-xs mt-0.5">Project updates and company news</div>
             </div>
           </div>
         </div>
@@ -1270,7 +1384,7 @@
 
           <div class="mb-4">
             <label class="block text-sm text-gray-400 mb-1.5" for="phone">Phone (Optional)</label>
-            <input id="phone" type="tel" name="phone" placeholder="+675 XXX XXXX" autocomplete="tel"
+            <input id="phone" type="tel" name="phone" placeholder="+675 7124 6446" autocomplete="tel"
               class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm" />
           </div>
 
@@ -1311,6 +1425,18 @@
 </section>
 
 
+</main>
+
+<!-- WhatsApp floating button -->
+<a id="wa-fab" href="https://wa.me/67571246446" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp text-xl"></i>
+</a>
+
+<!-- Back to top button -->
+<button id="back-to-top" aria-label="Back to top">
+  <i class="fas fa-chevron-up text-sm"></i>
+</button>
+
 <!-- ═══════════════════════════════════════
      FOOTER
 ═══════════════════════════════════════ -->
@@ -1322,44 +1448,33 @@
       <!-- Brand -->
       <div class="lg:col-span-2">
         <div class="flex items-center gap-3 mb-5">
-          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-flame-500 flex-shrink-0">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="w-12 h-12">
-              <circle cx="40" cy="40" r="39" fill="#0f2d5c"/>
-              <circle cx="40" cy="40" r="37" fill="none" stroke="#f97316" stroke-width="2.5"/>
-              <ellipse cx="36" cy="54" rx="14" ry="18" fill="#0a0f1a"/>
-              <path d="M24 50 Q17 60 24 70 Q33 65 36 56 Z" fill="#1a4a8a" opacity="0.85"/>
-              <ellipse cx="36" cy="50" rx="8" ry="11" fill="#f0f4f8"/>
-              <circle cx="49" cy="32" r="11" fill="#0a0f1a"/>
-              <path d="M49 22 Q64 14 71 21 Q69 29 57 31 Q53 32 49 29 Z" fill="#f97316"/>
-              <path d="M49 31 Q68 33 73 40 Q60 42 49 39 Z" fill="#fbbf24"/>
-              <path d="M49 39 Q62 41 65 46 Q56 46 49 43 Z" fill="#f59e0b"/>
-              <circle cx="55" cy="30" r="4" fill="#ea580c"/>
-              <circle cx="55" cy="30" r="2.2" fill="#040c18"/>
-              <circle cx="54" cy="29" r="0.8" fill="white"/>
-              <path d="M28 66 Q26 76 30 78 Q34 74 32 66 Z" fill="#0a0f1a"/>
-              <path d="M34 68 Q32 80 36 82 Q40 78 38 68 Z" fill="#0a0f1a"/>
-              <path d="M40 66 Q38 76 42 78 Q46 74 44 66 Z" fill="#0a0f1a"/>
-              <ellipse cx="30" cy="77" rx="2" ry="1.2" fill="white" opacity="0.85"/>
-              <ellipse cx="36" cy="80" rx="2" ry="1.2" fill="white" opacity="0.85"/>
-              <ellipse cx="42" cy="77" rx="2" ry="1.2" fill="white" opacity="0.85"/>
-              <text x="40" y="72" text-anchor="middle" fill="#fbbf24" font-family="Arial Black, sans-serif" font-weight="900" font-size="6" letter-spacing="1">AHL</text>
-            </svg>
-          </div>
+          <img src="images/AHL-logo.jpg" alt="AHL Civil Works" class="w-12 h-12 rounded-full object-cover flex-shrink-0" />
           <div>
             <div class="text-white font-black font-display text-base">Andro Holdings Limited</div>
             <div class="text-leaf-400 text-xs tracking-wider">Wewak · East Sepik Province · PNG</div>
           </div>
         </div>
-        <p class="text-gray-500 text-sm leading-relaxed max-w-sm mb-5">
+        <p class="text-gray-500 text-sm leading-relaxed max-w-sm mb-4">
           A locally owned Papua New Guinean company delivering excellence in civil engineering and security
           services across East Sepik Province.
         </p>
+        <div class="space-y-1.5 mb-5">
+          <a href="tel:+67571246446" class="flex items-center gap-2 text-gray-500 hover:text-leaf-400 text-xs transition-colors">
+            <i class="fas fa-phone text-flame-500 w-3"></i>+675 7124 6446
+          </a>
+          <a href="mailto:androholdingsltd@gmail.com" class="flex items-center gap-2 text-gray-500 hover:text-leaf-400 text-xs transition-colors">
+            <i class="fas fa-envelope text-gold-500 w-3"></i>androholdingsltd@gmail.com
+          </a>
+          <span class="flex items-center gap-2 text-gray-500 text-xs">
+            <i class="fas fa-location-dot text-leaf-500 w-3"></i>PO Box 860, Wewak, East Sepik, PNG
+          </span>
+        </div>
         <div class="flex gap-3">
           <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-xl bg-navy-700 hover:bg-blue-700 border border-navy-600 flex items-center justify-center transition-all">
             <i class="fab fa-facebook text-gray-400 hover:text-white text-sm"></i>
           </a>
-          <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-xl bg-navy-700 hover:bg-blue-600 border border-navy-600 flex items-center justify-center transition-all">
-            <i class="fab fa-linkedin-in text-gray-400 hover:text-white text-sm"></i>
+          <a href="https://wa.me/67571246446" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 rounded-xl bg-navy-700 hover:bg-green-600 border border-navy-600 flex items-center justify-center transition-all">
+            <i class="fab fa-whatsapp text-gray-400 hover:text-white text-sm"></i>
           </a>
         </div>
       </div>
@@ -1418,57 +1533,139 @@
      JAVASCRIPT
 ═══════════════════════════════════════ -->
 <script>
-  // ── Navbar glass effect on scroll ──────────────────────
-  const navbar = document.getElementById('navbar');
+(function () {
+  'use strict';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Navbar glass + back-to-top visibility ───────────────
+  const navbar   = document.getElementById('navbar');
+  const backToTop = document.getElementById('back-to-top');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('nav-glass', window.scrollY > 60);
+    if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 400);
   }, { passive: true });
 
-  // ── Mobile menu toggle ──────────────────────────────────
-  let menuOpen = false;
-  function toggleMenu() {
-    menuOpen = !menuOpen;
-    document.getElementById('mobile-menu').classList.toggle('open', menuOpen);
-    document.getElementById('icon-open').classList.toggle('hidden', menuOpen);
-    document.getElementById('icon-close').classList.toggle('hidden', !menuOpen);
-  }
-
-  // ── Fade-in on scroll (Intersection Observer) ──────────
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
-
-  // ── Contact form (client-side simulation) ──────────────
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submit-text');
-    const success = document.getElementById('success-msg');
-    btn.textContent = 'Sending…';
-    // Simulate async submission delay
-    setTimeout(() => {
-      success.classList.remove('hidden');
-      btn.textContent = 'Send Message →';
-      e.target.reset();
-      // Scroll success into view
-      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 1000);
   }
 
-  // ── Smooth scroll for all anchor links ─────────────────
+  // ── Mobile menu ─────────────────────────────────────────
+  let menuOpen = false;
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen   = document.getElementById('icon-open');
+  const iconClose  = document.getElementById('icon-close');
+  const menuBtn    = document.getElementById('menu-btn');
+
+  function openMenu() {
+    menuOpen = true;
+    mobileMenu.classList.add('open');
+    iconOpen.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+    menuBtn.setAttribute('aria-expanded', 'true');
+  }
+  function closeMenu() {
+    menuOpen = false;
+    mobileMenu.classList.remove('open');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+  function toggleMenu() { menuOpen ? closeMenu() : openMenu(); }
+  window.toggleMenu = toggleMenu;
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) closeMenu(); });
+  document.addEventListener('click',   e => { if (menuOpen && !e.target.closest('#navbar')) closeMenu(); });
+
+  // ── Fade-in on scroll ───────────────────────────────────
+  if (prefersReducedMotion) {
+    document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+  } else {
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+  }
+
+  // ── Count-up animation ──────────────────────────────────
+  function animateCount(el) {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    if (isNaN(target)) return;
+    const duration = 1600;
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if (!prefersReducedMotion) {
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+  }
+
+  // ── Active nav highlighting ─────────────────────────────
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav .nav-link[href^="#"]');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = '#' + entry.target.id;
+        navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === id));
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-80px 0px -40% 0px' });
+  sections.forEach(s => sectionObserver.observe(s));
+
+  // ── Contact form ────────────────────────────────────────
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const submitBtn  = this.querySelector('button[type="submit"]');
+      const submitText = document.getElementById('submit-text');
+      const successMsg = document.getElementById('success-msg');
+      submitBtn.disabled = true;
+      submitText.textContent = 'Sending…';
+      setTimeout(() => {
+        successMsg.classList.remove('hidden');
+        submitText.textContent = 'Send Message →';
+        submitBtn.disabled = false;
+        this.reset();
+        successMsg.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'nearest' });
+      }, 1200);
+    });
+  }
+
+  // ── Smooth scroll for anchor links ─────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function (e) {
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // Close mobile menu if open
-        if (menuOpen) toggleMenu();
+        target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
       }
     });
   });
+})();
 </script>
 
 </body>
