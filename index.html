@@ -254,7 +254,9 @@
   </style>
 </head>
 
-<body class="bg-navy-900 text-white antialiased">
+<body class="bg-navy-900 text-white antialiased selection:bg-leaf-500 selection:text-navy-900">
+
+<div class="film-grain"></div>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -339,60 +341,57 @@
 <!-- ═══════════════════════════════════════
      HERO SECTION
 ═══════════════════════════════════════ -->
-<section id="home" class="relative min-h-screen bg-hero flex items-center overflow-hidden pt-16">
+<section id="home" class="relative min-h-screen bg-navy-900 flex items-center overflow-hidden pt-16">
 
-  <!-- Subtle grid overlay -->
-  <div class="absolute inset-0 opacity-[0.035] pointer-events-none">
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="hero-grid" width="60" height="60" patternUnits="userSpaceOnUse">
-          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.6"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#hero-grid)"/>
-    </svg>
-  </div>
+  <!-- Futuristic Background Elements -->
+  <div class="absolute inset-0 cyber-grid opacity-20 pointer-events-none"></div>
+  <div class="absolute inset-0 scanline opacity-10 pointer-events-none"></div>
 
-  <!-- Ambient glow orbs -->
-  <div class="absolute top-16 right-0 w-[500px] h-[500px] bg-leaf-700 opacity-[0.07] rounded-full blur-3xl pointer-events-none"></div>
-  <div class="absolute bottom-0 left-10 w-[400px] h-[400px] bg-flame-700 opacity-[0.07] rounded-full blur-3xl pointer-events-none"></div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-navy-600 opacity-[0.04] rounded-full blur-3xl pointer-events-none"></div>
+  <!-- Ambient Cinematic Glows -->
+  <div class="absolute top-20 right-[-10%] w-[600px] h-[600px] bg-leaf-500/10 rounded-full blur-[120px] animate-pulse-fast"></div>
+  <div class="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-flame-500/10 rounded-full blur-[100px] animate-pulse"></div>
 
   <div class="container mx-auto px-6 py-28 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
-    <div>
+    <div class="relative">
+
+      <!-- HUD Brackets for Heading Area -->
+      <div class="absolute -top-10 -left-6 w-24 h-24 border-t border-l border-white/10 pointer-events-none"></div>
 
       <!-- Location badge -->
-      <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-leaf-500/25 rounded-full px-4 py-2 mb-8">
-        <span class="w-2 h-2 rounded-full bg-leaf-400 animate-pulse"></span>
-        <span class="text-leaf-400 text-sm font-medium">Wewak · East Sepik Province · Papua New Guinea</span>
+      <div class="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-leaf-500/30 rounded-full px-5 py-2 mb-10 group cursor-default">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-leaf-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-leaf-500"></span>
+        </span>
+        <span class="text-leaf-400 text-xs font-mono tracking-widest uppercase">SYS.LOC // WEWAK_ESP_PNG</span>
       </div>
 
       <!-- Heading -->
-      <h1 class="font-display font-black leading-tight text-5xl md:text-6xl lg:text-7xl text-white mb-6">
-        Building<br>
-        <span class="text-grad-green">East Sepik's</span><br>
-        Future
-      </h1>
+      <div class="mb-6">
+        <h1 class="font-display font-black leading-tight text-6xl md:text-7xl lg:text-8xl text-white tracking-tighter">
+          <span class="block text-reveal fade-in transform hover:translate-x-2 transition-transform duration-500">BUILDING</span>
+          <span class="text-grad-green block text-reveal fade-in transform hover:translate-x-4 transition-transform duration-700" style="transition-delay: 200ms;">THE FUTURE</span>
+        </h1>
+      </div>
 
-      <p class="text-xl text-gray-300 max-w-2xl mb-10 leading-relaxed">
-        Andro Holdings Limited is a proudly locally owned Papua New Guinean company delivering
-        world-class <span class="text-leaf-400 font-semibold">civil engineering</span> and professional
-        <span class="text-flame-400 font-semibold">security services</span> across East Sepik Province.
+      <p class="text-lg text-gray-400 max-w-xl mb-12 leading-relaxed font-light border-l-2 border-leaf-500/30 pl-6">
+        Delivering next-generation <span class="text-white font-medium">infrastructure</span> and <span class="text-white font-medium">security solutions</span>.
+        Engineered for excellence. Powered by local expertise.
       </p>
 
       <!-- CTA Buttons -->
-      <div class="flex flex-wrap gap-4 mb-16">
+      <div class="flex flex-wrap gap-5 mb-20">
         <a href="#services"
-           class="pulse-btn bg-gradient-to-r from-flame-700 to-flame-500 hover:from-flame-600 hover:to-flame-400 text-white font-bold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-flame-500/40 text-base">
-          Our Services
-        </a>
-        <a href="#projects"
-           class="bg-white/10 backdrop-blur border border-white/20 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-full transition-all text-base">
-          View Projects
+           class="magnetic-btn relative group px-10 py-5 bg-leaf-600 text-white font-bold rounded-sm overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.4)]">
+           <span class="relative z-10 flex items-center gap-2">
+             EXPLORE SERVICES <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+           </span>
+           <div class="absolute inset-0 bg-gradient-to-r from-leaf-400 to-leaf-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
         </a>
         <a href="#contact"
-           class="border-2 border-leaf-500 hover:bg-leaf-500/20 text-leaf-400 hover:text-white font-bold px-8 py-4 rounded-full transition-all text-base">
-          Contact AHL
+           class="magnetic-btn relative group px-10 py-5 border border-white/20 text-white font-bold rounded-sm overflow-hidden transition-all duration-300 hover:border-white/40">
+           <span class="relative z-10">GET IN TOUCH</span>
+           <div class="absolute inset-0 bg-white/5 transform -translate-y-full group-hover:translate-y-0 transition-transform"></div>
         </a>
       </div>
 
@@ -417,17 +416,30 @@
       </div>
     </div><!-- text column -->
 
-    <!-- Logo visual column -->
-    <div class="hidden lg:flex items-center justify-center">
-      <div class="relative">
-        <div class="absolute inset-0 rounded-full bg-blue-600/15 blur-3xl scale-125 pointer-events-none"></div>
-        <div class="absolute inset-0 rounded-full bg-flame-700/10 blur-2xl scale-110 pointer-events-none"></div>
-        <img src="images/AHL-logo.jpg"
-             alt="Andro Holdings Limited — AHL Civil Works"
-             loading="eager"
-             class="logo-ring relative w-80 h-80 rounded-full object-cover shadow-2xl shadow-black/70 ring-4 ring-white/10" />
-        <div class="absolute -bottom-4 -right-2 bg-gradient-to-r from-leaf-600 to-leaf-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-leaf-500/40 whitespace-nowrap">
-          <i class="fas fa-map-pin mr-1.5 text-[10px]"></i>East Sepik's Own
+    <!-- Visual Column with Holographic Logo -->
+    <div class="hidden lg:flex items-center justify-center relative">
+      <!-- Orbiting Rings -->
+      <div class="absolute w-[450px] h-[450px] border border-white/5 rounded-full animate-spin-slow"></div>
+      <div class="absolute w-[520px] h-[520px] border border-leaf-500/10 rounded-full animate-reverse-spin"></div>
+
+      <!-- HUD Elements around logo -->
+      <div class="absolute top-0 left-0 hud-bracket-tl"></div>
+      <div class="absolute top-0 right-0 hud-bracket-tr"></div>
+      <div class="absolute bottom-0 right-0 hud-bracket-br"></div>
+      <div class="absolute bottom-0 left-0 hud-bracket-bl"></div>
+
+      <div class="relative group">
+        <div class="absolute inset-0 rounded-full bg-leaf-500/20 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+        <div class="relative p-8">
+          <img src="images/AHL-logo.jpg"
+               alt="AHL Logo"
+               class="w-96 h-96 rounded-full object-cover shadow-[0_0_50px_rgba(0,0,0,0.8)] border-4 border-white/5 group-hover:border-leaf-500/30 transition-all duration-700 animate-float" />
+
+          <!-- HUD Stats on Logo -->
+          <div class="absolute top-10 right-0 bg-black/60 backdrop-blur-md border border-white/10 p-3 rounded-lg animate-pulse">
+            <div class="text-[10px] font-mono text-leaf-400">CORE.STATUS</div>
+            <div class="text-xs font-bold text-white">OPERATIONAL</div>
+          </div>
         </div>
       </div>
     </div>
@@ -680,65 +692,54 @@
     <div class="grid lg:grid-cols-2 gap-8">
 
       <!-- Civil Engineering -->
-      <div class="card-hover group bg-gradient-to-br from-navy-700/90 to-navy-800/90 border border-leaf-500/20 hover:border-leaf-500/50 rounded-3xl p-10 cursor-default">
-        <div class="w-16 h-16 rounded-2xl bg-leaf-500/15 group-hover:bg-leaf-500/25 flex items-center justify-center mb-6 transition-colors">
+      <div class="glass-panel group p-10 hover:border-leaf-500/50 transition-all duration-500">
+        <!-- Scanline effect for card -->
+        <div class="absolute inset-0 scanline opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none"></div>
+        <div class="hud-bracket-tl"></div><div class="hud-bracket-tr"></div><div class="hud-bracket-bl"></div><div class="hud-bracket-br"></div>
+
+        <div class="w-16 h-16 rounded-sm bg-leaf-500/10 flex items-center justify-center mb-8 border border-leaf-500/30 group-hover:scale-110 transition-transform">
           <i class="fas fa-road text-leaf-400 text-2xl"></i>
         </div>
-        <h3 class="font-display text-2xl font-bold text-white mb-4">Civil Engineering &amp; Construction</h3>
-        <p class="text-gray-400 leading-relaxed mb-8">
+        <h3 class="font-display text-2xl font-bold text-white mb-4 tracking-tight uppercase">Civil Engineering</h3>
+        <p class="text-gray-400 leading-relaxed mb-8 text-sm font-light">
           AHL is a premier civil engineering contractor in East Sepik Province, specialising in large-scale
-          infrastructure including road sealing, highway rehabilitation, bridge construction, and community
-          infrastructure development under government and DDA-funded contracts.
+          infrastructure including road sealing, highway rehabilitation, and bridge construction.
         </p>
-        <div class="grid grid-cols-2 gap-2.5 mb-8">
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Road Sealing &amp; Bitumen</div>
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Bridge Construction</div>
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Highway Maintenance</div>
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Earthworks &amp; Grading</div>
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Drainage Systems</div>
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Hospital Road Upgrades</div>
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>Infrastructure Development</div>
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-leaf-400 text-xs"></i>DDA-Funded Projects</div>
+        <div class="grid grid-cols-2 gap-3 mb-10">
+          <div class="flex items-center gap-2 text-[11px] font-mono text-gray-400 uppercase"><span class="w-1 h-1 bg-leaf-500"></span> Road Sealing</div>
+          <div class="flex items-center gap-2 text-[11px] font-mono text-gray-400 uppercase"><span class="w-1 h-1 bg-leaf-500"></span> Bridge Works</div>
+          <div class="flex items-center gap-2 text-[11px] font-mono text-gray-400 uppercase"><span class="w-1 h-1 bg-leaf-500"></span> Highway Maint.</div>
+          <div class="flex items-center gap-2 text-[11px] font-mono text-gray-400 uppercase"><span class="w-1 h-1 bg-leaf-500"></span> Earthworks</div>
         </div>
-        <div class="pt-6 border-t border-navy-600">
-          <a href="#projects" class="inline-flex items-center gap-2 text-leaf-400 hover:text-leaf-300 font-semibold text-sm transition-colors">
-            View Our Projects <i class="fas fa-arrow-right"></i>
+        <div class="pt-6 border-t border-white/5">
+          <a href="#projects" class="inline-flex items-center gap-2 text-leaf-400 hover:text-leaf-300 font-bold text-xs tracking-widest transition-colors uppercase">
+            Initialize Project View <i class="fas fa-chevron-right text-[10px]"></i>
           </a>
         </div>
       </div>
 
       <!-- Security -->
-      <div class="card-hover group bg-gradient-to-br from-navy-700/90 to-navy-800/90 border border-flame-500/20 hover:border-flame-500/50 rounded-3xl p-10 cursor-default">
-        <div class="w-16 h-16 rounded-2xl bg-flame-500/15 group-hover:bg-flame-500/25 flex items-center justify-center mb-6 transition-colors">
+      <div class="glass-panel group p-10 hover:border-flame-500/50 transition-all duration-500">
+        <div class="absolute inset-0 scanline opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none"></div>
+        <div class="hud-bracket-tl !border-flame-500/50"></div><div class="hud-bracket-tr !border-flame-500/50"></div><div class="hud-bracket-bl !border-flame-500/50"></div><div class="hud-bracket-br !border-flame-500/50"></div>
+
+        <div class="w-16 h-16 rounded-sm bg-flame-500/10 flex items-center justify-center mb-8 border border-flame-500/30 group-hover:scale-110 transition-transform">
           <i class="fas fa-shield-halved text-flame-400 text-2xl"></i>
         </div>
-        <h3 class="font-display text-2xl font-bold text-white mb-4">AHL Security Services</h3>
-        <p class="text-gray-400 leading-relaxed mb-8">
-          AHL's security division is fully licensed by the Security Industry Authority of Papua New Guinea,
-          delivering professional security services to major businesses and institutions in Wewak — including
-          a partnership with PNG Ports Corporation for Wewak Port security operations and training.
+        <h3 class="font-display text-2xl font-bold text-white mb-4 tracking-tight uppercase">Security Services</h3>
+        <p class="text-gray-400 leading-relaxed mb-8 text-sm font-light">
+          AHL's security division is fully licensed by the SIA-PNG, delivering professional security
+          to major institutions including a flagship partnership with PNG Ports Corporation.
         </p>
-        <div class="grid grid-cols-2 gap-2.5 mb-8">
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-flame-400 text-xs"></i>Guarding Services</div>
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-flame-400 text-xs"></i>Port Security</div>
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-flame-400 text-xs"></i>Corporate Protection</div>
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-flame-400 text-xs"></i>Asset Protection</div>
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-flame-400 text-xs"></i>Security Training</div>
-          <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-circle-check text-flame-400 text-xs"></i>24/7 Operations</div>
+        <div class="grid grid-cols-2 gap-3 mb-10">
+          <div class="flex items-center gap-2 text-[11px] font-mono text-gray-400 uppercase"><span class="w-1 h-1 bg-flame-500"></span> Port Security</div>
+          <div class="flex items-center gap-2 text-[11px] font-mono text-gray-400 uppercase"><span class="w-1 h-1 bg-flame-500"></span> Asset Prot.</div>
+          <div class="flex items-center gap-2 text-[11px] font-mono text-gray-400 uppercase"><span class="w-1 h-1 bg-flame-500"></span> Guarding</div>
+          <div class="flex items-center gap-2 text-[11px] font-mono text-gray-400 uppercase"><span class="w-1 h-1 bg-flame-500"></span> SIA Lic.</div>
         </div>
-        <!-- Licence badge -->
-        <div class="bg-flame-500/10 border border-flame-500/20 rounded-xl p-4 mb-6">
-          <div class="flex items-center gap-3">
-            <i class="fas fa-id-badge text-flame-400 text-lg"></i>
-            <div>
-              <div class="text-white text-sm font-bold">Security Industry Authority — PNG</div>
-              <div class="text-flame-400 text-xs font-mono mt-0.5">Licence No: MR-SPL-24-00079</div>
-            </div>
-          </div>
-        </div>
-        <div class="pt-4 border-t border-navy-600">
-          <a href="#security" class="inline-flex items-center gap-2 text-flame-400 hover:text-flame-300 font-semibold text-sm transition-colors">
-            Security Division Details <i class="fas fa-arrow-right"></i>
+        <div class="pt-6 border-t border-white/5">
+          <a href="#security" class="inline-flex items-center gap-2 text-flame-400 hover:text-flame-300 font-bold text-xs tracking-widest transition-colors uppercase">
+            Access Security Protocol <i class="fas fa-chevron-right text-[10px]"></i>
           </a>
         </div>
       </div>
@@ -995,45 +996,55 @@
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-12 fade-in">
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="machine-icon"><i class="fas fa-tractor text-gold-400 text-xl"></i></div>
-        <div class="text-white font-semibold text-sm">Motor Grader</div>
-        <div class="text-gray-500 text-xs mt-1">Road grading &amp; levelling</div>
+
+      <!-- Machinery Card Template -->
+      <div class="glass-panel group p-6 text-center border-white/5 hover:border-gold-500/30 transition-colors duration-500">
+        <div class="absolute inset-0 bg-gold-500/0 group-hover:bg-gold-500/5 transition-colors pointer-events-none"></div>
+        <div class="machine-icon group-hover:animate-pulse-fast"><i class="fas fa-tractor text-gold-400 text-xl"></i></div>
+        <div class="text-white font-bold text-xs uppercase tracking-tighter mb-1">Motor Grader</div>
+        <div class="text-gray-500 text-[10px] font-mono">ASSET_ID: ESP-MG01</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="machine-icon"><i class="fas fa-person-digging text-gold-400 text-xl"></i></div>
-        <div class="text-white font-semibold text-sm">Excavator</div>
-        <div class="text-gray-500 text-xs mt-1">Earthworks &amp; trenching</div>
+
+      <div class="glass-panel group p-6 text-center border-white/5 hover:border-gold-500/30 transition-colors duration-500">
+        <div class="machine-icon group-hover:animate-pulse-fast"><i class="fas fa-person-digging text-gold-400 text-xl"></i></div>
+        <div class="text-white font-bold text-xs uppercase tracking-tighter mb-1">Excavator</div>
+        <div class="text-gray-500 text-[10px] font-mono">ASSET_ID: ESP-EX04</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="machine-icon"><i class="fas fa-truck text-gold-400 text-xl"></i></div>
-        <div class="text-white font-semibold text-sm">Tipper Trucks</div>
-        <div class="text-gray-500 text-xs mt-1">Material haulage</div>
+
+      <div class="glass-panel group p-6 text-center border-white/5 hover:border-gold-500/30 transition-colors duration-500">
+        <div class="machine-icon group-hover:animate-pulse-fast"><i class="fas fa-truck text-gold-400 text-xl"></i></div>
+        <div class="text-white font-bold text-xs uppercase tracking-tighter mb-1">Tipper Trucks</div>
+        <div class="text-gray-500 text-[10px] font-mono">ASSET_ID: ESP-TT12</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="machine-icon"><i class="fas fa-paint-roller text-gold-400 text-xl"></i></div>
-        <div class="text-white font-semibold text-sm">Bitumen Sprayer</div>
-        <div class="text-gray-500 text-xs mt-1">Road sealing equipment</div>
+
+      <div class="glass-panel group p-6 text-center border-white/5 hover:border-gold-500/30 transition-colors duration-500">
+        <div class="machine-icon group-hover:animate-pulse-fast"><i class="fas fa-paint-roller text-gold-400 text-xl"></i></div>
+        <div class="text-white font-bold text-xs uppercase tracking-tighter mb-1">Bitumen Sprayer</div>
+        <div class="text-gray-500 text-[10px] font-mono">ASSET_ID: ESP-BS02</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="machine-icon"><i class="fas fa-circle-dot text-gold-400 text-xl"></i></div>
-        <div class="text-white font-semibold text-sm">Road Roller</div>
-        <div class="text-gray-500 text-xs mt-1">Compaction works</div>
+
+      <div class="glass-panel group p-6 text-center border-white/5 hover:border-gold-500/30 transition-colors duration-500">
+        <div class="machine-icon group-hover:animate-pulse-fast"><i class="fas fa-circle-dot text-gold-400 text-xl"></i></div>
+        <div class="text-white font-bold text-xs uppercase tracking-tighter mb-1">Road Roller</div>
+        <div class="text-gray-500 text-[10px] font-mono">ASSET_ID: ESP-RR08</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="machine-icon"><i class="fas fa-gears text-gold-400 text-xl"></i></div>
-        <div class="text-white font-semibold text-sm">Bulldozer</div>
-        <div class="text-gray-500 text-xs mt-1">Land clearing &amp; pushing</div>
+
+      <div class="glass-panel group p-6 text-center border-white/5 hover:border-gold-500/30 transition-colors duration-500">
+        <div class="machine-icon group-hover:animate-pulse-fast"><i class="fas fa-gears text-gold-400 text-xl"></i></div>
+        <div class="text-white font-bold text-xs uppercase tracking-tighter mb-1">Bulldozer</div>
+        <div class="text-gray-500 text-[10px] font-mono">ASSET_ID: ESP-DZ03</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="machine-icon"><i class="fas fa-industry text-gold-400 text-xl"></i></div>
-        <div class="text-white font-semibold text-sm">Concrete Equipment</div>
-        <div class="text-gray-500 text-xs mt-1">Batching &amp; placement</div>
+
+      <div class="glass-panel group p-6 text-center border-white/5 hover:border-gold-500/30 transition-colors duration-500">
+        <div class="machine-icon group-hover:animate-pulse-fast"><i class="fas fa-industry text-gold-400 text-xl"></i></div>
+        <div class="text-white font-bold text-xs uppercase tracking-tighter mb-1">Concrete Plant</div>
+        <div class="text-gray-500 text-[10px] font-mono">ASSET_ID: ESP-CP01</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
-        <div class="machine-icon"><i class="fas fa-screwdriver-wrench text-gold-400 text-xl"></i></div>
-        <div class="text-white font-semibold text-sm">Support Fleet</div>
-        <div class="text-gray-500 text-xs mt-1">Maintenance &amp; logistics</div>
+
+      <div class="glass-panel group p-6 text-center border-white/5 hover:border-gold-500/30 transition-colors duration-500">
+        <div class="machine-icon group-hover:animate-pulse-fast"><i class="fas fa-screwdriver-wrench text-gold-400 text-xl"></i></div>
+        <div class="text-white font-bold text-xs uppercase tracking-tighter mb-1">Support Fleet</div>
+        <div class="text-gray-500 text-[10px] font-mono">ASSET_ID: ESP-SF00</div>
       </div>
     </div>
 
@@ -1115,37 +1126,39 @@
       </div>
 
       <!-- Right visual -->
-      <div class="fade-in">
-        <div class="bg-gradient-to-br from-flame-900/20 to-navy-800 border border-flame-500/20 rounded-3xl p-10 text-center">
-          <div class="w-28 h-28 rounded-full bg-gradient-to-br from-flame-600/30 to-flame-900/20 border-2 border-flame-500/40 flex items-center justify-center mx-auto mb-7">
-            <i class="fas fa-shield-halved text-flame-400" style="font-size: 3.5rem;"></i>
+      <div class="fade-in relative group">
+        <div class="glass-panel p-10 text-center border-flame-500/20 overflow-hidden">
+          <!-- Scanning HUD overlay -->
+          <div class="absolute inset-0 scanline opacity-30 pointer-events-none group-hover:animate-scan"></div>
+
+          <div class="relative inline-block mb-10">
+            <div class="w-32 h-32 rounded-sm border border-flame-500/50 flex items-center justify-center bg-flame-500/5 group-hover:scale-105 transition-transform duration-700">
+              <i class="fas fa-shield-halved text-flame-400" style="font-size: 4rem;"></i>
+            </div>
+            <!-- HUD Coordinates -->
+            <div class="absolute -top-4 -right-4 text-[10px] font-mono text-flame-500">DEF_ACTIVE</div>
+            <div class="absolute -bottom-4 -left-4 text-[10px] font-mono text-flame-500">24.7.365</div>
           </div>
-          <h3 class="font-display text-2xl font-bold text-white mb-3">Trusted Protection</h3>
-          <p class="text-gray-400 text-sm mb-8 leading-relaxed">
-            AHL Security provides round-the-clock protection to Wewak's most important organisations —
-            ensuring safety, security, and peace of mind.
+
+          <h3 class="font-display text-3xl font-black text-white mb-4 uppercase tracking-tighter">Trusted Protection</h3>
+          <p class="text-gray-400 text-sm mb-10 leading-relaxed font-light">
+            AHL Security provides state-of-the-art protection protocols for Wewak's strategic infrastructure.
           </p>
-          <div class="space-y-3 text-left">
-            <div class="flex items-center gap-3 bg-navy-800/60 rounded-xl p-3">
-              <i class="fas fa-circle-check text-flame-400 flex-shrink-0"></i>
-              <span class="text-sm text-gray-300">24/7 Security Operations</span>
+
+          <div class="space-y-4 text-left mb-10">
+            <div class="flex items-center gap-4 bg-white/5 border border-white/5 p-4 rounded-sm group-hover:border-flame-500/30 transition-colors">
+              <div class="w-2 h-2 bg-flame-500 animate-pulse"></div>
+              <span class="text-xs font-mono text-gray-300 uppercase tracking-widest">24/7 Operations.active</span>
             </div>
-            <div class="flex items-center gap-3 bg-navy-800/60 rounded-xl p-3">
-              <i class="fas fa-circle-check text-flame-400 flex-shrink-0"></i>
-              <span class="text-sm text-gray-300">Licensed Under Security Industry Authority PNG</span>
-            </div>
-            <div class="flex items-center gap-3 bg-navy-800/60 rounded-xl p-3">
-              <i class="fas fa-circle-check text-flame-400 flex-shrink-0"></i>
-              <span class="text-sm text-gray-300">PNG Ports Corporation Partnership</span>
-            </div>
-            <div class="flex items-center gap-3 bg-navy-800/60 rounded-xl p-3">
-              <i class="fas fa-circle-check text-flame-400 flex-shrink-0"></i>
-              <span class="text-sm text-gray-300">East Sepik's Trusted Security Partner</span>
+            <div class="flex items-center gap-4 bg-white/5 border border-white/5 p-4 rounded-sm group-hover:border-flame-500/30 transition-colors">
+              <div class="w-2 h-2 bg-flame-500 animate-pulse"></div>
+              <span class="text-xs font-mono text-gray-300 uppercase tracking-widest">SIA-PNG.auth_verified</span>
             </div>
           </div>
+
           <a href="#contact"
-             class="mt-8 inline-block w-full bg-gradient-to-r from-flame-700 to-flame-600 hover:from-flame-600 hover:to-flame-500 text-white font-bold px-6 py-3.5 rounded-xl transition-all hover:shadow-lg hover:shadow-flame-500/30 text-sm">
-            Enquire About Security Services
+             class="relative block w-full bg-gradient-to-r from-flame-600 to-flame-800 text-white font-black px-8 py-5 rounded-sm transition-all duration-300 hover:shadow-[0_0_40px_rgba(234,88,12,0.3)] uppercase tracking-widest text-xs">
+            Initiate Service Request
           </a>
         </div>
       </div>
@@ -1665,6 +1678,31 @@
       }
     });
   });
+
+  // ── Magnetic Buttons Effect ─────────────────────────────
+  if (!prefersReducedMotion) {
+    const magneticBtns = document.querySelectorAll('.magnetic-btn, #wa-fab');
+    magneticBtns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  // ── Futuristic Cursor (Optional, keeping it subtle) ─────
+  // (Adding a custom cursor can often be too much, but let's ensure focus states are sharp)
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      // Logic for hover sounds or custom cursor effects could go here
+    });
+  });
+
 })();
 </script>
 
