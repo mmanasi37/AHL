@@ -117,6 +117,10 @@
     .filter-bar::-webkit-scrollbar { display:none; }
     @media (min-width:768px) { .filter-bar { flex-wrap:wrap; overflow-x:visible; } }
 
+    /* Image upload zone */
+    .img-drop-zone { border:2px dashed rgba(255,255,255,.1); border-radius:.75rem; cursor:pointer; transition:border-color .2s,background .2s; overflow:hidden; }
+    .img-drop-zone:hover,.img-drop-zone.drag-over { border-color:rgba(34,197,94,.45); background:rgba(34,197,94,.04); }
+
     /* Search clear button */
     #search-clear { position:absolute; right:.6rem; top:50%; transform:translateY(-50%); width:1.25rem; height:1.25rem; border-radius:50%; background:rgba(255,255,255,.1); border:none; color:#6b7280; cursor:pointer; display:none; align-items:center; justify-content:center; font-size:.6rem; transition:background .15s; }
     #search-clear:hover { background:rgba(255,255,255,.2); color:#fff; }
@@ -361,6 +365,9 @@
         <span>·</span>
         <span class="flex items-center gap-1.5"><i class="fas fa-user text-[10px]"></i><span id="pm-author"></span></span>
       </div>
+      <div id="pm-image-wrap" class="hidden mb-7 -mx-0 rounded-xl overflow-hidden">
+        <img id="pm-image" class="w-full max-h-80 object-cover" alt="" />
+      </div>
       <div id="pm-content" class="article-body"></div>
 
       <!-- Admin actions (only when logged in) -->
@@ -488,6 +495,38 @@
           <label for="e-excerpt" class="block text-sm text-gray-400 mb-1.5">Excerpt / Summary <span class="text-red-400">*</span></label>
           <textarea id="e-excerpt" rows="2" placeholder="Short summary displayed on the post card…"
             class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm resize-none"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1.5">Cover Image <span class="text-gray-600 font-normal">(optional)</span></label>
+          <div id="img-drop-zone" class="img-drop-zone"
+               onclick="document.getElementById('e-img-file').click()"
+               ondragover="event.preventDefault();this.classList.add('drag-over')"
+               ondragleave="this.classList.remove('drag-over')"
+               ondrop="event.preventDefault();this.classList.remove('drag-over');handleImageFile(event.dataTransfer.files[0])">
+            <input type="file" id="e-img-file" accept="image/*" class="hidden" onchange="handleImageFile(this.files[0])" />
+            <div id="img-zone-empty" class="flex flex-col items-center justify-center py-8 gap-2 pointer-events-none">
+              <div class="w-12 h-12 rounded-xl bg-navy-700 border border-navy-600 flex items-center justify-center mb-1">
+                <i class="fas fa-image text-gray-500 text-xl"></i>
+              </div>
+              <p class="text-sm text-gray-500 font-medium">Click to upload or drag &amp; drop</p>
+              <p class="text-xs text-gray-600">JPEG, PNG, WebP · max 5 MB · auto-compressed</p>
+            </div>
+            <div id="img-zone-preview" class="hidden relative">
+              <img id="img-preview-el" class="w-full h-48 object-cover" alt="Cover preview" />
+              <button type="button" onclick="event.stopPropagation();clearEditorImage()"
+                class="absolute top-2 right-2 w-8 h-8 bg-black/70 hover:bg-black/90 text-white rounded-full flex items-center justify-center transition-colors border border-white/20"
+                aria-label="Remove image">
+                <i class="fas fa-times text-xs"></i>
+              </button>
+              <div class="absolute bottom-2 left-2 bg-black/60 text-xs text-white px-2 py-0.5 rounded-full backdrop-blur flex items-center gap-1">
+                <i class="fas fa-check-circle text-leaf-400 text-[9px]"></i>Image attached
+              </div>
+            </div>
+          </div>
+          <div id="img-error" class="hidden mt-2 text-red-400 text-xs flex items-center gap-1.5">
+            <i class="fas fa-exclamation-circle flex-shrink-0"></i><span id="img-error-msg"></span>
+          </div>
         </div>
 
         <div>
@@ -687,8 +726,10 @@ function render() {
              onclick="openPost('${esc(first.id)}')"
              tabindex="0" role="button" aria-label="Read: ${esc(first.title)}"
              onkeydown="if(event.key==='Enter'||event.key===' ')openPost('${esc(first.id)}')">
-      <div class="thumb-area lg:col-span-2 min-h-[180px] flex items-center justify-center" style="background:linear-gradient(135deg,${CAT_ACCENT[first.category]}22,${CAT_ACCENT[first.category]}08)">
-        <i class="fas ${icon}" style="font-size:5rem;opacity:0.18;color:${CAT_ACCENT[first.category]};filter:blur(1px)"></i>
+      <div class="thumb-area lg:col-span-2 min-h-[180px] ${first.image ? 'overflow-hidden' : 'flex items-center justify-center'}" style="${first.image ? '' : `background:linear-gradient(135deg,${CAT_ACCENT[first.category]}22,${CAT_ACCENT[first.category]}08)`}">
+        ${first.image
+          ? `<img src="${first.image}" alt="${esc(first.title)}" class="w-full h-full object-cover min-h-[180px]" loading="lazy" />`
+          : `<i class="fas ${icon}" style="font-size:5rem;opacity:0.18;color:${CAT_ACCENT[first.category]};filter:blur(1px)"></i>`}
       </div>
       <div class="lg:col-span-3 p-6">
         <div class="flex items-center gap-2 mb-3 flex-wrap">
@@ -722,8 +763,10 @@ function render() {
              tabindex="0" role="button" aria-label="Read: ${esc(p.title)}"
              onkeydown="if(event.key==='Enter'||event.key===' ')openPost('${esc(p.id)}')"
              style="animation-delay:${(i+1)*0.04}s">
-      <div class="card-thumb h-20 flex items-center justify-center" style="background:linear-gradient(135deg,${CAT_ACCENT[p.category]}18,${CAT_ACCENT[p.category]}06)">
-        <i class="fas ${icon}" style="font-size:2.5rem;opacity:0.22;color:${CAT_ACCENT[p.category]};filter:blur(0.5px)"></i>
+      <div class="card-thumb h-20 ${p.image ? 'overflow-hidden' : 'flex items-center justify-center'}" style="${p.image ? '' : `background:linear-gradient(135deg,${CAT_ACCENT[p.category]}18,${CAT_ACCENT[p.category]}06)`}">
+        ${p.image
+          ? `<img src="${p.image}" alt="${esc(p.title)}" class="w-full h-20 object-cover" loading="lazy" />`
+          : `<i class="fas ${icon}" style="font-size:2.5rem;opacity:0.22;color:${CAT_ACCENT[p.category]};filter:blur(0.5px)"></i>`}
       </div>
       <div class="h-1" style="background:linear-gradient(90deg,${CAT_ACCENT[p.category]}66,transparent)"></div>
       <div class="p-6">
@@ -769,6 +812,18 @@ function openPost(id) {
   document.getElementById('post-modal-title').textContent = p.title;
   document.getElementById('pm-date').textContent   = fmtDate(p.date);
   document.getElementById('pm-author').textContent = p.author || 'AHL Media Team';
+
+  const pmImgWrap = document.getElementById('pm-image-wrap');
+  const pmImg     = document.getElementById('pm-image');
+  if (p.image) {
+    pmImg.src = p.image;
+    pmImg.alt = p.title;
+    pmImgWrap.classList.remove('hidden');
+  } else {
+    pmImg.src = '';
+    pmImgWrap.classList.add('hidden');
+  }
+
   document.getElementById('pm-content').innerHTML  = p.content;
 
   const adminDiv = document.getElementById('pm-admin');
@@ -807,6 +862,7 @@ function openEditor(editId = null) {
       document.getElementById('e-content').value = p.content;
       document.getElementById('e-published').checked = !!p.published;
       syncToggle(!!p.published);
+      if (p.image) setEditorImage(p.image); else clearEditorImage();
     }
   } else {
     document.getElementById('e-title').value   = '';
@@ -817,6 +873,7 @@ function openEditor(editId = null) {
     document.getElementById('e-content').value = '';
     document.getElementById('e-published').checked = true;
     syncToggle(true);
+    clearEditorImage();
   }
 
   openModal('editor-modal');
@@ -829,6 +886,56 @@ function syncToggle(checked) {
   document.getElementById('toggle-thumb').style.background = checked ? '#fff' : '';
 }
 document.getElementById('e-published').addEventListener('change', e => syncToggle(e.target.checked));
+
+// ══════════════════════════════════════
+//  Image upload
+// ══════════════════════════════════════
+let currentEditorImage = null;
+
+function handleImageFile(file) {
+  if (!file) return;
+  if (!file.type.startsWith('image/')) { showImgError('Only image files are accepted (JPEG, PNG, WebP).'); return; }
+  if (file.size > 5 * 1024 * 1024)    { showImgError('Image must be under 5 MB.'); return; }
+  hideImgError();
+
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => {
+      const MAX = 1200;
+      let w = img.width, h = img.height;
+      if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      setEditorImage(canvas.toDataURL('image/jpeg', 0.82));
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function setEditorImage(data) {
+  currentEditorImage = data;
+  document.getElementById('img-preview-el').src = data;
+  document.getElementById('img-zone-empty').classList.add('hidden');
+  document.getElementById('img-zone-preview').classList.remove('hidden');
+  document.getElementById('e-img-file').value = '';
+}
+
+function clearEditorImage() {
+  currentEditorImage = null;
+  document.getElementById('img-preview-el').src = '';
+  document.getElementById('img-zone-empty').classList.remove('hidden');
+  document.getElementById('img-zone-preview').classList.add('hidden');
+  document.getElementById('e-img-file').value = '';
+}
+
+function showImgError(msg) {
+  document.getElementById('img-error-msg').textContent = msg;
+  document.getElementById('img-error').classList.remove('hidden');
+}
+function hideImgError() { document.getElementById('img-error').classList.add('hidden'); }
 
 function savePost() {
   const title   = document.getElementById('e-title').value.trim();
@@ -851,6 +958,7 @@ function savePost() {
     date:      document.getElementById('e-date').value || new Date().toISOString().split('T')[0],
     excerpt,
     content,
+    image:     currentEditorImage || null,
     published: document.getElementById('e-published').checked,
   };
 
