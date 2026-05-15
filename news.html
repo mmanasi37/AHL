@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News &amp; Announcements | Andro Holdings Limited</title>
+  <meta name="description" content="Latest news, project updates and announcements from Andro Holdings Limited — East Sepik's premier civil engineering and security company, Wewak PNG." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.androholdings.com.pg/news.html" />
+  <link rel="icon" type="image/jpeg" href="images/AHL-logo.jpg" />
+  <meta name="theme-color" content="#0f2d5c" />
+
+  <link rel="stylesheet" href="dist/output.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    body { font-family: 'Open Sans', sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Poppins', sans-serif; }
+
+    .bg-hero { background: linear-gradient(135deg, #040c18 0%, #071428 30%, #0a1f42 65%, #0f2d5c 100%); }
+    .divider  { height: 3px; background: linear-gradient(90deg, transparent, #22c55e 35%, #f97316 65%, transparent); }
+
+    .text-grad-green {
+      background: linear-gradient(90deg, #22c55e, #4ade80);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* Nav */
+    .nav-glass { background: rgba(4,12,24,0.95) !important; backdrop-filter: blur(14px); box-shadow: 0 2px 24px rgba(0,0,0,0.6); }
+    .nav-link  { position: relative; }
+    .nav-link::after { content:''; display:block; width:0; height:2px; background:linear-gradient(90deg,#22c55e,#f97316); transition:width 0.3s; }
+    .nav-link:hover::after, .nav-link.active::after { width:100%; }
+    .nav-link.active { color:#fff; }
+
+    #mobile-menu { max-height:0; overflow:hidden; opacity:0; transition:max-height 0.35s ease,opacity 0.3s ease; }
+    #mobile-menu.open { max-height:520px; opacity:1; }
+
+    /* Skip link */
+    .skip-link { position:absolute; top:-100%; left:1rem; z-index:9999; background:#22c55e; color:#040c18; font-weight:700; font-size:.875rem; padding:.5rem 1.25rem; border-radius:0 0 .5rem .5rem; transition:top .2s; text-decoration:none; }
+    .skip-link:focus { top:0; }
+    :focus-visible { outline:2px solid #22c55e; outline-offset:3px; border-radius:4px; }
+    ::-webkit-scrollbar { width:7px; }
+    ::-webkit-scrollbar-track { background:#040c18; }
+    ::-webkit-scrollbar-thumb { background:#0f2d5c; border-radius:4px; }
+    ::-webkit-scrollbar-thumb:hover { background:#22c55e; }
+    input:focus, textarea:focus, select:focus { border-color:#22c55e !important; box-shadow:0 0 0 3px rgba(34,197,94,.15); }
+
+    /* Category badge palette */
+    .badge-announcement { background:rgba(96,165,250,.15);  color:#93c5fd; border:1px solid rgba(96,165,250,.3); }
+    .badge-civil        { background:rgba(34,197,94,.15);   color:#4ade80; border:1px solid rgba(34,197,94,.3); }
+    .badge-security     { background:rgba(249,115,22,.15);  color:#fb923c; border:1px solid rgba(249,115,22,.3); }
+    .badge-community    { background:rgba(251,191,36,.15);  color:#fbbf24; border:1px solid rgba(251,191,36,.3); }
+    .badge-company      { background:rgba(167,139,250,.15); color:#c4b5fd; border:1px solid rgba(167,139,250,.3); }
+    .badge-draft        { background:rgba(234,179,8,.15);   color:#facc15; border:1px solid rgba(234,179,8,.3); }
+
+    /* Filter tabs */
+    .filter-tab { padding:.45rem 1.1rem; border-radius:9999px; font-size:.8rem; font-weight:600; cursor:pointer; border:1px solid rgba(255,255,255,.1); color:#9ca3af; background:transparent; transition:all .2s; }
+    .filter-tab:hover { color:#fff; border-color:rgba(255,255,255,.25); }
+    .filter-tab.active { background:linear-gradient(135deg,#0f2d5c,#1a4a8a); border-color:rgba(34,197,94,.45); color:#fff; }
+
+    /* Post card */
+    .post-card { cursor:pointer; transition:transform .28s ease, box-shadow .28s ease; }
+    .post-card:hover { transform:translateY(-5px); box-shadow:0 14px 44px rgba(0,0,0,.5); }
+
+    /* Line clamp */
+    .clamp-2 { overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+    .clamp-3 { overflow:hidden; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; }
+
+    /* Modal */
+    .modal-bg { position:fixed; inset:0; background:rgba(0,0,0,.88); backdrop-filter:blur(7px); z-index:200; display:flex; align-items:center; justify-content:center; padding:1rem; opacity:0; pointer-events:none; transition:opacity .22s; }
+    .modal-bg.open { opacity:1; pointer-events:all; }
+    .modal-box { background:linear-gradient(140deg,#071428,#0a1f42); border:1px solid rgba(255,255,255,.1); border-radius:1.5rem; width:100%; max-height:90vh; overflow-y:auto; transform:translateY(18px); transition:transform .22s; }
+    .modal-bg.open .modal-box { transform:translateY(0); }
+
+    /* Admin bar */
+    #admin-bar { position:fixed; top:0; left:0; right:0; z-index:150; background:linear-gradient(90deg,#166534,#15803d); border-bottom:2px solid #22c55e; padding:.45rem 1.5rem; display:flex; align-items:center; gap:.75rem; transform:translateY(-110%); transition:transform .3s; }
+    #admin-bar.visible { transform:translateY(0); }
+    body.admin-mode { padding-top:42px; }
+
+    /* Article body styles */
+    .article-body h2    { font-family:'Poppins',sans-serif; font-size:1.15rem; font-weight:700; color:#fff; margin:1.5rem 0 .5rem; }
+    .article-body p     { color:#9ca3af; line-height:1.8; margin-bottom:.9rem; font-size:.9375rem; }
+    .article-body ul    { list-style:disc; padding-left:1.4rem; margin-bottom:.9rem; }
+    .article-body ol    { list-style:decimal; padding-left:1.4rem; margin-bottom:.9rem; }
+    .article-body li    { color:#9ca3af; line-height:1.8; font-size:.9375rem; }
+    .article-body strong { color:#e5e7eb; }
+    .article-body em     { color:#cbd5e1; font-style:italic; }
+    .article-body a      { color:#4ade80; text-decoration:underline; }
+
+    /* Fade-in */
+    .fade-in { opacity:0; transform:translateY(20px); transition:opacity .5s ease,transform .5s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+      .fade-in { opacity:1 !important; transform:none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-navy-900 text-white antialiased">
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- TOP INFO BAR -->
+<div class="bg-navy-800 border-b border-navy-700 py-2 hidden md:block">
+  <div class="container mx-auto px-6 flex items-center justify-between text-xs text-gray-400">
+    <div class="flex items-center gap-6">
+      <span class="flex items-center gap-1.5"><i class="fas fa-location-dot text-leaf-500"></i>PO Box 860, Wewak, East Sepik Province, PNG</span>
+      <a href="tel:+67571246446" class="flex items-center gap-1.5 hover:text-white transition-colors"><i class="fas fa-phone text-flame-500"></i>+675 7124 6446</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="mailto:androholdingsltd@gmail.com" class="flex items-center gap-1.5 hover:text-white transition-colors"><i class="fas fa-envelope text-gold-500"></i>androholdingsltd@gmail.com</a>
+      <span class="text-gray-600">|</span>
+      <span class="text-flame-400 font-medium">SIA Lic: MR-SPL-24-00079</span>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN BAR -->
+<div id="admin-bar" role="banner" aria-label="Admin toolbar">
+  <i class="fas fa-shield-halved text-leaf-200 text-sm flex-shrink-0"></i>
+  <span class="text-white text-sm font-semibold">Media Officer</span>
+  <span class="bg-leaf-500/20 text-leaf-300 text-xs px-2 py-0.5 rounded-full border border-leaf-500/30 font-medium">Active</span>
+  <div class="ml-auto flex items-center gap-3">
+    <button onclick="openEditor()" class="bg-white/15 hover:bg-white/25 text-white text-xs font-bold px-4 py-1.5 rounded-full transition-all border border-white/20 flex items-center gap-1.5">
+      <i class="fas fa-plus text-[10px]"></i>New Post
+    </button>
+    <button onclick="logoutAdmin()" class="text-leaf-200 hover:text-white text-xs font-medium transition-colors flex items-center gap-1.5">
+      <i class="fas fa-sign-out-alt text-[11px]"></i>Logout
+    </button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar" aria-label="Main navigation" class="fixed top-0 md:top-9 left-0 right-0 z-50 transition-all duration-300 py-3">
+  <div class="container mx-auto px-6">
+    <div class="flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="images/AHL-logo.jpg" alt="AHL Andro Holdings Limited" class="w-12 h-12 rounded-full object-cover shadow-lg shadow-black/40 flex-shrink-0" />
+        <div class="leading-tight">
+          <div class="text-white font-black font-display text-lg tracking-wide group-hover:text-gold-400 transition-colors">AHL</div>
+          <div class="text-leaf-400 text-xs font-semibold tracking-widest uppercase">Andro Holdings</div>
+        </div>
+      </a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="index.html#about"    class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">About</a>
+        <a href="index.html#services" class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Services</a>
+        <a href="index.html#projects" class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Projects</a>
+        <a href="news.html"           class="nav-link active text-white text-sm font-medium transition-colors">News</a>
+        <a href="index.html#contact"  class="bg-gradient-to-r from-flame-700 to-flame-500 hover:from-flame-600 hover:to-flame-400 text-white text-sm font-bold px-5 py-2 rounded-full transition-all hover:shadow-lg hover:shadow-flame-500/40">Contact Us</a>
+      </div>
+      <button id="menu-btn" class="lg:hidden p-2 text-white" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg id="icon-open"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="lg:hidden bg-navy-800/98 backdrop-blur rounded-2xl mt-3 px-4 py-2 border border-navy-700">
+      <a href="index.html#about"    class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">About AHL</a>
+      <a href="index.html#services" class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Services</a>
+      <a href="index.html#projects" class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Projects</a>
+      <a href="news.html"           class="block py-3 text-leaf-400 font-semibold border-b border-navy-700 text-sm"                         onclick="toggleMenu()">News &amp; Announcements</a>
+      <a href="index.html#contact"  class="block py-3 text-flame-400 font-bold text-sm" onclick="toggleMenu()">Contact Us →</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content">
+
+<!-- HERO -->
+<section class="relative bg-hero pt-32 pb-20 overflow-hidden">
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs><pattern id="g" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0L0 0 0 60" fill="none" stroke="white" stroke-width=".6"/></pattern></defs>
+      <rect width="100%" height="100%" fill="url(#g)"/>
+    </svg>
+  </div>
+  <div class="absolute top-0 right-0 w-[450px] h-[450px] bg-leaf-700 opacity-[0.06] rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-flame-700 opacity-[0.06] rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <nav aria-label="Breadcrumb" class="mb-6">
+      <ol class="flex items-center gap-2 text-xs text-gray-500">
+        <li><a href="index.html" class="hover:text-gray-300 transition-colors">Home</a></li>
+        <li><i class="fas fa-chevron-right text-[9px]"></i></li>
+        <li class="text-gray-400">News &amp; Announcements</li>
+      </ol>
+    </nav>
+    <div class="max-w-3xl">
+      <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-leaf-500/25 rounded-full px-4 py-2 mb-6">
+        <span class="w-2 h-2 rounded-full bg-leaf-400 animate-pulse"></span>
+        <span class="text-leaf-400 text-sm font-medium">Company News &amp; Announcements</span>
+      </div>
+      <h1 class="font-display font-black text-5xl md:text-6xl text-white mb-5 leading-tight">
+        Latest from<br><span class="text-grad-green">AHL</span>
+      </h1>
+      <p class="text-xl text-gray-300 leading-relaxed max-w-xl">
+        Stay informed with the latest project updates, corporate announcements, and community news from Andro Holdings Limited.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- NEWS -->
+<section class="py-16 bg-navy-900" id="news-section">
+  <div class="container mx-auto px-6">
+
+    <!-- Toolbar: filters + search -->
+    <div class="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between mb-10 fade-in">
+      <div class="flex flex-wrap gap-2" id="filter-tabs" role="tablist" aria-label="Filter posts by category">
+        <button class="filter-tab active" data-filter="all"          role="tab" aria-selected="true">All</button>
+        <button class="filter-tab"        data-filter="announcement" role="tab" aria-selected="false">Announcements</button>
+        <button class="filter-tab"        data-filter="civil"        role="tab" aria-selected="false">Civil Works</button>
+        <button class="filter-tab"        data-filter="security"     role="tab" aria-selected="false">Security</button>
+        <button class="filter-tab"        data-filter="community"    role="tab" aria-selected="false">Community</button>
+        <button class="filter-tab"        data-filter="company"      role="tab" aria-selected="false">Company</button>
+      </div>
+      <div class="relative flex-shrink-0">
+        <label for="search-input" class="sr-only">Search posts</label>
+        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
+        <input type="search" id="search-input" placeholder="Search posts…" aria-label="Search posts"
+          class="bg-navy-800 border border-navy-600 rounded-xl pl-9 pr-4 py-2.5 text-white text-sm placeholder-gray-600 outline-none w-60 transition-colors" />
+      </div>
+    </div>
+
+    <!-- Post count -->
+    <p id="post-count" class="text-gray-600 text-xs mb-6 fade-in"></p>
+
+    <!-- Grid -->
+    <div id="posts-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="hidden text-center py-24">
+      <div class="w-20 h-20 rounded-2xl bg-navy-800 border border-navy-600 flex items-center justify-center mx-auto mb-5">
+        <i class="fas fa-newspaper text-gray-600 text-3xl"></i>
+      </div>
+      <h3 class="font-display font-bold text-white text-xl mb-2">No posts found</h3>
+      <p id="empty-msg" class="text-gray-500 text-sm">Check back soon for updates from AHL.</p>
+      <button id="empty-clear-btn" class="hidden mt-4 text-leaf-400 hover:text-leaf-300 text-sm font-medium transition-colors" onclick="clearSearch()">Clear search</button>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-black/70 border-t border-navy-800 pt-16 pb-8">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <img src="images/AHL-logo.jpg" alt="AHL Civil Works" class="w-12 h-12 rounded-full object-cover flex-shrink-0" loading="lazy" decoding="async" />
+          <div>
+            <div class="text-white font-black font-display text-base">Andro Holdings Limited</div>
+            <div class="text-leaf-400 text-xs tracking-wider">Wewak · East Sepik Province · PNG</div>
+          </div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed max-w-sm mb-5">A locally owned Papua New Guinean company delivering excellence in civil engineering and security services across East Sepik Province.</p>
+        <div class="flex gap-3">
+          <a href="#" aria-label="Facebook" class="w-11 h-11 rounded-xl bg-navy-700 hover:bg-blue-700 border border-navy-600 flex items-center justify-center transition-all">
+            <i class="fab fa-facebook text-gray-400 hover:text-white text-sm"></i>
+          </a>
+          <a href="https://wa.me/67571246446" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-11 h-11 rounded-xl bg-navy-700 hover:bg-green-600 border border-navy-600 flex items-center justify-center transition-all">
+            <i class="fab fa-whatsapp text-gray-400 hover:text-white text-sm"></i>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-5">Quick Links</h4>
+        <ul class="space-y-2.5">
+          <li><a href="index.html#about"    class="text-gray-500 hover:text-leaf-400 text-sm transition-colors">About AHL</a></li>
+          <li><a href="index.html#services" class="text-gray-500 hover:text-leaf-400 text-sm transition-colors">Our Services</a></li>
+          <li><a href="index.html#projects" class="text-gray-500 hover:text-leaf-400 text-sm transition-colors">Projects</a></li>
+          <li><a href="news.html"           class="text-leaf-400 font-medium text-sm">News &amp; Announcements</a></li>
+          <li><a href="index.html#contact"  class="text-gray-500 hover:text-leaf-400 text-sm transition-colors">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-5">News Categories</h4>
+        <ul class="space-y-2.5" id="category-links">
+          <li><button onclick="setFilter('announcement')" class="text-gray-500 hover:text-leaf-400 text-sm transition-colors text-left">Announcements</button></li>
+          <li><button onclick="setFilter('civil')"        class="text-gray-500 hover:text-leaf-400 text-sm transition-colors text-left">Civil Works</button></li>
+          <li><button onclick="setFilter('security')"     class="text-gray-500 hover:text-leaf-400 text-sm transition-colors text-left">Security</button></li>
+          <li><button onclick="setFilter('community')"    class="text-gray-500 hover:text-leaf-400 text-sm transition-colors text-left">Community</button></li>
+          <li><button onclick="setFilter('company')"      class="text-gray-500 hover:text-leaf-400 text-sm transition-colors text-left">Company</button></li>
+        </ul>
+        <!-- Hidden media login — subtle, only visible on hover -->
+        <div class="mt-8 pt-5 border-t border-navy-800">
+          <button onclick="showLogin()" class="text-navy-700 hover:text-gray-500 text-xs transition-colors flex items-center gap-1.5 group" title="Media Officer Login">
+            <i class="fas fa-lock text-[10px] group-hover:text-gray-400 transition-colors"></i>
+            <span class="group-hover:text-gray-400 transition-colors">Media Login</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-gray-600 text-xs">&copy; 2024 Andro Holdings Limited. All rights reserved.</p>
+      <p class="text-gray-700 text-xs">Wewak, East Sepik Province, Papua New Guinea</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════
+     POST VIEW MODAL
+══════════════════════════════════════ -->
+<div id="post-modal" class="modal-bg" role="dialog" aria-modal="true" aria-labelledby="post-modal-title">
+  <div class="modal-box" style="max-width:720px">
+    <!-- colour stripe -->
+    <div id="pm-stripe" class="h-1.5 rounded-t-3xl"></div>
+    <div class="p-7 md:p-10">
+      <div class="flex items-start justify-between gap-4 mb-5">
+        <span id="pm-badge" class="text-xs font-semibold px-3 py-1 rounded-full flex-shrink-0"></span>
+        <button onclick="closeModal('post-modal')" class="w-9 h-9 rounded-xl bg-navy-700 hover:bg-navy-600 flex items-center justify-center transition-colors flex-shrink-0" aria-label="Close">
+          <i class="fas fa-times text-gray-400"></i>
+        </button>
+      </div>
+      <h2 id="post-modal-title" class="font-display text-2xl md:text-3xl font-bold text-white mb-3 leading-snug"></h2>
+      <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-8">
+        <span class="flex items-center gap-1.5"><i class="fas fa-calendar text-[10px]"></i><span id="pm-date"></span></span>
+        <span>·</span>
+        <span class="flex items-center gap-1.5"><i class="fas fa-user text-[10px]"></i><span id="pm-author"></span></span>
+      </div>
+      <div id="pm-content" class="article-body"></div>
+
+      <!-- Admin actions (only when logged in) -->
+      <div id="pm-admin" class="hidden mt-8 pt-6 border-t border-navy-700 flex gap-3">
+        <button id="pm-edit-btn"
+          class="flex items-center gap-2 bg-navy-700 hover:bg-navy-600 border border-navy-500 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-all">
+          <i class="fas fa-pen text-leaf-400 text-xs"></i>Edit Post
+        </button>
+        <button id="pm-delete-btn"
+          class="flex items-center gap-2 bg-red-900/20 hover:bg-red-900/40 border border-red-700/30 text-red-400 text-sm font-semibold px-4 py-2.5 rounded-xl transition-all">
+          <i class="fas fa-trash text-xs"></i>Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     LOGIN MODAL
+══════════════════════════════════════ -->
+<div id="login-modal" class="modal-bg" role="dialog" aria-modal="true" aria-labelledby="login-title">
+  <div class="modal-box" style="max-width:420px">
+    <div class="p-8">
+      <div class="flex items-center justify-between mb-7">
+        <div>
+          <h2 id="login-title" class="font-display text-xl font-bold text-white">Media Officer Login</h2>
+          <p class="text-gray-500 text-sm mt-0.5">AHL News &amp; Announcements CMS</p>
+        </div>
+        <button onclick="closeModal('login-modal')" class="w-9 h-9 rounded-xl bg-navy-700 hover:bg-navy-600 flex items-center justify-center transition-colors" aria-label="Close">
+          <i class="fas fa-times text-gray-400"></i>
+        </button>
+      </div>
+
+      <div class="w-16 h-16 rounded-2xl bg-leaf-500/15 border border-leaf-500/30 flex items-center justify-center mx-auto mb-7">
+        <i class="fas fa-user-shield text-leaf-400 text-2xl"></i>
+      </div>
+
+      <div class="mb-4">
+        <label for="login-pw" class="block text-sm text-gray-400 mb-1.5">Password</label>
+        <input type="password" id="login-pw" placeholder="Media officer password"
+          class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm"
+          onkeydown="if(event.key==='Enter')doLogin()" autocomplete="current-password" />
+      </div>
+
+      <div id="login-err" role="alert" aria-live="polite" class="hidden mb-4 bg-red-900/20 border border-red-700/30 rounded-xl px-4 py-3 text-red-400 text-sm flex items-center gap-2">
+        <i class="fas fa-exclamation-circle flex-shrink-0"></i>Incorrect password. Please try again.
+      </div>
+
+      <button onclick="doLogin()"
+        class="w-full bg-gradient-to-r from-leaf-700 to-leaf-600 hover:from-leaf-600 hover:to-leaf-500 text-white font-bold px-6 py-3.5 rounded-xl transition-all text-sm">
+        <i class="fas fa-sign-in-alt mr-2"></i>Login
+      </button>
+
+      <p class="text-gray-700 text-xs text-center mt-4">Access restricted to authorised AHL media staff only.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     POST EDITOR MODAL
+══════════════════════════════════════ -->
+<div id="editor-modal" class="modal-bg" role="dialog" aria-modal="true" aria-labelledby="editor-title">
+  <div class="modal-box" style="max-width:740px">
+    <div class="p-7 md:p-9">
+
+      <div class="flex items-center justify-between mb-7">
+        <div>
+          <h2 id="editor-title" class="font-display text-xl font-bold text-white">New Post</h2>
+          <p class="text-gray-500 text-sm mt-0.5" id="editor-subtitle">Publish to AHL News</p>
+        </div>
+        <button onclick="closeModal('editor-modal')" class="w-9 h-9 rounded-xl bg-navy-700 hover:bg-navy-600 flex items-center justify-center transition-colors" aria-label="Close">
+          <i class="fas fa-times text-gray-400"></i>
+        </button>
+      </div>
+
+      <input type="hidden" id="edit-id" />
+
+      <div class="space-y-5">
+
+        <div>
+          <label for="e-title" class="block text-sm text-gray-400 mb-1.5">Title <span class="text-red-400">*</span></label>
+          <input type="text" id="e-title" placeholder="Post headline…"
+            class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="e-cat" class="block text-sm text-gray-400 mb-1.5">Category <span class="text-red-400">*</span></label>
+            <select id="e-cat" class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white outline-none transition-all text-sm appearance-none">
+              <option value="announcement">Announcement</option>
+              <option value="civil">Civil Works</option>
+              <option value="security">Security</option>
+              <option value="community">Community</option>
+              <option value="company">Company</option>
+            </select>
+          </div>
+          <div>
+            <label for="e-author" class="block text-sm text-gray-400 mb-1.5">Author</label>
+            <input type="text" id="e-author" placeholder="AHL Media Team"
+              class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="e-date" class="block text-sm text-gray-400 mb-1.5">Date <span class="text-red-400">*</span></label>
+            <input type="date" id="e-date"
+              class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white outline-none transition-all text-sm" />
+          </div>
+          <div class="flex items-end pb-1">
+            <label class="flex items-center gap-3 cursor-pointer select-none">
+              <div class="relative">
+                <input type="checkbox" id="e-published" class="sr-only" checked />
+                <div class="w-10 h-5 bg-navy-600 rounded-full border border-navy-500 transition-colors peer-checked:bg-leaf-600" id="toggle-track"></div>
+                <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-gray-400 rounded-full transition-transform" id="toggle-thumb"></div>
+              </div>
+              <span class="text-sm text-gray-400">Publish immediately</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label for="e-excerpt" class="block text-sm text-gray-400 mb-1.5">Excerpt / Summary <span class="text-red-400">*</span></label>
+          <textarea id="e-excerpt" rows="2" placeholder="Short summary displayed on the post card…"
+            class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm resize-none"></textarea>
+        </div>
+
+        <div>
+          <label for="e-content" class="block text-sm text-gray-400 mb-1.5">
+            Full Content <span class="text-red-400">*</span>
+            <span class="text-gray-600 font-normal ml-1">— supports &lt;h2&gt; &lt;p&gt; &lt;ul&gt; &lt;li&gt; &lt;strong&gt; &lt;em&gt;</span>
+          </label>
+          <textarea id="e-content" rows="10" placeholder="Write the full article here. You can use basic HTML tags for formatting…"
+            class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm resize-y font-mono text-xs leading-loose"></textarea>
+        </div>
+
+        <div id="e-error" role="alert" aria-live="polite" class="hidden bg-red-900/20 border border-red-700/30 rounded-xl px-4 py-3 text-red-400 text-sm flex items-center gap-2">
+          <i class="fas fa-exclamation-circle flex-shrink-0"></i><span id="e-error-msg"></span>
+        </div>
+
+        <div class="flex gap-3 pt-1">
+          <button onclick="savePost()"
+            class="flex-1 bg-gradient-to-r from-leaf-700 to-leaf-600 hover:from-leaf-600 hover:to-leaf-500 text-white font-bold px-6 py-3.5 rounded-xl transition-all text-sm flex items-center justify-center gap-2">
+            <i class="fas fa-save"></i><span id="save-label">Publish Post</span>
+          </button>
+          <button onclick="closeModal('editor-modal')"
+            class="bg-navy-700 hover:bg-navy-600 border border-navy-500 text-gray-300 font-semibold px-6 py-3.5 rounded-xl transition-all text-sm">
+            Cancel
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     CONFIRM DELETE MODAL
+══════════════════════════════════════ -->
+<div id="confirm-modal" class="modal-bg" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title">
+  <div class="modal-box" style="max-width:380px">
+    <div class="p-8 text-center">
+      <div class="w-16 h-16 rounded-2xl bg-red-900/30 border border-red-700/40 flex items-center justify-center mx-auto mb-4">
+        <i class="fas fa-trash text-red-400 text-2xl"></i>
+      </div>
+      <h3 id="confirm-title" class="font-display font-bold text-white text-lg mb-2">Delete this post?</h3>
+      <p class="text-gray-400 text-sm mb-7 leading-relaxed">This action cannot be undone. The post will be permanently removed from the news feed.</p>
+      <div class="flex gap-3">
+        <button id="confirm-yes"
+          class="flex-1 bg-red-700 hover:bg-red-600 text-white font-bold py-3 rounded-xl transition-all text-sm">
+          <i class="fas fa-trash mr-1.5"></i>Yes, Delete
+        </button>
+        <button onclick="closeModal('confirm-modal')"
+          class="flex-1 bg-navy-700 hover:bg-navy-600 border border-navy-500 text-gray-300 font-semibold py-3 rounded-xl transition-all text-sm">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// ══════════════════════════════════════
+//  Config & Storage
+// ══════════════════════════════════════
+const POSTS_KEY = 'ahl_posts_v2';
+const AUTH_KEY  = 'ahl_admin_v2';
+
+// Password is SHA-256 of "AHLMedia2024!" — computed at runtime
+let ADMIN_HASH = null;
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+}
+sha256('AHLMedia2024!').then(h => ADMIN_HASH = h);
+
+function getPosts()     { try { return JSON.parse(localStorage.getItem(POSTS_KEY)) || null; } catch { return null; } }
+function setPosts(arr)  { localStorage.setItem(POSTS_KEY, JSON.stringify(arr)); }
+function isAdmin()      { return sessionStorage.getItem(AUTH_KEY) === '1'; }
+
+// ══════════════════════════════════════
+//  Seed data
+// ══════════════════════════════════════
+const SEEDS = [
+  {
+    id:'s1', category:'announcement', published:true, date:'2026-05-01',
+    author:'AHL Administration',
+    title:'AHL Now Accepting Tender Applications for 2026 Infrastructure Works',
+    excerpt:'Andro Holdings Limited invites suitably qualified subcontractors and suppliers to submit expressions of interest for upcoming civil works across East Sepik Province.',
+    content:`<h2>Tender Invitation</h2><p>Andro Holdings Limited (AHL) is pleased to invite expressions of interest (EOI) from qualified subcontractors and suppliers for participation in the 2026 civil infrastructure works program across East Sepik Province.</p><h2>Scope of Works</h2><ul><li>Road sealing and bitumen supply</li><li>Aggregate and quarry material supply</li><li>Plant and equipment hire (graders, excavators, rollers)</li><li>Concrete works and drainage installation</li></ul><h2>How to Apply</h2><p>Interested parties should submit a letter of expression of interest, company profile, and relevant experience to <strong>androholdingsltd@gmail.com</strong> by <strong>31 May 2026</strong>.</p><p>For enquiries, contact AHL on <strong>+675 7124 6446</strong>.</p>`
+  },
+  {
+    id:'s2', category:'civil', published:true, date:'2026-04-18',
+    author:'AHL Civil Division',
+    title:'Sepik Highway Rehabilitation: Tuonimbu–Hanak Section Complete',
+    excerpt:'AHL has successfully completed road sealing and rehabilitation works on the Tuonimbu–Hanak section of the Sepik National Highway, on time and within budget.',
+    content:`<h2>Project Completion</h2><p>Andro Holdings Limited is pleased to announce the successful completion of road sealing and rehabilitation works on the <strong>Sepik National Highway — Tuonimbu to Hanak section</strong>, funded through the Department of Works &amp; Highways infrastructure program.</p><p>The project, which commenced in late 2025, involved full road sealing, drainage rehabilitation, shoulder works, and road furniture installation across the designated section.</p><h2>Impact for East Sepik</h2><p>This critical route connects numerous villages and communities to Wewak, improving access to markets, health facilities, and education. The improved road surface significantly reduces travel times and vehicle operating costs for local residents and commercial operators.</p><h2>Project Highlights</h2><ul><li>Total sealed length: approx. 12km</li><li>New drainage structures installed</li><li>Road shoulders fully rehabilitated</li><li>Completed within approved timeline</li></ul><h2>Statement from Management</h2><p><em>"This project reflects AHL's ongoing commitment to delivering quality infrastructure for the people of East Sepik. We are proud to have completed this work on time and to the highest standard."</em></p><p>— Moses Warie, Managing Director</p>`
+  },
+  {
+    id:'s3', category:'security', published:true, date:'2026-04-05',
+    author:'AHL Security Division',
+    title:'AHL Security Expands Operations at Wewak Port',
+    excerpt:'The AHL Security Division has expanded its scope of services at Wewak Port in partnership with PNG Ports Corporation, adding additional posts and personnel.',
+    content:`<h2>Expanded Wewak Port Security</h2><p>AHL's Security Division is proud to announce the expansion of its operational footprint at <strong>Wewak Port</strong> in continued partnership with <strong>PNG Ports Corporation</strong>.</p><p>Effective from April 2026, AHL Security has increased its complement of trained security officers at the port, extending coverage to additional access points and cargo handling areas.</p><h2>About the Partnership</h2><p>AHL Security has maintained a trusted relationship with PNG Ports Corporation for several years, providing professional guarding, access control, and emergency response services at the port facility.</p><p>All AHL security personnel deployed at the port hold current certifications issued under the <strong>Security Industry Authority of Papua New Guinea</strong> (Licence No: MR-SPL-24-00079).</p><h2>Commitment to Excellence</h2><p>AHL Security is committed to maintaining the highest professional standards in all its operations — protecting people, assets, and infrastructure across East Sepik Province.</p>`
+  },
+  {
+    id:'s4', category:'community', published:true, date:'2026-03-22',
+    author:'AHL Community Relations',
+    title:'AHL Awards 20 Scholarships for 2026 Academic Year',
+    excerpt:'Andro Holdings Limited has awarded scholarships to 20 East Sepik students for the 2026 academic year, continuing its commitment to local education and youth development.',
+    content:`<h2>2026 Scholarship Awards</h2><p>Andro Holdings Limited is proud to announce the award of <strong>20 scholarships</strong> to East Sepik students for the 2026 academic year — the largest scholarship round in AHL's history.</p><p>Recipients were selected from applications across East Sepik Province, based on academic merit and demonstrated community commitment.</p><h2>Priority Fields</h2><ul><li>Civil and structural engineering</li><li>Construction management</li><li>Business administration</li><li>Information technology</li><li>Health and community services</li></ul><h2>Message from the Managing Director</h2><p><em>"Every young Papua New Guinean we support today is an investment in East Sepik's tomorrow. We are proud of these 20 students and look forward to seeing them become the next generation of PNG leaders."</em></p><p>— <strong>Moses Warie</strong>, Founder &amp; Managing Director, AHL</p><p>For scholarship enquiries or future rounds, contact AHL at <strong>androholdingsltd@gmail.com</strong>.</p>`
+  },
+  {
+    id:'s5', category:'company', published:true, date:'2026-03-01',
+    author:'AHL Administration',
+    title:'AHL Marks 10+ Years of Service to East Sepik Province',
+    excerpt:'Andro Holdings Limited celebrates over a decade of delivering civil infrastructure and security services across East Sepik Province as a proudly locally owned PNG company.',
+    content:`<h2>A Decade of Building East Sepik</h2><p>Andro Holdings Limited is proud to mark more than <strong>ten years</strong> of continuous operation as East Sepik Province's premier locally owned civil engineering and security services company.</p><p>Since our founding in Wewak, AHL has grown from a small local contractor to a company of over <strong>200 Papua New Guinean employees</strong>, with an extensive fleet of heavy machinery and two established operating divisions.</p><h2>Key Milestones</h2><ul><li>50+ civil works projects delivered across East Sepik</li><li>30+ heavy machinery fleet, fully owned and maintained</li><li>SIA-licensed security operations at Wewak Port</li><li>200+ PNG nationals employed</li><li>50+ students supported through scholarships</li></ul><h2>Looking Ahead</h2><p>As we move into our second decade, AHL remains committed to delivering quality infrastructure, professional security services, and meaningful community investment for the people of East Sepik Province and Papua New Guinea.</p><p>We thank all our partners, clients, employees and community supporters for making this journey possible.</p>`
+  }
+];
+
+function initData() {
+  if (!getPosts()) setPosts(SEEDS);
+}
+
+// ══════════════════════════════════════
+//  Helpers
+// ══════════════════════════════════════
+const CAT_LABEL   = { announcement:'Announcement', civil:'Civil Works', security:'Security', community:'Community', company:'Company' };
+const CAT_BADGE   = { announcement:'badge-announcement', civil:'badge-civil', security:'badge-security', community:'badge-community', company:'badge-company' };
+const CAT_ACCENT  = { announcement:'#93c5fd', civil:'#4ade80', security:'#fb923c', community:'#fbbf24', company:'#c4b5fd' };
+const CAT_GRAD    = { announcement:'from-blue-900/30 to-navy-800', civil:'from-leaf-900/35 to-navy-800', security:'from-flame-900/35 to-navy-800', community:'from-gold-900/30 to-navy-800', company:'from-navy-700 to-navy-800' };
+
+function fmtDate(d) {
+  return new Date(d + 'T00:00:00').toLocaleDateString('en-AU', { day:'numeric', month:'long', year:'numeric' });
+}
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ══════════════════════════════════════
+//  Render
+// ══════════════════════════════════════
+let activeFilter = 'all';
+let searchQuery  = '';
+
+function getVisible() {
+  const posts  = getPosts() || [];
+  const admin  = isAdmin();
+  return posts
+    .filter(p => (admin || p.published) &&
+                 (activeFilter === 'all' || p.category === activeFilter) &&
+                 (!searchQuery || p.title.toLowerCase().includes(searchQuery) || p.excerpt.toLowerCase().includes(searchQuery)))
+    .sort((a,b) => new Date(b.date) - new Date(a.date));
+}
+
+function render() {
+  const posts  = getVisible();
+  const admin  = isAdmin();
+  const grid   = document.getElementById('posts-grid');
+  const empty  = document.getElementById('empty-state');
+  const count  = document.getElementById('post-count');
+  const clearBtn = document.getElementById('empty-clear-btn');
+
+  count.textContent = posts.length
+    ? `Showing ${posts.length} post${posts.length!==1?'s':''}${activeFilter!=='all'?' in '+CAT_LABEL[activeFilter]:''}`
+    : '';
+
+  if (!posts.length) {
+    grid.innerHTML = '';
+    empty.classList.remove('hidden');
+    document.getElementById('empty-msg').textContent = searchQuery
+      ? `No posts match "${searchQuery}".`
+      : activeFilter !== 'all'
+        ? `No ${CAT_LABEL[activeFilter]} posts yet.`
+        : 'No posts published yet. Check back soon.';
+    clearBtn.classList.toggle('hidden', !searchQuery);
+    return;
+  }
+
+  empty.classList.add('hidden');
+  grid.innerHTML = posts.map((p, i) => `
+    <article class="post-card bg-gradient-to-br ${CAT_GRAD[p.category]||CAT_GRAD.company} border border-navy-600 hover:border-white/20 rounded-2xl overflow-hidden"
+             onclick="openPost('${esc(p.id)}')"
+             tabindex="0" role="button" aria-label="Read: ${esc(p.title)}"
+             onkeydown="if(event.key==='Enter'||event.key===' ')openPost('${esc(p.id)}')"
+             style="animation-delay:${i*0.04}s">
+      <div class="h-1" style="background:linear-gradient(90deg,${CAT_ACCENT[p.category]}66,transparent)"></div>
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-3 gap-2">
+          <span class="${CAT_BADGE[p.category]||'badge-company'} text-xs font-semibold px-3 py-1 rounded-full flex-shrink-0">
+            ${esc(CAT_LABEL[p.category]||p.category)}
+          </span>
+          ${!p.published && admin ? '<span class="badge-draft text-xs font-semibold px-2 py-0.5 rounded-full">Draft</span>' : ''}
+        </div>
+        <h3 class="font-display font-bold text-white text-base mb-2 leading-snug clamp-2">${esc(p.title)}</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-5 clamp-3">${esc(p.excerpt)}</p>
+        <div class="flex items-center justify-between pt-4 border-t border-navy-700/50">
+          <span class="text-gray-600 text-xs">${fmtDate(p.date)}</span>
+          <span class="text-xs font-semibold flex items-center gap-1.5" style="color:${CAT_ACCENT[p.category]}">
+            Read more <i class="fas fa-arrow-right text-[9px]"></i>
+          </span>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+// ══════════════════════════════════════
+//  Open post
+// ══════════════════════════════════════
+let openPostId = null;
+
+function openPost(id) {
+  const p = (getPosts()||[]).find(x => x.id === id);
+  if (!p) return;
+  openPostId = id;
+
+  const badge = document.getElementById('pm-badge');
+  badge.className = (CAT_BADGE[p.category]||'badge-company') + ' text-xs font-semibold px-3 py-1 rounded-full flex-shrink-0';
+  badge.textContent = CAT_LABEL[p.category]||p.category;
+
+  document.getElementById('pm-stripe').style.background = `linear-gradient(90deg,${CAT_ACCENT[p.category]},${CAT_ACCENT[p.category]}33)`;
+  document.getElementById('post-modal-title').textContent = p.title;
+  document.getElementById('pm-date').textContent   = fmtDate(p.date);
+  document.getElementById('pm-author').textContent = p.author || 'AHL Media Team';
+  document.getElementById('pm-content').innerHTML  = p.content;
+
+  const adminDiv = document.getElementById('pm-admin');
+  if (isAdmin()) {
+    adminDiv.classList.remove('hidden');
+    document.getElementById('pm-edit-btn').onclick   = () => { closeModal('post-modal'); openEditor(id); };
+    document.getElementById('pm-delete-btn').onclick = () => confirmDelete(id);
+  } else {
+    adminDiv.classList.add('hidden');
+  }
+
+  openModal('post-modal');
+}
+
+// ══════════════════════════════════════
+//  Editor
+// ══════════════════════════════════════
+function openEditor(editId = null) {
+  const posts = getPosts() || [];
+  document.getElementById('editor-title').textContent    = editId ? 'Edit Post'    : 'New Post';
+  document.getElementById('editor-subtitle').textContent = editId ? 'Update existing post' : 'Publish to AHL News';
+  document.getElementById('save-label').textContent      = editId ? 'Save Changes' : 'Publish Post';
+  document.getElementById('edit-id').value = editId || '';
+  document.getElementById('e-error').classList.add('hidden');
+
+  const today = new Date().toISOString().split('T')[0];
+
+  if (editId) {
+    const p = posts.find(x => x.id === editId);
+    if (p) {
+      document.getElementById('e-title').value   = p.title;
+      document.getElementById('e-cat').value     = p.category;
+      document.getElementById('e-author').value  = p.author || '';
+      document.getElementById('e-date').value    = p.date || today;
+      document.getElementById('e-excerpt').value = p.excerpt;
+      document.getElementById('e-content').value = p.content;
+      document.getElementById('e-published').checked = !!p.published;
+      syncToggle(!!p.published);
+    }
+  } else {
+    document.getElementById('e-title').value   = '';
+    document.getElementById('e-cat').value     = 'announcement';
+    document.getElementById('e-author').value  = 'AHL Media Team';
+    document.getElementById('e-date').value    = today;
+    document.getElementById('e-excerpt').value = '';
+    document.getElementById('e-content').value = '';
+    document.getElementById('e-published').checked = true;
+    syncToggle(true);
+  }
+
+  openModal('editor-modal');
+  setTimeout(() => document.getElementById('e-title').focus(), 260);
+}
+
+function syncToggle(checked) {
+  document.getElementById('toggle-track').style.background = checked ? '#16a34a' : '';
+  document.getElementById('toggle-thumb').style.transform  = checked ? 'translateX(20px)' : '';
+  document.getElementById('toggle-thumb').style.background = checked ? '#fff' : '';
+}
+document.getElementById('e-published').addEventListener('change', e => syncToggle(e.target.checked));
+
+function savePost() {
+  const title   = document.getElementById('e-title').value.trim();
+  const excerpt = document.getElementById('e-excerpt').value.trim();
+  const content = document.getElementById('e-content').value.trim();
+  const errEl   = document.getElementById('e-error');
+  const errMsg  = document.getElementById('e-error-msg');
+
+  if (!title)   { errEl.classList.remove('hidden'); errMsg.textContent = 'A title is required.'; return; }
+  if (!excerpt) { errEl.classList.remove('hidden'); errMsg.textContent = 'An excerpt is required.'; return; }
+  if (!content) { errEl.classList.remove('hidden'); errMsg.textContent = 'Post content is required.'; return; }
+  errEl.classList.add('hidden');
+
+  const posts  = getPosts() || [];
+  const editId = document.getElementById('edit-id').value;
+  const entry  = {
+    title,
+    category:  document.getElementById('e-cat').value,
+    author:    document.getElementById('e-author').value.trim() || 'AHL Media Team',
+    date:      document.getElementById('e-date').value || new Date().toISOString().split('T')[0],
+    excerpt,
+    content,
+    published: document.getElementById('e-published').checked,
+  };
+
+  if (editId) {
+    const i = posts.findIndex(p => p.id === editId);
+    if (i > -1) posts[i] = { ...posts[i], ...entry };
+  } else {
+    posts.unshift({ ...entry, id: 'p' + Date.now() });
+  }
+
+  setPosts(posts);
+  closeModal('editor-modal');
+  render();
+}
+
+// ══════════════════════════════════════
+//  Delete
+// ══════════════════════════════════════
+let pendingDelete = null;
+
+function confirmDelete(id) {
+  pendingDelete = id;
+  closeModal('post-modal');
+  openModal('confirm-modal');
+}
+
+document.getElementById('confirm-yes').addEventListener('click', () => {
+  if (!pendingDelete) return;
+  setPosts((getPosts()||[]).filter(p => p.id !== pendingDelete));
+  pendingDelete = null;
+  closeModal('confirm-modal');
+  render();
+});
+
+// ══════════════════════════════════════
+//  Auth
+// ══════════════════════════════════════
+function showLogin() { openModal('login-modal'); setTimeout(() => document.getElementById('login-pw').focus(), 260); }
+
+async function doLogin() {
+  const pw   = document.getElementById('login-pw').value;
+  const hash = await sha256(pw);
+  if (hash === ADMIN_HASH) {
+    sessionStorage.setItem(AUTH_KEY, '1');
+    closeModal('login-modal');
+    document.getElementById('login-pw').value = '';
+    enableAdmin();
+  } else {
+    document.getElementById('login-err').classList.remove('hidden');
+  }
+}
+
+function logoutAdmin() {
+  sessionStorage.removeItem(AUTH_KEY);
+  disableAdmin();
+}
+
+function enableAdmin() {
+  document.getElementById('admin-bar').classList.add('visible');
+  document.body.classList.add('admin-mode');
+  render();
+}
+function disableAdmin() {
+  document.getElementById('admin-bar').classList.remove('visible');
+  document.body.classList.remove('admin-mode');
+  render();
+}
+
+// ══════════════════════════════════════
+//  Modal helpers
+// ══════════════════════════════════════
+function openModal(id)  { document.getElementById(id).classList.add('open'); }
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  if (id === 'login-modal') document.getElementById('login-err').classList.add('hidden');
+}
+
+['post-modal','login-modal','editor-modal','confirm-modal'].forEach(id => {
+  document.getElementById(id).addEventListener('click', e => {
+    if (e.target.id === id) closeModal(id);
+  });
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  ['confirm-modal','editor-modal','login-modal','post-modal'].forEach(closeModal);
+  closeMenu();
+});
+
+// ══════════════════════════════════════
+//  Filters & search
+// ══════════════════════════════════════
+function setFilter(f) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-tab').forEach(t => {
+    const active = t.dataset.filter === f;
+    t.classList.toggle('active', active);
+    t.setAttribute('aria-selected', active);
+  });
+  document.getElementById('news-section').scrollIntoView({ behavior:'smooth', block:'start' });
+  render();
+}
+
+document.getElementById('filter-tabs').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-tab');
+  if (btn) setFilter(btn.dataset.filter);
+});
+
+document.getElementById('search-input').addEventListener('input', e => {
+  searchQuery = e.target.value.trim().toLowerCase();
+  render();
+});
+
+function clearSearch() {
+  searchQuery = '';
+  document.getElementById('search-input').value = '';
+  render();
+}
+
+// Handle ?filter= URL param
+const urlF = new URLSearchParams(location.search).get('filter');
+if (urlF && CAT_LABEL[urlF]) setFilter(urlF);
+
+// ══════════════════════════════════════
+//  Nav
+// ══════════════════════════════════════
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('nav-glass', window.scrollY > 50);
+});
+
+let menuOpen = false;
+function openMenu()   { menuOpen=true;  document.getElementById('mobile-menu').classList.add('open');    document.getElementById('icon-open').classList.add('hidden');    document.getElementById('icon-close').classList.remove('hidden'); document.getElementById('menu-btn').setAttribute('aria-expanded','true'); }
+function closeMenu()  { menuOpen=false; document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('icon-open').classList.remove('hidden'); document.getElementById('icon-close').classList.add('hidden');    document.getElementById('menu-btn').setAttribute('aria-expanded','false'); }
+function toggleMenu() { menuOpen ? closeMenu() : openMenu(); }
+window.toggleMenu = toggleMenu;
+document.addEventListener('click', e => { if (menuOpen && !e.target.closest('#navbar')) closeMenu(); });
+
+// ══════════════════════════════════════
+//  Fade-in
+// ══════════════════════════════════════
+new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('visible'); }
+}), { threshold:0.08 }).observe(...[document.querySelectorAll('.fade-in')].map(nl => [...nl]).flat().map(el => { new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');} }),{threshold:.08}).observe(el); return el; }));
+
+// ══════════════════════════════════════
+//  Boot
+// ══════════════════════════════════════
+initData();
+if (isAdmin()) enableAdmin(); else render();
+</script>
+
+</body>
+</html>
