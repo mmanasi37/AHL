@@ -169,7 +169,7 @@
 </div>
 
 <!-- NAV -->
-<nav id="navbar" aria-label="Main navigation" class="fixed top-0 md:top-9 left-0 right-0 z-50 transition-all duration-300 py-3">
+<nav id="navbar" aria-label="Main navigation" class="fixed top-0 md:top-9 left-0 right-0 z-50 transition-all duration-300 py-3 nav-glass">
   <div class="container mx-auto px-6">
     <div class="flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3 group">
@@ -204,7 +204,7 @@
 <main id="main-content">
 
 <!-- HERO -->
-<section class="relative bg-hero pt-32 pb-20 overflow-hidden">
+<section class="relative bg-hero pt-40 md:pt-52 pb-20 overflow-hidden">
   <div class="absolute top-0 right-0 w-[450px] h-[450px] bg-leaf-700 opacity-[0.06] rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute bottom-0 left-0 w-96 h-96 bg-flame-700 opacity-[0.06] rounded-full blur-3xl pointer-events-none"></div>
 
@@ -985,7 +985,6 @@ if (urlF && CAT_LABEL[urlF]) setFilter(urlF);
 //  Nav
 // ══════════════════════════════════════
 window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('nav-glass', window.scrollY > 50);
   document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 400);
 });
 
