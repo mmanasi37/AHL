@@ -94,6 +94,39 @@
     .fade-in { opacity:0; transform:translateY(20px); transition:opacity .5s ease,transform .5s ease; }
     .fade-in.visible { opacity:1; transform:translateY(0); }
 
+    /* Featured post card */
+    .featured-card .thumb-area { position:relative; overflow:hidden; }
+    .featured-card .thumb-area::before {
+      content:''; position:absolute; inset:0;
+      background: repeating-linear-gradient(45deg, rgba(255,255,255,.018) 0px, rgba(255,255,255,.018) 1px, transparent 1px, transparent 14px);
+    }
+    .featured-badge { background:rgba(249,115,22,.2); color:#fb923c; border:1px solid rgba(249,115,22,.4); font-size:.7rem; font-weight:700; padding:.2rem .65rem; border-radius:9999px; letter-spacing:.05em; text-transform:uppercase; }
+
+    /* Card thumbnail */
+    .card-thumb { position:relative; overflow:hidden; }
+    .card-thumb::before {
+      content:''; position:absolute; inset:0;
+      background: repeating-linear-gradient(45deg, rgba(255,255,255,.015) 0px, rgba(255,255,255,.015) 1px, transparent 1px, transparent 12px);
+    }
+
+    /* Reading time pill */
+    .reading-pill { display:inline-flex; align-items:center; gap:.3rem; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:9999px; padding:.15rem .6rem; font-size:.7rem; color:#6b7280; }
+
+    /* Filter bar — horizontal scroll on mobile */
+    .filter-bar { display:flex; gap:.5rem; overflow-x:auto; padding-bottom:.25rem; scrollbar-width:none; -webkit-overflow-scrolling:touch; flex-wrap:nowrap; }
+    .filter-bar::-webkit-scrollbar { display:none; }
+    @media (min-width:768px) { .filter-bar { flex-wrap:wrap; overflow-x:visible; } }
+
+    /* Search clear button */
+    #search-clear { position:absolute; right:.6rem; top:50%; transform:translateY(-50%); width:1.25rem; height:1.25rem; border-radius:50%; background:rgba(255,255,255,.1); border:none; color:#6b7280; cursor:pointer; display:none; align-items:center; justify-content:center; font-size:.6rem; transition:background .15s; }
+    #search-clear:hover { background:rgba(255,255,255,.2); color:#fff; }
+    #search-clear.visible { display:flex; }
+
+    /* Back to top */
+    #back-to-top { position:fixed; bottom:1.5rem; right:1.5rem; z-index:40; width:2.75rem; height:2.75rem; border-radius:50%; background:linear-gradient(135deg,#0f2d5c,#1a4a8a); border:1px solid rgba(255,255,255,.12); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:0; pointer-events:none; transform:translateY(10px); transition:opacity .3s,transform .3s,background .2s; box-shadow:0 4px 20px rgba(0,0,0,.5); }
+    #back-to-top.visible { opacity:1; pointer-events:auto; transform:translateY(0); }
+    #back-to-top:hover { background:linear-gradient(135deg,#1a4a8a,#22c55e); }
+
     @media (prefers-reduced-motion:reduce) {
       *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
       .fade-in { opacity:1 !important; transform:none !important; }
@@ -121,7 +154,7 @@
 </div>
 
 <!-- ADMIN BAR -->
-<div id="admin-bar" role="banner" aria-label="Admin toolbar">
+<div id="admin-bar" role="toolbar" aria-label="Admin toolbar">
   <i class="fas fa-shield-halved text-leaf-200 text-sm flex-shrink-0"></i>
   <span class="text-white text-sm font-semibold">Media Officer</span>
   <span class="bg-leaf-500/20 text-leaf-300 text-xs px-2 py-0.5 rounded-full border border-leaf-500/30 font-medium">Active</span>
@@ -212,24 +245,27 @@
 
     <!-- Toolbar: filters + search -->
     <div class="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between mb-10 fade-in">
-      <div class="flex flex-wrap gap-2" id="filter-tabs" role="tablist" aria-label="Filter posts by category">
-        <button class="filter-tab active" data-filter="all"          role="tab" aria-selected="true">All</button>
-        <button class="filter-tab"        data-filter="announcement" role="tab" aria-selected="false">Announcements</button>
-        <button class="filter-tab"        data-filter="civil"        role="tab" aria-selected="false">Civil Works</button>
-        <button class="filter-tab"        data-filter="security"     role="tab" aria-selected="false">Security</button>
-        <button class="filter-tab"        data-filter="community"    role="tab" aria-selected="false">Community</button>
-        <button class="filter-tab"        data-filter="company"      role="tab" aria-selected="false">Company</button>
+      <div class="filter-bar" id="filter-tabs" role="tablist" aria-label="Filter posts by category">
+        <button class="filter-tab active" data-filter="all"          role="tab" aria-selected="true"><i class="fas fa-th-large mr-1.5 text-[10px]"></i>All</button>
+        <button class="filter-tab"        data-filter="announcement" role="tab" aria-selected="false"><i class="fas fa-bullhorn mr-1.5 text-[10px]"></i>Announcements</button>
+        <button class="filter-tab"        data-filter="civil"        role="tab" aria-selected="false"><i class="fas fa-road mr-1.5 text-[10px]"></i>Civil Works</button>
+        <button class="filter-tab"        data-filter="security"     role="tab" aria-selected="false"><i class="fas fa-shield-halved mr-1.5 text-[10px]"></i>Security</button>
+        <button class="filter-tab"        data-filter="community"    role="tab" aria-selected="false"><i class="fas fa-people-group mr-1.5 text-[10px]"></i>Community</button>
+        <button class="filter-tab"        data-filter="company"      role="tab" aria-selected="false"><i class="fas fa-building mr-1.5 text-[10px]"></i>Company</button>
       </div>
       <div class="relative flex-shrink-0">
         <label for="search-input" class="sr-only">Search posts</label>
         <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
         <input type="search" id="search-input" placeholder="Search posts…" aria-label="Search posts"
-          class="bg-navy-800 border border-navy-600 rounded-xl pl-9 pr-4 py-2.5 text-white text-sm placeholder-gray-600 outline-none w-60 transition-colors" />
+          class="bg-navy-800 border border-navy-600 rounded-xl pl-9 pr-8 py-2.5 text-white text-sm placeholder-gray-600 outline-none w-60 transition-colors" />
+        <button id="search-clear" aria-label="Clear search" title="Clear search">
+          <i class="fas fa-times text-[9px]"></i>
+        </button>
       </div>
     </div>
 
     <!-- Post count -->
-    <p id="post-count" class="text-gray-600 text-xs mb-6 fade-in"></p>
+    <p id="post-count" class="text-gray-500 text-xs mb-6 fade-in"></p>
 
     <!-- Grid -->
     <div id="posts-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -304,7 +340,7 @@
 
     </div>
     <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-gray-600 text-xs">&copy; 2024 Andro Holdings Limited. All rights reserved.</p>
+      <p class="text-gray-600 text-xs">&copy; 2026 Andro Holdings Limited. All rights reserved.</p>
       <p class="text-gray-700 text-xs">Wewak, East Sepik Province, Papua New Guinea</p>
     </div>
   </div>
@@ -317,7 +353,7 @@
 <div id="post-modal" class="modal-bg" role="dialog" aria-modal="true" aria-labelledby="post-modal-title">
   <div class="modal-box" style="max-width:720px">
     <!-- colour stripe -->
-    <div id="pm-stripe" class="h-1.5 rounded-t-3xl"></div>
+    <div id="pm-stripe" class="h-2 rounded-t-3xl"></div>
     <div class="p-7 md:p-10">
       <div class="flex items-start justify-between gap-4 mb-5">
         <span id="pm-badge" class="text-xs font-semibold px-3 py-1 rounded-full flex-shrink-0"></span>
@@ -466,7 +502,7 @@
             <span class="text-gray-600 font-normal ml-1">— supports &lt;h2&gt; &lt;p&gt; &lt;ul&gt; &lt;li&gt; &lt;strong&gt; &lt;em&gt;</span>
           </label>
           <textarea id="e-content" rows="10" placeholder="Write the full article here. You can use basic HTML tags for formatting…"
-            class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm resize-y font-mono text-xs leading-loose"></textarea>
+            class="w-full bg-navy-900 border border-navy-500 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all text-sm resize-y font-mono leading-loose"></textarea>
         </div>
 
         <div id="e-error" role="alert" aria-live="polite" class="hidden bg-red-900/20 border border-red-700/30 rounded-xl px-4 py-3 text-red-400 text-sm flex items-center gap-2">
@@ -515,6 +551,11 @@
   </div>
 </div>
 
+
+<!-- BACK TO TOP -->
+<button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up text-sm"></i>
+</button>
 
 <script>
 // ══════════════════════════════════════
@@ -587,12 +628,17 @@ const CAT_LABEL   = { announcement:'Announcement', civil:'Civil Works', security
 const CAT_BADGE   = { announcement:'badge-announcement', civil:'badge-civil', security:'badge-security', community:'badge-community', company:'badge-company' };
 const CAT_ACCENT  = { announcement:'#93c5fd', civil:'#4ade80', security:'#fb923c', community:'#fbbf24', company:'#c4b5fd' };
 const CAT_GRAD    = { announcement:'from-blue-900/30 to-navy-800', civil:'from-leaf-900/35 to-navy-800', security:'from-flame-900/35 to-navy-800', community:'from-gold-900/30 to-navy-800', company:'from-navy-700 to-navy-800' };
+const CAT_ICON    = { announcement:'fa-bullhorn', civil:'fa-road', security:'fa-shield-halved', community:'fa-people-group', company:'fa-building' };
 
 function fmtDate(d) {
   return new Date(d + 'T00:00:00').toLocaleDateString('en-AU', { day:'numeric', month:'long', year:'numeric' });
 }
 function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function readingTime(content) {
+  const words = content.replace(/<[^>]*>/g,' ').trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 200));
 }
 
 // ══════════════════════════════════════
@@ -612,11 +658,11 @@ function getVisible() {
 }
 
 function render() {
-  const posts  = getVisible();
-  const admin  = isAdmin();
-  const grid   = document.getElementById('posts-grid');
-  const empty  = document.getElementById('empty-state');
-  const count  = document.getElementById('post-count');
+  const posts    = getVisible();
+  const admin    = isAdmin();
+  const grid     = document.getElementById('posts-grid');
+  const empty    = document.getElementById('empty-state');
+  const count    = document.getElementById('post-count');
   const clearBtn = document.getElementById('empty-clear-btn');
 
   count.textContent = posts.length
@@ -636,31 +682,79 @@ function render() {
   }
 
   empty.classList.add('hidden');
-  grid.innerHTML = posts.map((p, i) => `
+
+  const [first, ...rest] = posts;
+
+  const featuredHTML = (() => {
+    const mins = readingTime(first.content);
+    const icon = CAT_ICON[first.category] || 'fa-newspaper';
+    return `
+    <article class="featured-card post-card md:col-span-2 lg:col-span-3 bg-gradient-to-br ${CAT_GRAD[first.category]||CAT_GRAD.company} border border-navy-600 hover:border-white/20 rounded-2xl overflow-hidden lg:grid lg:grid-cols-5"
+             onclick="openPost('${esc(first.id)}')"
+             tabindex="0" role="button" aria-label="Read: ${esc(first.title)}"
+             onkeydown="if(event.key==='Enter'||event.key===' ')openPost('${esc(first.id)}')">
+      <div class="thumb-area lg:col-span-2 min-h-[180px] flex items-center justify-center" style="background:linear-gradient(135deg,${CAT_ACCENT[first.category]}22,${CAT_ACCENT[first.category]}08)">
+        <i class="fas ${icon}" style="font-size:5rem;opacity:0.18;color:${CAT_ACCENT[first.category]};filter:blur(1px)"></i>
+      </div>
+      <div class="lg:col-span-3 p-6">
+        <div class="flex items-center gap-2 mb-3 flex-wrap">
+          <span class="featured-badge">Latest</span>
+          <span class="${CAT_BADGE[first.category]||'badge-company'} text-xs font-semibold px-3 py-1 rounded-full">
+            <i class="fas ${icon} mr-1 text-[10px]"></i>${esc(CAT_LABEL[first.category]||first.category)}
+          </span>
+          ${!first.published && admin ? '<span class="badge-draft text-xs font-semibold px-2 py-0.5 rounded-full">Draft</span>' : ''}
+        </div>
+        <h3 class="font-display font-bold text-white text-lg mb-2 leading-snug clamp-2">${esc(first.title)}</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4 clamp-3">${esc(first.excerpt)}</p>
+        <div class="flex items-center justify-between pt-4 border-t border-navy-700/50">
+          <div class="flex items-center gap-3">
+            <span class="text-gray-600 text-xs">${fmtDate(first.date)}</span>
+            <span class="reading-pill"><i class="fas fa-clock text-[9px]"></i>${mins} min read</span>
+          </div>
+          <span class="text-xs font-semibold flex items-center gap-1.5" style="color:${CAT_ACCENT[first.category]}">
+            Read more <i class="fas fa-arrow-right text-[9px]"></i>
+          </span>
+        </div>
+      </div>
+    </article>`;
+  })();
+
+  const restHTML = rest.map((p, i) => {
+    const rt   = readingTime(p.content);
+    const icon = CAT_ICON[p.category] || 'fa-newspaper';
+    return `
     <article class="post-card bg-gradient-to-br ${CAT_GRAD[p.category]||CAT_GRAD.company} border border-navy-600 hover:border-white/20 rounded-2xl overflow-hidden"
              onclick="openPost('${esc(p.id)}')"
              tabindex="0" role="button" aria-label="Read: ${esc(p.title)}"
              onkeydown="if(event.key==='Enter'||event.key===' ')openPost('${esc(p.id)}')"
-             style="animation-delay:${i*0.04}s">
+             style="animation-delay:${(i+1)*0.04}s">
+      <div class="card-thumb h-20 flex items-center justify-center" style="background:linear-gradient(135deg,${CAT_ACCENT[p.category]}18,${CAT_ACCENT[p.category]}06)">
+        <i class="fas ${icon}" style="font-size:2.5rem;opacity:0.22;color:${CAT_ACCENT[p.category]};filter:blur(0.5px)"></i>
+      </div>
       <div class="h-1" style="background:linear-gradient(90deg,${CAT_ACCENT[p.category]}66,transparent)"></div>
       <div class="p-6">
         <div class="flex items-center justify-between mb-3 gap-2">
           <span class="${CAT_BADGE[p.category]||'badge-company'} text-xs font-semibold px-3 py-1 rounded-full flex-shrink-0">
-            ${esc(CAT_LABEL[p.category]||p.category)}
+            <i class="fas ${icon} mr-1 text-[10px]"></i>${esc(CAT_LABEL[p.category]||p.category)}
           </span>
           ${!p.published && admin ? '<span class="badge-draft text-xs font-semibold px-2 py-0.5 rounded-full">Draft</span>' : ''}
         </div>
         <h3 class="font-display font-bold text-white text-base mb-2 leading-snug clamp-2">${esc(p.title)}</h3>
-        <p class="text-gray-400 text-sm leading-relaxed mb-5 clamp-3">${esc(p.excerpt)}</p>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4 clamp-3">${esc(p.excerpt)}</p>
         <div class="flex items-center justify-between pt-4 border-t border-navy-700/50">
-          <span class="text-gray-600 text-xs">${fmtDate(p.date)}</span>
+          <div class="flex items-center gap-3">
+            <span class="text-gray-600 text-xs">${fmtDate(p.date)}</span>
+            <span class="reading-pill"><i class="fas fa-clock text-[9px]"></i>${rt} min read</span>
+          </div>
           <span class="text-xs font-semibold flex items-center gap-1.5" style="color:${CAT_ACCENT[p.category]}">
             Read more <i class="fas fa-arrow-right text-[9px]"></i>
           </span>
         </div>
       </div>
-    </article>
-  `).join('');
+    </article>`;
+  }).join('');
+
+  grid.innerHTML = featuredHTML + restHTML;
 }
 
 // ══════════════════════════════════════
@@ -873,6 +967,13 @@ document.getElementById('filter-tabs').addEventListener('click', e => {
 
 document.getElementById('search-input').addEventListener('input', e => {
   searchQuery = e.target.value.trim().toLowerCase();
+  document.getElementById('search-clear').classList.toggle('visible', e.target.value.length > 0);
+  render();
+});
+document.getElementById('search-clear').addEventListener('click', () => {
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-clear').classList.remove('visible');
+  searchQuery = '';
   render();
 });
 
@@ -891,6 +992,7 @@ if (urlF && CAT_LABEL[urlF]) setFilter(urlF);
 // ══════════════════════════════════════
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('nav-glass', window.scrollY > 50);
+  document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 400);
 });
 
 let menuOpen = false;
@@ -903,9 +1005,10 @@ document.addEventListener('click', e => { if (menuOpen && !e.target.closest('#na
 // ══════════════════════════════════════
 //  Fade-in
 // ══════════════════════════════════════
-new IntersectionObserver(entries => entries.forEach(e => {
-  if (e.isIntersecting) { e.target.classList.add('visible'); }
-}), { threshold:0.08 }).observe(...[document.querySelectorAll('.fade-in')].map(nl => [...nl]).flat().map(el => { new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');} }),{threshold:.08}).observe(el); return el; }));
+const fadeObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
 // ══════════════════════════════════════
 //  Boot
