@@ -240,6 +240,62 @@
     }
     .logo-ring { animation: logo-pulse 3.5s ease-in-out infinite; }
 
+    /* Enhanced card glow on hover */
+    .card-hover:hover {
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+    .card-leaf-glow:hover  { box-shadow: 0 8px 40px rgba(34,197,94,0.12); }
+    .card-flame-glow:hover { box-shadow: 0 8px 40px rgba(249,115,22,0.12); }
+    .card-gold-glow:hover  { box-shadow: 0 8px 40px rgba(251,191,36,0.12); }
+    .card-blue-glow:hover  { box-shadow: 0 8px 40px rgba(96,165,250,0.10); }
+
+    /* Project card thumbnails */
+    .proj-thumb {
+      position: relative;
+      overflow: hidden;
+    }
+    .proj-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.012) 0px,
+        rgba(255,255,255,0.012) 1px,
+        transparent 1px,
+        transparent 12px
+      );
+    }
+    .proj-thumb .proj-icon {
+      font-size: 5rem;
+      opacity: 0.14;
+      filter: blur(1px);
+    }
+
+    /* CTA band */
+    .cta-band {
+      background: linear-gradient(135deg, #0f2d5c 0%, #0a1f42 40%, #c2410c22 70%, #0f2d5c 100%);
+      border-top: 1px solid rgba(249,115,22,0.15);
+      border-bottom: 1px solid rgba(249,115,22,0.15);
+    }
+
+    /* Stat number glow */
+    .stat-num { text-shadow: 0 0 24px currentColor; }
+
+    /* Section label pill */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
     /* Prefers reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -390,28 +446,24 @@
            class="bg-white/10 backdrop-blur border border-white/20 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-full transition-all text-base">
           View Projects
         </a>
-        <a href="#contact"
-           class="border-2 border-leaf-500 hover:bg-leaf-500/20 text-leaf-400 hover:text-white font-bold px-8 py-4 rounded-full transition-all text-base">
-          Contact AHL
-        </a>
       </div>
 
       <!-- Stats -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div class="stat-box bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-5 text-center">
-          <div class="text-3xl font-black font-display text-flame-400" data-count="10" data-suffix="+">10+</div>
+          <div class="text-3xl font-black font-display text-flame-400 stat-num" data-count="10" data-suffix="+">10+</div>
           <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Years Active</div>
         </div>
         <div class="stat-box bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-5 text-center">
-          <div class="text-3xl font-black font-display text-leaf-400" data-count="50" data-suffix="+">50+</div>
+          <div class="text-3xl font-black font-display text-leaf-400 stat-num" data-count="50" data-suffix="+">50+</div>
           <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Projects Done</div>
         </div>
         <div class="stat-box bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-5 text-center">
-          <div class="text-3xl font-black font-display text-gold-400" data-count="30" data-suffix="+">30+</div>
+          <div class="text-3xl font-black font-display text-gold-400 stat-num" data-count="30" data-suffix="+">30+</div>
           <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Heavy Machines</div>
         </div>
         <div class="stat-box bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-5 text-center">
-          <div class="text-3xl font-black font-display text-flame-400" data-count="200" data-suffix="+">200+</div>
+          <div class="text-3xl font-black font-display text-flame-400 stat-num" data-count="200" data-suffix="+">200+</div>
           <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Employees</div>
         </div>
       </div>
@@ -626,10 +678,12 @@
 
         <!-- PNG-branded banner -->
         <div class="bg-gradient-to-r from-navy-700/60 to-navy-800/80 border border-gold-500/20 rounded-2xl p-5 flex items-center gap-4">
-          <div class="text-3xl">🦅</div>
+          <div class="w-12 h-12 rounded-xl bg-gold-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-flag text-gold-400 text-xl"></i>
+          </div>
           <div>
             <div class="text-gold-400 font-bold text-sm font-display">East Sepik's Home-Grown Company</div>
-            <div class="text-gray-400 text-xs mt-0.5">Proudly based in Wewak since establishment — building PNG, one project at a time.</div>
+            <div class="text-gray-400 text-sm mt-0.5">Proudly based in Wewak since establishment — building PNG, one project at a time.</div>
           </div>
         </div>
 
@@ -640,14 +694,14 @@
               <i class="fas fa-bullseye text-leaf-400 text-sm"></i>
               <span class="text-white font-bold text-xs uppercase tracking-wider">Mission</span>
             </div>
-            <p class="text-gray-400 text-xs leading-relaxed">To deliver quality civil infrastructure and trusted security services that uplift communities and drive sustainable development across East Sepik Province.</p>
+            <p class="text-gray-400 text-sm leading-relaxed">To deliver quality civil infrastructure and trusted security services that uplift communities and drive sustainable development across East Sepik Province.</p>
           </div>
           <div class="bg-navy-800/70 border border-gold-500/20 rounded-xl p-4">
             <div class="flex items-center gap-2 mb-2">
               <i class="fas fa-eye text-gold-400 text-sm"></i>
               <span class="text-white font-bold text-xs uppercase tracking-wider">Vision</span>
             </div>
-            <p class="text-gray-400 text-xs leading-relaxed">To be Papua New Guinea's most trusted locally owned civil and security company — setting the standard for excellence, integrity, and community impact.</p>
+            <p class="text-gray-400 text-sm leading-relaxed">To be Papua New Guinea's most trusted locally owned civil and security company — setting the standard for excellence, integrity, and community impact.</p>
           </div>
         </div>
       </div>
@@ -769,28 +823,28 @@
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14 fade-in">
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-leaf-500/20 hover:border-leaf-500/45 rounded-2xl p-7 text-center">
+      <div class="card-hover card-leaf-glow bg-gradient-to-br from-navy-700 to-navy-800 border border-leaf-500/20 hover:border-leaf-500/45 rounded-2xl p-7 text-center">
         <div class="w-14 h-14 rounded-2xl bg-leaf-500/15 flex items-center justify-center mx-auto mb-5">
           <i class="fas fa-map-pin text-leaf-400 text-xl"></i>
         </div>
         <h3 class="font-display font-bold text-white text-base mb-2">Deep Local Knowledge</h3>
         <p class="text-gray-500 text-xs leading-relaxed">Born and operating in Wewak — AHL understands East Sepik terrain, communities, and project environments better than any outside contractor.</p>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-flame-500/20 hover:border-flame-500/45 rounded-2xl p-7 text-center">
+      <div class="card-hover card-flame-glow bg-gradient-to-br from-navy-700 to-navy-800 border border-flame-500/20 hover:border-flame-500/45 rounded-2xl p-7 text-center">
         <div class="w-14 h-14 rounded-2xl bg-flame-500/15 flex items-center justify-center mx-auto mb-5">
           <i class="fas fa-truck-fast text-flame-400 text-xl"></i>
         </div>
         <h3 class="font-display font-bold text-white text-base mb-2">Owned Fleet, Fast Mobilisation</h3>
         <p class="text-gray-500 text-xs leading-relaxed">Our extensive owned heavy machinery fleet means no hire delays — AHL can mobilise and commence projects faster than competitors.</p>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/20 hover:border-gold-500/45 rounded-2xl p-7 text-center">
+      <div class="card-hover card-gold-glow bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/20 hover:border-gold-500/45 rounded-2xl p-7 text-center">
         <div class="w-14 h-14 rounded-2xl bg-gold-500/15 flex items-center justify-center mx-auto mb-5">
           <i class="fas fa-award text-gold-400 text-xl"></i>
         </div>
         <h3 class="font-display font-bold text-white text-base mb-2">Licensed &amp; Compliant</h3>
         <p class="text-gray-500 text-xs leading-relaxed">Fully licensed civil contractor and SIA-accredited security provider. AHL meets all PNG regulatory requirements for government and corporate contracts.</p>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-blue-500/20 hover:border-blue-500/45 rounded-2xl p-7 text-center">
+      <div class="card-hover card-blue-glow bg-gradient-to-br from-navy-700 to-navy-800 border border-blue-500/20 hover:border-blue-500/45 rounded-2xl p-7 text-center">
         <div class="w-14 h-14 rounded-2xl bg-blue-500/15 flex items-center justify-center mx-auto mb-5">
           <i class="fas fa-handshake text-blue-400 text-xl"></i>
         </div>
@@ -854,89 +908,96 @@
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
       <!-- Card 1 -->
-      <div class="card-hover group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-leaf-500/40 rounded-2xl overflow-hidden">
-        <div class="h-44 bg-gradient-to-br from-leaf-800/40 to-navy-800 flex items-center justify-center relative">
-          <i class="fas fa-road text-leaf-500 text-7xl opacity-20"></i>
+      <div class="card-hover card-leaf-glow group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-leaf-500/40 rounded-2xl overflow-hidden transition-all duration-300">
+        <div class="proj-thumb h-48 bg-gradient-to-br from-leaf-900/60 via-leaf-800/30 to-navy-800 flex items-center justify-center relative">
+          <i class="fas fa-road text-leaf-400 proj-icon"></i>
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
           <div class="absolute bottom-3 left-4">
-            <span class="bg-leaf-500/20 text-leaf-400 text-xs px-3 py-1 rounded-full border border-leaf-500/30 font-medium">Road Sealing</span>
+            <span class="bg-leaf-500/20 backdrop-blur text-leaf-300 text-xs px-3 py-1.5 rounded-full border border-leaf-500/40 font-semibold">Road Sealing</span>
           </div>
         </div>
         <div class="p-6">
           <h3 class="font-display font-bold text-white text-lg mb-1">Sepik National Highway</h3>
-          <p class="text-leaf-400 text-xs font-semibold uppercase tracking-wide mb-3">Tuonimbu / Hanak Section</p>
+          <p class="text-leaf-400 text-xs font-semibold uppercase tracking-widest mb-3">Tuonimbu / Hanak Section</p>
           <p class="text-gray-400 text-sm leading-relaxed">Road sealing and maintenance works on the Sepik National Highway between Tuonimbu and Hanak, improving connectivity for local communities.</p>
         </div>
       </div>
 
       <!-- Card 2 -->
-      <div class="card-hover group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-gold-500/40 rounded-2xl overflow-hidden">
-        <div class="h-44 bg-gradient-to-br from-gold-800/30 to-navy-800 flex items-center justify-center relative">
-          <i class="fas fa-road text-gold-500 text-7xl opacity-20"></i>
+      <div class="card-hover card-gold-glow group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-gold-500/40 rounded-2xl overflow-hidden transition-all duration-300">
+        <div class="proj-thumb h-48 bg-gradient-to-br from-gold-900/50 via-gold-800/25 to-navy-800 flex items-center justify-center relative">
+          <i class="fas fa-road text-gold-400 proj-icon"></i>
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
           <div class="absolute bottom-3 left-4">
-            <span class="bg-gold-500/20 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30 font-medium">Highway Works</span>
+            <span class="bg-gold-500/20 backdrop-blur text-gold-300 text-xs px-3 py-1.5 rounded-full border border-gold-500/40 font-semibold">Highway Works</span>
           </div>
         </div>
         <div class="p-6">
           <h3 class="font-display font-bold text-white text-lg mb-1">Kusambuk Section</h3>
-          <p class="text-gold-400 text-xs font-semibold uppercase tracking-wide mb-3">Sepik National Highway</p>
+          <p class="text-gold-400 text-xs font-semibold uppercase tracking-widest mb-3">Sepik National Highway</p>
           <p class="text-gray-400 text-sm leading-relaxed">Civil works and road rehabilitation on the Kusambuk section, funded through government infrastructure programs to improve provincial transport.</p>
         </div>
       </div>
 
       <!-- Card 3 -->
-      <div class="card-hover group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-flame-500/40 rounded-2xl overflow-hidden">
-        <div class="h-44 bg-gradient-to-br from-flame-800/30 to-navy-800 flex items-center justify-center relative">
-          <i class="fas fa-bridge text-flame-500 text-7xl opacity-20"></i>
+      <div class="card-hover card-flame-glow group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-flame-500/40 rounded-2xl overflow-hidden transition-all duration-300">
+        <div class="proj-thumb h-48 bg-gradient-to-br from-flame-900/50 via-flame-800/25 to-navy-800 flex items-center justify-center relative">
+          <i class="fas fa-bridge text-flame-400 proj-icon"></i>
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
           <div class="absolute bottom-3 left-4">
-            <span class="bg-flame-500/20 text-flame-400 text-xs px-3 py-1 rounded-full border border-flame-500/30 font-medium">Bridge Works</span>
+            <span class="bg-flame-500/20 backdrop-blur text-flame-300 text-xs px-3 py-1.5 rounded-full border border-flame-500/40 font-semibold">Bridge Works</span>
           </div>
         </div>
         <div class="p-6">
           <h3 class="font-display font-bold text-white text-lg mb-1">Pasik Bridge – Tuonumbu</h3>
-          <p class="text-flame-400 text-xs font-semibold uppercase tracking-wide mb-3">Bridge Construction</p>
+          <p class="text-flame-400 text-xs font-semibold uppercase tracking-widest mb-3">Bridge Construction</p>
           <p class="text-gray-400 text-sm leading-relaxed">Bridge construction and road sealing from Pasik Bridge to Tuonumbu — a critical link in East Sepik's transport and trade network.</p>
         </div>
       </div>
 
       <!-- Card 4 -->
-      <div class="card-hover group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-blue-500/40 rounded-2xl overflow-hidden">
-        <div class="h-44 bg-gradient-to-br from-blue-800/25 to-navy-800 flex items-center justify-center relative">
-          <i class="fas fa-hospital text-blue-400 text-7xl opacity-20"></i>
+      <div class="card-hover card-leaf-glow group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-leaf-500/40 rounded-2xl overflow-hidden transition-all duration-300">
+        <div class="proj-thumb h-48 bg-gradient-to-br from-leaf-900/50 via-navy-700/60 to-navy-800 flex items-center justify-center relative">
+          <i class="fas fa-hospital text-leaf-400 proj-icon"></i>
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
           <div class="absolute bottom-3 left-4">
-            <span class="bg-blue-500/20 text-blue-400 text-xs px-3 py-1 rounded-full border border-blue-500/30 font-medium">Health Infrastructure</span>
+            <span class="bg-leaf-500/20 backdrop-blur text-leaf-300 text-xs px-3 py-1.5 rounded-full border border-leaf-500/40 font-semibold">Health Infrastructure</span>
           </div>
         </div>
         <div class="p-6">
           <h3 class="font-display font-bold text-white text-lg mb-1">Hospital Road Upgrades</h3>
-          <p class="text-blue-400 text-xs font-semibold uppercase tracking-wide mb-3">Health Access Works</p>
+          <p class="text-leaf-400 text-xs font-semibold uppercase tracking-widest mb-3">Health Access Works</p>
           <p class="text-gray-400 text-sm leading-relaxed">Road upgrades and access improvement works for hospital facilities, ensuring reliable access to critical health services for East Sepik communities.</p>
         </div>
       </div>
 
       <!-- Card 5 -->
-      <div class="card-hover group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-purple-500/40 rounded-2xl overflow-hidden">
-        <div class="h-44 bg-gradient-to-br from-purple-800/25 to-navy-800 flex items-center justify-center relative">
-          <i class="fas fa-trowel-bricks text-purple-400 text-7xl opacity-20"></i>
+      <div class="card-hover card-gold-glow group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-gold-500/40 rounded-2xl overflow-hidden transition-all duration-300">
+        <div class="proj-thumb h-48 bg-gradient-to-br from-gold-900/50 via-navy-700/50 to-navy-800 flex items-center justify-center relative">
+          <i class="fas fa-trowel-bricks text-gold-400 proj-icon"></i>
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
           <div class="absolute bottom-3 left-4">
-            <span class="bg-purple-500/20 text-purple-400 text-xs px-3 py-1 rounded-full border border-purple-500/30 font-medium">DDA Funded</span>
+            <span class="bg-gold-500/20 backdrop-blur text-gold-300 text-xs px-3 py-1.5 rounded-full border border-gold-500/40 font-semibold">DDA Funded</span>
           </div>
         </div>
         <div class="p-6">
           <h3 class="font-display font-bold text-white text-lg mb-1">DDA Infrastructure Projects</h3>
-          <p class="text-purple-400 text-xs font-semibold uppercase tracking-wide mb-3">Government Works</p>
+          <p class="text-gold-400 text-xs font-semibold uppercase tracking-widest mb-3">Government Works</p>
           <p class="text-gray-400 text-sm leading-relaxed">Multiple DDA-funded infrastructure projects across East Sepik Province, contributing to regional development and community connectivity.</p>
         </div>
       </div>
 
-      <!-- Placeholder -->
-      <div class="card-hover bg-navy-800/50 border border-dashed border-navy-600 rounded-2xl flex items-center justify-center min-h-64">
-        <div class="text-center p-8">
-          <div class="w-14 h-14 rounded-2xl bg-navy-700/60 flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-plus text-gray-600 text-xl"></i>
+      <!-- More Projects -->
+      <div class="card-hover card-flame-glow group bg-gradient-to-br from-navy-700/70 to-navy-800 border border-flame-500/20 hover:border-flame-500/40 rounded-2xl overflow-hidden transition-all duration-300 flex flex-col">
+        <div class="flex-1 flex flex-col items-center justify-center p-8 text-center">
+          <div class="w-16 h-16 rounded-2xl bg-flame-500/15 group-hover:bg-flame-500/25 flex items-center justify-center mx-auto mb-5 transition-colors">
+            <i class="fas fa-hard-hat text-flame-400 text-2xl"></i>
           </div>
-          <p class="text-gray-500 font-semibold text-sm">Ongoing Works</p>
-          <p class="text-gray-600 text-xs mt-1">More projects across East Sepik Province</p>
-          <a href="#contact" class="mt-4 inline-block text-leaf-500 text-xs hover:text-leaf-400 transition-colors font-medium">Enquire about tenders →</a>
+          <h3 class="font-display font-bold text-white text-base mb-2">Ongoing Works</h3>
+          <p class="text-gray-500 text-sm leading-relaxed mb-5 max-w-[200px]">More civil projects underway across East Sepik Province</p>
+          <a href="#contact" class="inline-flex items-center gap-2 text-flame-400 hover:text-flame-300 font-semibold text-sm transition-colors">
+            Enquire about tenders <i class="fas fa-arrow-right text-xs"></i>
+          </a>
         </div>
       </div>
 
@@ -949,7 +1010,7 @@
 <!-- ═══════════════════════════════════════
      LEAD-GEN CTA BAND
 ═══════════════════════════════════════ -->
-<section class="py-16 bg-gradient-to-r from-flame-900/60 via-navy-800 to-leaf-900/40 border-y border-white/5">
+<section class="py-16 cta-band">
   <div class="container mx-auto px-6">
     <div class="flex flex-col md:flex-row items-center justify-between gap-8">
       <div class="text-center md:text-left">
@@ -995,42 +1056,42 @@
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-12 fade-in">
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+      <div class="card-hover card-gold-glow bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
         <div class="machine-icon"><i class="fas fa-tractor text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Motor Grader</div>
         <div class="text-gray-500 text-xs mt-1">Road grading &amp; levelling</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+      <div class="card-hover card-gold-glow bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
         <div class="machine-icon"><i class="fas fa-person-digging text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Excavator</div>
         <div class="text-gray-500 text-xs mt-1">Earthworks &amp; trenching</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+      <div class="card-hover card-gold-glow bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
         <div class="machine-icon"><i class="fas fa-truck text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Tipper Trucks</div>
         <div class="text-gray-500 text-xs mt-1">Material haulage</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+      <div class="card-hover card-gold-glow bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
         <div class="machine-icon"><i class="fas fa-paint-roller text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Bitumen Sprayer</div>
         <div class="text-gray-500 text-xs mt-1">Road sealing equipment</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+      <div class="card-hover card-gold-glow bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
         <div class="machine-icon"><i class="fas fa-circle-dot text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Road Roller</div>
         <div class="text-gray-500 text-xs mt-1">Compaction works</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+      <div class="card-hover card-gold-glow bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
         <div class="machine-icon"><i class="fas fa-gears text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Bulldozer</div>
         <div class="text-gray-500 text-xs mt-1">Land clearing &amp; pushing</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+      <div class="card-hover card-gold-glow bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
         <div class="machine-icon"><i class="fas fa-industry text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Concrete Equipment</div>
         <div class="text-gray-500 text-xs mt-1">Batching &amp; placement</div>
       </div>
-      <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
+      <div class="card-hover card-gold-glow bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/10 hover:border-gold-500/35 rounded-2xl p-6 text-center">
         <div class="machine-icon"><i class="fas fa-screwdriver-wrench text-gold-400 text-xl"></i></div>
         <div class="text-white font-semibold text-sm">Support Fleet</div>
         <div class="text-gray-500 text-xs mt-1">Maintenance &amp; logistics</div>
@@ -1115,39 +1176,65 @@
       </div>
 
       <!-- Right visual -->
-      <div class="fade-in">
-        <div class="bg-gradient-to-br from-flame-900/20 to-navy-800 border border-flame-500/20 rounded-3xl p-10 text-center">
-          <div class="w-28 h-28 rounded-full bg-gradient-to-br from-flame-600/30 to-flame-900/20 border-2 border-flame-500/40 flex items-center justify-center mx-auto mb-7">
-            <i class="fas fa-shield-halved text-flame-400" style="font-size: 3.5rem;"></i>
+      <div class="fade-in space-y-5">
+
+        <!-- Headline card -->
+        <div class="bg-gradient-to-br from-flame-900/30 via-navy-700/80 to-navy-800 border border-flame-500/25 rounded-3xl p-8">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-flame-600/30 to-flame-900/20 border border-flame-500/40 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-shield-halved text-flame-400 text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-bold text-white">Trusted Protection</h3>
+              <p class="text-flame-400 text-xs font-semibold mt-0.5 uppercase tracking-widest">SIA Licensed · PNG Certified</p>
+            </div>
           </div>
-          <h3 class="font-display text-2xl font-bold text-white mb-3">Trusted Protection</h3>
-          <p class="text-gray-400 text-sm mb-8 leading-relaxed">
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">
             AHL Security provides round-the-clock protection to Wewak's most important organisations —
             ensuring safety, security, and peace of mind.
           </p>
-          <div class="space-y-3 text-left">
-            <div class="flex items-center gap-3 bg-navy-800/60 rounded-xl p-3">
-              <i class="fas fa-circle-check text-flame-400 flex-shrink-0"></i>
-              <span class="text-sm text-gray-300">24/7 Security Operations</span>
+          <div class="grid grid-cols-2 gap-2.5">
+            <div class="flex items-center gap-2.5 bg-navy-800/70 rounded-xl px-3 py-2.5">
+              <i class="fas fa-clock text-flame-400 text-xs flex-shrink-0"></i>
+              <span class="text-sm text-gray-300">24/7 Operations</span>
             </div>
-            <div class="flex items-center gap-3 bg-navy-800/60 rounded-xl p-3">
-              <i class="fas fa-circle-check text-flame-400 flex-shrink-0"></i>
-              <span class="text-sm text-gray-300">Licensed Under Security Industry Authority PNG</span>
+            <div class="flex items-center gap-2.5 bg-navy-800/70 rounded-xl px-3 py-2.5">
+              <i class="fas fa-id-card text-flame-400 text-xs flex-shrink-0"></i>
+              <span class="text-sm text-gray-300">SIA Licensed</span>
             </div>
-            <div class="flex items-center gap-3 bg-navy-800/60 rounded-xl p-3">
-              <i class="fas fa-circle-check text-flame-400 flex-shrink-0"></i>
-              <span class="text-sm text-gray-300">PNG Ports Corporation Partnership</span>
+            <div class="flex items-center gap-2.5 bg-navy-800/70 rounded-xl px-3 py-2.5">
+              <i class="fas fa-anchor text-gold-400 text-xs flex-shrink-0"></i>
+              <span class="text-sm text-gray-300">PNG Ports Partner</span>
             </div>
-            <div class="flex items-center gap-3 bg-navy-800/60 rounded-xl p-3">
-              <i class="fas fa-circle-check text-flame-400 flex-shrink-0"></i>
-              <span class="text-sm text-gray-300">East Sepik's Trusted Security Partner</span>
+            <div class="flex items-center gap-2.5 bg-navy-800/70 rounded-xl px-3 py-2.5">
+              <i class="fas fa-graduation-cap text-leaf-400 text-xs flex-shrink-0"></i>
+              <span class="text-sm text-gray-300">Trained Personnel</span>
             </div>
           </div>
-          <a href="#contact"
-             class="mt-8 inline-block w-full bg-gradient-to-r from-flame-700 to-flame-600 hover:from-flame-600 hover:to-flame-500 text-white font-bold px-6 py-3.5 rounded-xl transition-all hover:shadow-lg hover:shadow-flame-500/30 text-sm">
-            Enquire About Security Services
-          </a>
         </div>
+
+        <!-- Stats row -->
+        <div class="grid grid-cols-3 gap-3">
+          <div class="bg-navy-800/70 border border-navy-600 rounded-2xl p-4 text-center">
+            <div class="text-2xl font-black font-display text-flame-400 stat-num">24/7</div>
+            <div class="text-gray-500 text-xs mt-1">Coverage</div>
+          </div>
+          <div class="bg-navy-800/70 border border-navy-600 rounded-2xl p-4 text-center">
+            <div class="text-2xl font-black font-display text-gold-400 stat-num">SIA</div>
+            <div class="text-gray-500 text-xs mt-1">Licensed</div>
+          </div>
+          <div class="bg-navy-800/70 border border-navy-600 rounded-2xl p-4 text-center">
+            <div class="text-2xl font-black font-display text-leaf-400 stat-num">PNG</div>
+            <div class="text-gray-500 text-xs mt-1">Certified</div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <a href="#contact"
+           class="block w-full bg-gradient-to-r from-flame-700 to-flame-600 hover:from-flame-600 hover:to-flame-500 text-white font-bold px-6 py-4 rounded-2xl transition-all hover:shadow-lg hover:shadow-flame-500/30 text-sm text-center">
+          <i class="fas fa-paper-plane mr-2"></i>Enquire About Security Services
+        </a>
+
       </div>
 
     </div>
@@ -1186,9 +1273,9 @@
           investing in the next generation of Papua New Guinean leaders, engineers, and professionals.
         </p>
         <ul class="space-y-2">
-          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-leaf-600 text-[7px] mt-1.5 flex-shrink-0"></i>Student scholarship sponsorships</li>
-          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-leaf-600 text-[7px] mt-1.5 flex-shrink-0"></i>Supporting school infrastructure</li>
-          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-leaf-600 text-[7px] mt-1.5 flex-shrink-0"></i>Mentoring young East Sepik talent</li>
+          <li class="flex items-start gap-2 text-sm text-gray-400"><i class="fas fa-circle text-leaf-600 text-[7px] mt-1.5 flex-shrink-0"></i>Student scholarship sponsorships</li>
+          <li class="flex items-start gap-2 text-sm text-gray-400"><i class="fas fa-circle text-leaf-600 text-[7px] mt-1.5 flex-shrink-0"></i>Supporting school infrastructure</li>
+          <li class="flex items-start gap-2 text-sm text-gray-400"><i class="fas fa-circle text-leaf-600 text-[7px] mt-1.5 flex-shrink-0"></i>Mentoring young East Sepik talent</li>
         </ul>
       </div>
       <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-gold-500/20 rounded-3xl p-8">
@@ -1201,9 +1288,9 @@
           skilled jobs, professional training, and long-term career pathways across East Sepik.
         </p>
         <ul class="space-y-2">
-          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-gold-600 text-[7px] mt-1.5 flex-shrink-0"></i>200+ PNG nationals employed</li>
-          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-gold-600 text-[7px] mt-1.5 flex-shrink-0"></i>On-the-job heavy machinery training</li>
-          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-gold-600 text-[7px] mt-1.5 flex-shrink-0"></i>Security officer professional certification</li>
+          <li class="flex items-start gap-2 text-sm text-gray-400"><i class="fas fa-circle text-gold-600 text-[7px] mt-1.5 flex-shrink-0"></i>200+ PNG nationals employed</li>
+          <li class="flex items-start gap-2 text-sm text-gray-400"><i class="fas fa-circle text-gold-600 text-[7px] mt-1.5 flex-shrink-0"></i>On-the-job heavy machinery training</li>
+          <li class="flex items-start gap-2 text-sm text-gray-400"><i class="fas fa-circle text-gold-600 text-[7px] mt-1.5 flex-shrink-0"></i>Security officer professional certification</li>
         </ul>
       </div>
       <div class="card-hover bg-gradient-to-br from-navy-700 to-navy-800 border border-flame-500/20 rounded-3xl p-8">
@@ -1216,9 +1303,9 @@
           young Papua New Guineans — the engineers, builders, and leaders of tomorrow.
         </p>
         <ul class="space-y-2">
-          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-flame-600 text-[7px] mt-1.5 flex-shrink-0"></i>Graduate internship placements</li>
-          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-flame-600 text-[7px] mt-1.5 flex-shrink-0"></i>Youth leadership recognition</li>
-          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-circle text-flame-600 text-[7px] mt-1.5 flex-shrink-0"></i>Community project volunteering</li>
+          <li class="flex items-start gap-2 text-sm text-gray-400"><i class="fas fa-circle text-flame-600 text-[7px] mt-1.5 flex-shrink-0"></i>Graduate internship placements</li>
+          <li class="flex items-start gap-2 text-sm text-gray-400"><i class="fas fa-circle text-flame-600 text-[7px] mt-1.5 flex-shrink-0"></i>Youth leadership recognition</li>
+          <li class="flex items-start gap-2 text-sm text-gray-400"><i class="fas fa-circle text-flame-600 text-[7px] mt-1.5 flex-shrink-0"></i>Community project volunteering</li>
         </ul>
       </div>
     </div>
@@ -1227,19 +1314,19 @@
     <div class="fade-in bg-gradient-to-r from-leaf-900/20 via-navy-700 to-leaf-900/10 border border-leaf-500/15 rounded-3xl p-8 md:p-10">
       <div class="grid md:grid-cols-4 gap-6 text-center">
         <div>
-          <div class="text-3xl font-black font-display text-leaf-400" data-count="200" data-suffix="+">200+</div>
+          <div class="text-3xl font-black font-display text-leaf-400 stat-num" data-count="200" data-suffix="+">200+</div>
           <div class="text-gray-400 text-xs mt-1 uppercase tracking-wide">PNG Nationals Employed</div>
         </div>
         <div>
-          <div class="text-3xl font-black font-display text-gold-400" data-count="50" data-suffix="+">50+</div>
+          <div class="text-3xl font-black font-display text-gold-400 stat-num" data-count="50" data-suffix="+">50+</div>
           <div class="text-gray-400 text-xs mt-1 uppercase tracking-wide">Students Supported</div>
         </div>
         <div>
-          <div class="text-3xl font-black font-display text-flame-400" data-count="10" data-suffix="+">10+</div>
+          <div class="text-3xl font-black font-display text-flame-400 stat-num" data-count="10" data-suffix="+">10+</div>
           <div class="text-gray-400 text-xs mt-1 uppercase tracking-wide">Communities Connected</div>
         </div>
         <div>
-          <div class="text-3xl font-black font-display text-blue-400" data-count="100" data-suffix="%">100%</div>
+          <div class="text-3xl font-black font-display text-gold-400 stat-num" data-count="100" data-suffix="%">100%</div>
           <div class="text-gray-400 text-xs mt-1 uppercase tracking-wide">PNG Owned &amp; Operated</div>
         </div>
       </div>
