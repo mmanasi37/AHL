@@ -28,17 +28,27 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
 
-    /* Nav */
+    /* Nav — mobile always has a dark glass background */
     #nav-inner {
-      border-radius:0; background:transparent; border:1px solid transparent; box-shadow:none;
+      border-radius:0;
+      background:rgba(4,12,24,0.92);
+      backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:0 2px 16px rgba(0,0,0,0.4);
       transition: max-width .45s cubic-bezier(.4,0,.2,1), border-radius .45s cubic-bezier(.4,0,.2,1),
                   background .4s ease, box-shadow .4s ease, border-color .4s ease, padding .4s ease;
     }
-    .nav-scrolled #nav-inner {
-      max-width:860px !important; margin:0 auto; border-radius:9999px;
-      background:rgba(4,12,24,.90); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-      padding:.35rem 1.5rem; border-color:rgba(255,255,255,.10);
-      box-shadow:0 8px 40px rgba(0,0,0,.6), 0 0 0 1px rgba(34,197,94,.07);
+    @media (min-width:768px) {
+      #nav-inner {
+        background:transparent; backdrop-filter:none; -webkit-backdrop-filter:none;
+        border-color:transparent; box-shadow:none;
+      }
+      .nav-scrolled #nav-inner {
+        max-width:900px !important; margin:0 auto; border-radius:9999px;
+        background:rgba(4,12,24,.92); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+        padding:.35rem 1.5rem; border-color:rgba(255,255,255,.10);
+        box-shadow:0 8px 40px rgba(0,0,0,.6), 0 0 0 1px rgba(34,197,94,.07);
+      }
     }
     .nav-logo-text { max-width:180px; overflow:hidden; white-space:nowrap; transition:max-width .4s cubic-bezier(.4,0,.2,1), opacity .3s ease; }
     .nav-scrolled .nav-logo-text { max-width:0; opacity:0; }
@@ -49,8 +59,8 @@
     .nav-link:hover::after, .nav-link.active::after { width:100%; }
     .nav-link.active { color:#fff; }
 
-    #mobile-menu { max-height:0; overflow:hidden; opacity:0; transition:max-height 0.35s ease,opacity 0.3s ease; }
-    #mobile-menu.open { max-height:520px; opacity:1; }
+    #mobile-menu { max-height:0; overflow:hidden; opacity:0; transition:max-height 0.4s ease,opacity 0.3s ease; }
+    #mobile-menu.open { max-height:640px; opacity:1; }
 
     /* Skip link */
     .skip-link { position:absolute; top:-100%; left:1rem; z-index:9999; background:#22c55e; color:#040c18; font-weight:700; font-size:.875rem; padding:.5rem 1.25rem; border-radius:0 0 .5rem .5rem; transition:top .2s; text-decoration:none; }
@@ -199,24 +209,30 @@
           <div class="text-leaf-400 text-xs font-semibold tracking-widest uppercase">Andro Holdings</div>
         </div>
       </a>
-      <div class="hidden lg:flex items-center gap-8">
-        <a href="index.html#about"    class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">About</a>
-        <a href="index.html#services" class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Services</a>
-        <a href="index.html#projects" class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Projects</a>
-        <a href="news.html"           class="nav-link active text-white text-sm font-medium transition-colors">News</a>
-        <a href="index.html#contact"  class="bg-gradient-to-r from-flame-700 to-flame-500 hover:from-flame-600 hover:to-flame-400 text-white text-sm font-bold px-5 py-2 rounded-full transition-all hover:shadow-lg hover:shadow-flame-500/40">Contact Us</a>
+      <div class="hidden lg:flex items-center gap-6">
+        <a href="index.html#about"     class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">About</a>
+        <a href="index.html#services"  class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Services</a>
+        <a href="index.html#why-ahl"   class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Why AHL</a>
+        <a href="index.html#projects"  class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Projects</a>
+        <a href="index.html#security"  class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Security</a>
+        <a href="index.html#community" class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Community</a>
+        <a href="news.html"            class="nav-link active text-white text-sm font-medium transition-colors">News</a>
+        <a href="index.html#contact"   class="bg-gradient-to-r from-flame-700 to-flame-500 hover:from-flame-600 hover:to-flame-400 text-white text-sm font-bold px-5 py-2 rounded-full transition-all hover:shadow-lg hover:shadow-flame-500/40">Contact Us</a>
       </div>
-      <button id="menu-btn" class="lg:hidden p-2 text-white" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+      <button id="menu-btn" class="lg:hidden flex items-center justify-center w-12 h-12 text-white cursor-pointer rounded-xl hover:bg-white/10 transition-colors" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg id="icon-open"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
-    <div id="mobile-menu" class="lg:hidden bg-navy-800/98 backdrop-blur rounded-2xl mt-3 px-4 py-2 border border-navy-700">
-      <a href="index.html#about"    class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">About AHL</a>
-      <a href="index.html#services" class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Services</a>
-      <a href="index.html#projects" class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Projects</a>
-      <a href="news.html"           class="block py-3 text-leaf-400 font-semibold border-b border-navy-700 text-sm"                         onclick="toggleMenu()">News &amp; Announcements</a>
-      <a href="index.html#contact"  class="block py-3 text-flame-400 font-bold text-sm" onclick="toggleMenu()">Contact Us →</a>
+    <div id="mobile-menu" class="lg:hidden bg-navy-800/95 backdrop-blur rounded-2xl mt-3 px-4 py-2 border border-navy-700">
+      <a href="index.html#about"     class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">About AHL</a>
+      <a href="index.html#services"  class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Services</a>
+      <a href="index.html#why-ahl"   class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Why AHL</a>
+      <a href="index.html#projects"  class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Projects</a>
+      <a href="index.html#security"  class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Security</a>
+      <a href="index.html#community" class="block py-3 text-gray-300 hover:text-leaf-400 border-b border-navy-700 text-sm transition-colors" onclick="toggleMenu()">Community</a>
+      <a href="news.html"            class="block py-3 text-leaf-400 font-semibold border-b border-navy-700 text-sm"                         onclick="toggleMenu()">News &amp; Announcements</a>
+      <a href="index.html#contact"   class="block py-3 text-flame-400 font-bold text-sm" onclick="toggleMenu()">Contact Us →</a>
     </div>
   </div>
 </nav>
@@ -224,27 +240,27 @@
 <main id="main-content">
 
 <!-- HERO -->
-<section class="relative bg-hero pt-40 md:pt-52 pb-20 overflow-hidden">
+<section class="relative bg-hero pt-36 md:pt-48 pb-16 overflow-hidden">
   <div class="absolute top-0 right-0 w-[450px] h-[450px] bg-leaf-700 opacity-[0.06] rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute bottom-0 left-0 w-96 h-96 bg-flame-700 opacity-[0.06] rounded-full blur-3xl pointer-events-none"></div>
 
   <div class="container mx-auto px-6 relative z-10">
-    <nav aria-label="Breadcrumb" class="mb-6">
+    <nav aria-label="Breadcrumb" class="mb-5">
       <ol class="flex items-center gap-2 text-xs text-gray-500">
         <li><a href="index.html" class="hover:text-gray-300 transition-colors">Home</a></li>
         <li><i class="fas fa-chevron-right text-[9px]"></i></li>
         <li class="text-gray-400">News &amp; Announcements</li>
       </ol>
     </nav>
-    <div class="max-w-3xl">
-      <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-leaf-500/25 rounded-full px-4 py-2 mb-6">
-        <span class="w-2 h-2 rounded-full bg-leaf-400 animate-pulse"></span>
-        <span class="text-leaf-400 text-sm font-medium">Company News &amp; Announcements</span>
+    <div class="max-w-3xl w-full">
+      <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-leaf-500/25 rounded-full px-4 py-2 mb-5 max-w-full">
+        <span class="w-2 h-2 rounded-full bg-leaf-400 animate-pulse flex-shrink-0"></span>
+        <span class="text-leaf-400 text-xs sm:text-sm font-medium">News &amp; Announcements</span>
       </div>
-      <h1 class="font-display font-black text-5xl md:text-6xl text-white mb-5 leading-tight">
-        Latest from<br><span class="text-grad-green">AHL</span>
+      <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white mb-5 leading-tight">
+        Latest from <span class="text-grad-green">AHL</span>
       </h1>
-      <p class="text-xl text-gray-300 leading-relaxed max-w-xl">
+      <p class="text-base sm:text-xl text-gray-300 leading-relaxed max-w-xl">
         Stay informed with the latest project updates, corporate announcements, and community news from Andro Holdings Limited.
       </p>
     </div>
@@ -259,7 +275,7 @@
 
     <!-- Toolbar: filters + search -->
     <div class="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between mb-10 fade-in">
-      <div class="filter-bar" id="filter-tabs" role="tablist" aria-label="Filter posts by category">
+      <div class="filter-bar min-w-0 flex-1" id="filter-tabs" role="tablist" aria-label="Filter posts by category">
         <button class="filter-tab active" data-filter="all"          role="tab" aria-selected="true"><i class="fas fa-th-large mr-1.5 text-[10px]"></i>All</button>
         <button class="filter-tab"        data-filter="announcement" role="tab" aria-selected="false"><i class="fas fa-bullhorn mr-1.5 text-[10px]"></i>Announcements</button>
         <button class="filter-tab"        data-filter="civil"        role="tab" aria-selected="false"><i class="fas fa-road mr-1.5 text-[10px]"></i>Civil Works</button>
@@ -267,11 +283,11 @@
         <button class="filter-tab"        data-filter="community"    role="tab" aria-selected="false"><i class="fas fa-people-group mr-1.5 text-[10px]"></i>Community</button>
         <button class="filter-tab"        data-filter="company"      role="tab" aria-selected="false"><i class="fas fa-building mr-1.5 text-[10px]"></i>Company</button>
       </div>
-      <div class="relative flex-shrink-0">
+      <div class="relative w-full md:w-auto md:flex-shrink-0">
         <label for="search-input" class="sr-only">Search posts</label>
         <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
         <input type="search" id="search-input" placeholder="Search posts…" aria-label="Search posts"
-          class="bg-navy-800 border border-navy-600 rounded-xl pl-9 pr-8 py-2.5 text-white text-sm placeholder-gray-600 outline-none w-60 transition-colors" />
+          class="bg-navy-800 border border-navy-600 rounded-xl pl-9 pr-8 py-2.5 text-white text-sm placeholder-gray-600 outline-none w-full md:w-60 transition-colors" />
         <button id="search-clear" aria-label="Clear search" title="Clear search">
           <i class="fas fa-times text-[9px]"></i>
         </button>
@@ -282,7 +298,7 @@
     <p id="post-count" class="text-gray-500 text-xs mb-6 fade-in"></p>
 
     <!-- Grid -->
-    <div id="posts-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-w-0"></div>
 
     <!-- Empty state -->
     <div id="empty-state" class="hidden text-center py-24">
@@ -742,7 +758,7 @@ function render() {
              onclick="openPost('${esc(first.id)}')"
              tabindex="0" role="button" aria-label="Read: ${esc(first.title)}"
              onkeydown="if(event.key==='Enter'||event.key===' ')openPost('${esc(first.id)}')">
-      <div class="thumb-area lg:col-span-2 min-h-[180px] ${first.image ? 'overflow-hidden' : 'flex items-center justify-center'}" style="${first.image ? '' : `background:linear-gradient(135deg,${CAT_ACCENT[first.category]}22,${CAT_ACCENT[first.category]}08)`}">
+      <div class="thumb-area lg:col-span-2 min-h-[180px] max-h-[260px] lg:max-h-none ${first.image ? 'overflow-hidden' : 'flex items-center justify-center'}" style="${first.image ? '' : `background:linear-gradient(135deg,${CAT_ACCENT[first.category]}22,${CAT_ACCENT[first.category]}08)`}">
         ${first.image
           ? `<img src="${first.image}" alt="${esc(first.title)}" class="w-full h-full object-cover min-h-[180px]" loading="lazy" />`
           : `<i class="fas ${icon}" style="font-size:5rem;opacity:0.18;color:${CAT_ACCENT[first.category]};filter:blur(1px)"></i>`}
