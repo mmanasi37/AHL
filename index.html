@@ -75,11 +75,44 @@
       transform: translateY(-6px);
     }
 
-    /* Navbar glass effect when scrolled */
-    .nav-glass {
-      background: rgba(4, 12, 24, 0.95) !important;
-      backdrop-filter: blur(14px);
-      box-shadow: 0 2px 24px rgba(0, 0, 0, 0.6);
+    /* Nav pill — shrinks to floating island on scroll */
+    #nav-inner {
+      border-radius: 0;
+      background: transparent;
+      border: 1px solid transparent;
+      box-shadow: none;
+      transition:
+        max-width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        border-radius 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        background 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease,
+        padding 0.4s ease;
+    }
+    .nav-scrolled #nav-inner {
+      max-width: 860px !important;
+      margin: 0 auto;
+      border-radius: 9999px;
+      background: rgba(4, 12, 24, 0.90);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 0.35rem 1.5rem;
+      border-color: rgba(255, 255, 255, 0.10);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(34, 197, 94, 0.07);
+    }
+    /* Shrink logo text when nav becomes pill */
+    .nav-logo-text {
+      max-width: 180px;
+      overflow: hidden;
+      white-space: nowrap;
+      transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.3s ease,
+                  margin-left 0.3s ease;
+    }
+    .nav-scrolled .nav-logo-text {
+      max-width: 0;
+      opacity: 0;
+      margin-left: 0 !important;
     }
 
     /* Nav link underline animation */
@@ -94,15 +127,16 @@
     }
     .nav-link:hover::after { width: 100%; }
 
-    /* Fade-in on scroll */
+    /* Scroll-reveal fly-in */
     .fade-in {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
+      transform: translateY(44px) scale(0.97);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .fade-in.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     /* Pulse glow button */
@@ -296,6 +330,27 @@
       background: currentColor;
     }
 
+    /* Hero fly-in — staggered per element */
+    @keyframes heroFlyIn {
+      from { opacity: 0; transform: translateY(38px) scale(0.97); filter: blur(3px); }
+      to   { opacity: 1; transform: translateY(0) scale(1);        filter: blur(0);  }
+    }
+    .hero-fly {
+      opacity: 0;
+      animation: heroFlyIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Page cover — fade out on arrival, fade in before leaving */
+    #page-cover {
+      position: fixed;
+      inset: 0;
+      background: #040c18;
+      z-index: 99999;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
     /* Prefers reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -303,6 +358,7 @@
         transition-duration: 0.01ms !important;
       }
       .fade-in { opacity: 1 !important; transform: none !important; }
+      .hero-fly { opacity: 1 !important; animation: none !important; }
       .pulse-btn { animation: none !important; }
       .stat-box { animation: none !important; }
       .logo-ring { animation: none !important; }
@@ -311,6 +367,8 @@
 </head>
 
 <body class="bg-navy-900 text-white antialiased">
+
+<div id="page-cover"></div>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -344,13 +402,13 @@
      NAVIGATION
 ═══════════════════════════════════════ -->
 <nav id="navbar" aria-label="Main navigation" class="fixed top-0 md:top-9 left-0 right-0 z-50 transition-all duration-300 py-3">
-  <div class="container mx-auto px-6">
+  <div id="nav-inner" class="container mx-auto px-6">
     <div class="flex items-center justify-between">
 
       <!-- Logo -->
       <a href="#home" class="flex items-center gap-3 group">
         <img src="images/AHL-logo.jpg" alt="AHL Civil Works Logo" class="w-12 h-12 rounded-full object-cover shadow-lg shadow-black/40 flex-shrink-0" />
-        <div class="leading-tight">
+        <div class="leading-tight nav-logo-text">
           <div class="text-white font-black font-display text-lg tracking-wide group-hover:text-gold-400 transition-colors">AHL</div>
           <div class="text-leaf-400 text-xs font-semibold tracking-widest uppercase">Andro Holdings</div>
         </div>
@@ -399,6 +457,18 @@
 ═══════════════════════════════════════ -->
 <section id="home" class="relative min-h-screen bg-hero flex items-center overflow-hidden pt-16">
 
+  <!-- ▶ Hero background video (plays when hero-bg.mp4 is present in images/) -->
+  <video id="hero-video"
+         autoplay muted loop playsinline
+         poster="images/ahl-fleet.jpg"
+         class="absolute inset-0 w-full h-full object-cover pointer-events-none"
+         style="opacity:0;transition:opacity 1.2s ease;"
+         aria-hidden="true">
+    <source src="images/hero-bg.mp4" type="video/mp4">
+  </video>
+  <!-- Dark overlay so text stays readable over video -->
+  <div id="hero-video-overlay" class="absolute inset-0 bg-gradient-to-br from-black/75 via-black/50 to-black/40 pointer-events-none" style="display:none;"></div>
+
   <!-- Subtle grid overlay -->
   <div class="absolute inset-0 opacity-[0.035] pointer-events-none">
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -420,26 +490,26 @@
     <div>
 
       <!-- Location badge -->
-      <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-leaf-500/25 rounded-full px-4 py-2 mb-8">
+      <div class="hero-fly inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-leaf-500/25 rounded-full px-4 py-2 mb-8" style="animation-delay:0.08s">
         <span class="w-2 h-2 rounded-full bg-leaf-400 animate-pulse"></span>
         <span class="text-leaf-400 text-sm font-medium">Wewak · East Sepik Province · Papua New Guinea</span>
       </div>
 
       <!-- Heading -->
-      <h1 class="font-display font-black leading-tight text-5xl md:text-6xl lg:text-7xl text-white mb-6">
+      <h1 class="hero-fly font-display font-black leading-tight text-5xl md:text-6xl lg:text-7xl text-white mb-6" style="animation-delay:0.22s">
         Building<br>
         <span class="text-grad-green">East Sepik's</span><br>
         Future
       </h1>
 
-      <p class="text-xl text-gray-300 max-w-2xl mb-10 leading-relaxed">
+      <p class="hero-fly text-xl text-gray-300 max-w-2xl mb-10 leading-relaxed" style="animation-delay:0.38s">
         Andro Holdings Limited is a proudly locally owned Papua New Guinean company delivering
         world-class <span class="text-leaf-400 font-semibold">civil engineering</span> and professional
         <span class="text-flame-400 font-semibold">security services</span> across East Sepik Province.
       </p>
 
       <!-- CTA Buttons -->
-      <div class="flex flex-wrap gap-4 mb-16">
+      <div class="hero-fly flex flex-wrap gap-4 mb-16" style="animation-delay:0.52s">
         <a href="#services"
            class="pulse-btn bg-gradient-to-r from-flame-700 to-flame-500 hover:from-flame-600 hover:to-flame-400 text-white font-bold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-flame-500/40 text-base">
           Our Services
@@ -451,7 +521,7 @@
       </div>
 
       <!-- Stats -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="hero-fly grid grid-cols-2 sm:grid-cols-4 gap-4" style="animation-delay:0.66s">
         <div class="stat-box bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-5 text-center">
           <div class="text-3xl font-black font-display text-flame-400 stat-num" data-count="10" data-suffix="+">10+</div>
           <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Years Active</div>
@@ -471,18 +541,60 @@
       </div>
     </div><!-- text column -->
 
-    <!-- Logo visual column -->
-    <div class="hidden lg:flex items-center justify-center">
-      <div class="relative">
-        <div class="absolute inset-0 rounded-full bg-blue-600/15 blur-3xl scale-125 pointer-events-none"></div>
-        <div class="absolute inset-0 rounded-full bg-flame-700/10 blur-2xl scale-110 pointer-events-none"></div>
-        <img src="images/AHL-logo.jpg"
-             alt="Andro Holdings Limited — AHL Civil Works"
-             loading="eager"
-             class="logo-ring relative w-80 h-80 rounded-full object-cover shadow-2xl shadow-black/70 ring-4 ring-white/10" />
-        <div class="absolute -bottom-4 -right-2 bg-gradient-to-r from-leaf-600 to-leaf-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-leaf-500/40 whitespace-nowrap">
+    <!-- Hero photo column -->
+    <div class="hero-fly hidden lg:flex items-center justify-center" style="animation-delay:0.45s">
+      <div class="relative w-full max-w-[520px]">
+
+        <!-- Glow backdrop -->
+        <div class="absolute -inset-4 bg-blue-600/10 blur-3xl rounded-3xl pointer-events-none"></div>
+
+        <!-- Main fleet photo -->
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/70 ring-1 ring-white/10">
+          <img src="images/ahl-fleet.jpg"
+               alt="AHL heavy machinery fleet — loaders, graders and compactors"
+               loading="eager"
+               class="w-full h-[300px] object-cover object-center" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+          <!-- Caption -->
+          <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+            <div>
+              <div class="text-white font-bold text-sm">30+ Heavy Machines</div>
+              <div class="text-gray-300 text-xs">XCMG fleet · East Sepik Province</div>
+            </div>
+            <div class="bg-gold-500/90 text-navy-900 text-xs font-black px-3 py-1 rounded-full">Civil Division</div>
+          </div>
+        </div>
+
+        <!-- Second row: road seal photo + MD card -->
+        <div class="grid grid-cols-2 gap-3 mt-3">
+          <div class="relative rounded-2xl overflow-hidden shadow-xl shadow-black/50 ring-1 ring-white/8">
+            <img src="images/ahl-road-seal.jpg"
+                 alt="AHL road sealing works in progress"
+                 loading="lazy"
+                 class="w-full h-28 object-cover object-center" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="absolute bottom-2 left-2">
+              <span class="text-white text-[10px] font-semibold">Road Sealing</span>
+            </div>
+          </div>
+          <!-- Moses Warie card -->
+          <div class="bg-navy-800/95 backdrop-blur-md border border-white/10 rounded-2xl p-3 shadow-xl flex items-center gap-2.5">
+            <img src="images/moses-warie.jpg"
+                 alt="Moses Warie — Managing Director, AHL"
+                 class="w-12 h-12 rounded-xl object-cover object-top flex-shrink-0 ring-1 ring-white/15" />
+            <div>
+              <div class="text-white font-bold text-xs leading-tight">Moses Warie</div>
+              <div class="text-flame-400 text-[10px] mt-0.5">Managing Director</div>
+              <div class="text-gray-500 text-[10px]">Founder · AHL</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- East Sepik badge -->
+        <div class="absolute -top-3 -right-3 bg-gradient-to-r from-leaf-600 to-leaf-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-leaf-500/40 whitespace-nowrap z-10">
           <i class="fas fa-map-pin mr-1.5 text-[10px]"></i>East Sepik's Own
         </div>
+
       </div>
     </div>
 
@@ -649,8 +761,8 @@
         <!-- MD Profile -->
         <div class="bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 rounded-3xl p-7">
           <div class="flex items-start gap-5">
-            <div class="w-18 h-18 w-[72px] h-[72px] rounded-2xl bg-gradient-to-br from-flame-700 to-flame-900 flex items-center justify-center text-2xl font-black font-display text-white flex-shrink-0">
-              MW
+            <div class="w-[72px] h-[72px] rounded-2xl overflow-hidden flex-shrink-0 ring-2 ring-flame-500/30 shadow-lg shadow-black/50">
+              <img src="images/moses-warie.jpg" alt="Moses Warie — Managing Director, AHL" class="w-full h-full object-cover object-top" loading="lazy" />
             </div>
             <div>
               <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">Managing Director</div>
@@ -911,9 +1023,9 @@
 
       <!-- Card 1 -->
       <div class="card-hover card-leaf-glow group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-leaf-500/40 rounded-2xl overflow-hidden transition-all duration-300">
-        <div class="proj-thumb h-48 bg-gradient-to-br from-leaf-900/60 via-leaf-800/30 to-navy-800 flex items-center justify-center relative">
-          <i class="fas fa-road text-leaf-400 proj-icon"></i>
-          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+        <div class="proj-thumb h-48 relative overflow-hidden">
+          <img src="images/ahl-road-seal.jpg" alt="Sepik National Highway road sealing works" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/20 to-transparent"></div>
           <div class="absolute bottom-3 left-4">
             <span class="bg-leaf-500/20 backdrop-blur text-leaf-300 text-xs px-3 py-1.5 rounded-full border border-leaf-500/40 font-semibold">Road Sealing</span>
           </div>
@@ -927,9 +1039,9 @@
 
       <!-- Card 2 -->
       <div class="card-hover card-gold-glow group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-gold-500/40 rounded-2xl overflow-hidden transition-all duration-300">
-        <div class="proj-thumb h-48 bg-gradient-to-br from-gold-900/50 via-gold-800/25 to-navy-800 flex items-center justify-center relative">
-          <i class="fas fa-road text-gold-400 proj-icon"></i>
-          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+        <div class="proj-thumb h-48 relative overflow-hidden">
+          <img src="images/ahl-road-seal2.jpg" alt="Kusambuk section highway works" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/20 to-transparent"></div>
           <div class="absolute bottom-3 left-4">
             <span class="bg-gold-500/20 backdrop-blur text-gold-300 text-xs px-3 py-1.5 rounded-full border border-gold-500/40 font-semibold">Highway Works</span>
           </div>
@@ -959,9 +1071,9 @@
 
       <!-- Card 4 -->
       <div class="card-hover card-leaf-glow group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-leaf-500/40 rounded-2xl overflow-hidden transition-all duration-300">
-        <div class="proj-thumb h-48 bg-gradient-to-br from-leaf-900/50 via-navy-700/60 to-navy-800 flex items-center justify-center relative">
-          <i class="fas fa-hospital text-leaf-400 proj-icon"></i>
-          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+        <div class="proj-thumb h-48 relative overflow-hidden">
+          <img src="images/ahl-fleet.jpg" alt="AHL heavy machinery fleet for infrastructure works" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/20 to-transparent"></div>
           <div class="absolute bottom-3 left-4">
             <span class="bg-leaf-500/20 backdrop-blur text-leaf-300 text-xs px-3 py-1.5 rounded-full border border-leaf-500/40 font-semibold">Health Infrastructure</span>
           </div>
@@ -975,9 +1087,9 @@
 
       <!-- Card 5 -->
       <div class="card-hover card-gold-glow group bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-600 hover:border-gold-500/40 rounded-2xl overflow-hidden transition-all duration-300">
-        <div class="proj-thumb h-48 bg-gradient-to-br from-gold-900/50 via-navy-700/50 to-navy-800 flex items-center justify-center relative">
-          <i class="fas fa-trowel-bricks text-gold-400 proj-icon"></i>
-          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+        <div class="proj-thumb h-48 relative overflow-hidden">
+          <img src="images/ahl-road-seal.jpg" alt="DDA-funded infrastructure works East Sepik" loading="lazy" class="w-full h-full object-cover object-bottom group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/20 to-transparent"></div>
           <div class="absolute bottom-3 left-4">
             <span class="bg-gold-500/20 backdrop-blur text-gold-300 text-xs px-3 py-1.5 rounded-full border border-gold-500/40 font-semibold">DDA Funded</span>
           </div>
@@ -1178,56 +1290,47 @@
       </div>
 
       <!-- Right visual -->
-      <div class="fade-in space-y-5">
+      <div class="fade-in space-y-4">
 
-        <!-- Headline card -->
-        <div class="bg-gradient-to-br from-flame-900/30 via-navy-700/80 to-navy-800 border border-flame-500/25 rounded-3xl p-8">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-flame-600/30 to-flame-900/20 border border-flame-500/40 flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-shield-halved text-flame-400 text-2xl"></i>
-            </div>
+        <!-- Security team photo -->
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/60 ring-1 ring-white/10">
+          <img src="images/ahl-security-team.jpg"
+               alt="AHL Security Division — professional security team on duty"
+               loading="lazy"
+               class="w-full h-64 object-cover object-center" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
             <div>
-              <h3 class="font-display text-xl font-bold text-white">Trusted Protection</h3>
-              <p class="text-flame-400 text-xs font-semibold mt-0.5 uppercase tracking-widest">SIA Licensed · PNG Certified</p>
+              <div class="text-white font-bold text-sm">AHL Security Team</div>
+              <div class="text-gray-300 text-xs">Licensed security professionals on deployment</div>
             </div>
-          </div>
-          <p class="text-gray-400 text-sm leading-relaxed mb-6">
-            AHL Security provides round-the-clock protection to Wewak's most important organisations —
-            ensuring safety, security, and peace of mind.
-          </p>
-          <div class="grid grid-cols-2 gap-2.5">
-            <div class="flex items-center gap-2.5 bg-navy-800/70 rounded-xl px-3 py-2.5">
-              <i class="fas fa-clock text-flame-400 text-xs flex-shrink-0"></i>
-              <span class="text-sm text-gray-300">24/7 Operations</span>
-            </div>
-            <div class="flex items-center gap-2.5 bg-navy-800/70 rounded-xl px-3 py-2.5">
-              <i class="fas fa-id-card text-flame-400 text-xs flex-shrink-0"></i>
-              <span class="text-sm text-gray-300">SIA Licensed</span>
-            </div>
-            <div class="flex items-center gap-2.5 bg-navy-800/70 rounded-xl px-3 py-2.5">
-              <i class="fas fa-anchor text-gold-400 text-xs flex-shrink-0"></i>
-              <span class="text-sm text-gray-300">PNG Ports Partner</span>
-            </div>
-            <div class="flex items-center gap-2.5 bg-navy-800/70 rounded-xl px-3 py-2.5">
-              <i class="fas fa-graduation-cap text-leaf-400 text-xs flex-shrink-0"></i>
-              <span class="text-sm text-gray-300">Trained Personnel</span>
-            </div>
+            <div class="bg-flame-500/90 text-white text-xs font-black px-3 py-1 rounded-full">On Duty</div>
           </div>
         </div>
 
-        <!-- Stats row -->
-        <div class="grid grid-cols-3 gap-3">
-          <div class="bg-navy-800/70 border border-navy-600 rounded-2xl p-4 text-center">
-            <div class="text-2xl font-black font-display text-flame-400 stat-num">24/7</div>
-            <div class="text-gray-500 text-xs mt-1">Coverage</div>
+        <!-- Training photo + stats row -->
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Training photo -->
+          <div class="relative rounded-2xl overflow-hidden shadow-xl shadow-black/50 ring-1 ring-white/8">
+            <img src="images/ahl-security-training.jpg"
+                 alt="AHL security compliance training session"
+                 loading="lazy"
+                 class="w-full h-32 object-cover object-center" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="absolute bottom-2 left-2">
+              <span class="text-white text-[10px] font-semibold">Compliance Training</span>
+            </div>
           </div>
-          <div class="bg-navy-800/70 border border-navy-600 rounded-2xl p-4 text-center">
-            <div class="text-2xl font-black font-display text-gold-400 stat-num">SIA</div>
-            <div class="text-gray-500 text-xs mt-1">Licensed</div>
-          </div>
-          <div class="bg-navy-800/70 border border-navy-600 rounded-2xl p-4 text-center">
-            <div class="text-2xl font-black font-display text-leaf-400 stat-num">PNG</div>
-            <div class="text-gray-500 text-xs mt-1">Certified</div>
+          <!-- Stats stacked -->
+          <div class="flex flex-col gap-2">
+            <div class="bg-navy-800/70 border border-navy-600 rounded-xl p-3 text-center flex-1">
+              <div class="text-xl font-black font-display text-flame-400">24/7</div>
+              <div class="text-gray-500 text-xs">Coverage</div>
+            </div>
+            <div class="bg-navy-800/70 border border-navy-600 rounded-xl p-3 text-center flex-1">
+              <div class="text-xl font-black font-display text-gold-400">SIA</div>
+              <div class="text-gray-500 text-xs">Licensed</div>
+            </div>
           </div>
         </div>
 
@@ -1631,7 +1734,7 @@
   const navbar   = document.getElementById('navbar');
   const backToTop = document.getElementById('back-to-top');
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('nav-glass', window.scrollY > 60);
+    navbar.classList.toggle('nav-scrolled', window.scrollY > 80);
     if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 400);
   }, { passive: true });
 
@@ -1754,6 +1857,44 @@
       }
     });
   });
+
+  // ── Hero background video ───────────────────────────────
+  const heroVideo = document.getElementById('hero-video');
+  const heroOverlay = document.getElementById('hero-video-overlay');
+  if (heroVideo) {
+    heroVideo.addEventListener('canplay', () => {
+      if (!prefersReducedMotion) {
+        heroVideo.style.opacity = '0.55';
+      } else {
+        heroVideo.style.opacity = '0.45';
+        heroVideo.style.transition = 'none';
+      }
+      if (heroOverlay) heroOverlay.style.display = 'block';
+    });
+    heroVideo.addEventListener('error', () => {
+      // Video file not present — silently falls back to gradient bg
+    });
+  }
+
+  // ── Page cover (enter fade + exit transition) ───────────
+  const pageCover = document.getElementById('page-cover');
+  if (pageCover) {
+    // Fade out cover on page load
+    setTimeout(() => { pageCover.style.opacity = '0'; }, 60);
+    // Fade cover back in before navigating to another page
+    if (!prefersReducedMotion) {
+      document.querySelectorAll('a[href]:not([href^="#"]):not([href^="mailto:"]):not([href^="tel:"])').forEach(link => {
+        link.addEventListener('click', function (e) {
+          const dest = this.getAttribute('href');
+          if (!dest) return;
+          e.preventDefault();
+          pageCover.style.opacity = '1';
+          pageCover.style.pointerEvents = 'auto';
+          setTimeout(() => { window.location.href = dest; }, 320);
+        });
+      });
+    }
+  }
 })();
 </script>
 

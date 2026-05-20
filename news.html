@@ -29,6 +29,20 @@
     }
 
     /* Nav */
+    #nav-inner {
+      border-radius:0; background:transparent; border:1px solid transparent; box-shadow:none;
+      transition: max-width .45s cubic-bezier(.4,0,.2,1), border-radius .45s cubic-bezier(.4,0,.2,1),
+                  background .4s ease, box-shadow .4s ease, border-color .4s ease, padding .4s ease;
+    }
+    .nav-scrolled #nav-inner {
+      max-width:860px !important; margin:0 auto; border-radius:9999px;
+      background:rgba(4,12,24,.90); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+      padding:.35rem 1.5rem; border-color:rgba(255,255,255,.10);
+      box-shadow:0 8px 40px rgba(0,0,0,.6), 0 0 0 1px rgba(34,197,94,.07);
+    }
+    .nav-logo-text { max-width:180px; overflow:hidden; white-space:nowrap; transition:max-width .4s cubic-bezier(.4,0,.2,1), opacity .3s ease; }
+    .nav-scrolled .nav-logo-text { max-width:0; opacity:0; }
+    #page-cover { position:fixed; inset:0; background:#040c18; z-index:99999; pointer-events:none; opacity:1; transition:opacity .4s cubic-bezier(.16,1,.3,1); }
     .nav-glass { background: rgba(4,12,24,0.95) !important; backdrop-filter: blur(14px); box-shadow: 0 2px 24px rgba(0,0,0,0.6); }
     .nav-link  { position: relative; }
     .nav-link::after { content:''; display:block; width:0; height:2px; background:linear-gradient(90deg,#22c55e,#f97316); transition:width 0.3s; }
@@ -140,6 +154,8 @@
 
 <body class="bg-navy-900 text-white antialiased">
 
+<div id="page-cover"></div>
+
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- TOP INFO BAR -->
@@ -173,12 +189,12 @@
 </div>
 
 <!-- NAV -->
-<nav id="navbar" aria-label="Main navigation" class="fixed top-0 md:top-9 left-0 right-0 z-50 transition-all duration-300 py-3 nav-glass">
-  <div class="container mx-auto px-6">
+<nav id="navbar" aria-label="Main navigation" class="fixed top-0 md:top-9 left-0 right-0 z-50 transition-all duration-300 py-3">
+  <div id="nav-inner" class="container mx-auto px-6">
     <div class="flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3 group">
         <img src="images/AHL-logo.jpg" alt="AHL Andro Holdings Limited" class="w-12 h-12 rounded-full object-cover shadow-lg shadow-black/40 flex-shrink-0" />
-        <div class="leading-tight">
+        <div class="leading-tight nav-logo-text">
           <div class="text-white font-black font-display text-lg tracking-wide group-hover:text-gold-400 transition-colors">AHL</div>
           <div class="text-leaf-400 text-xs font-semibold tracking-widest uppercase">Andro Holdings</div>
         </div>
@@ -1092,9 +1108,29 @@ if (urlF && CAT_LABEL[urlF]) setFilter(urlF);
 // ══════════════════════════════════════
 //  Nav
 // ══════════════════════════════════════
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 window.addEventListener('scroll', () => {
   document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 400);
-});
+  document.getElementById('navbar').classList.toggle('nav-scrolled', window.scrollY > 80);
+}, { passive: true });
+
+// Page cover — enter fade + exit transition
+const pageCover = document.getElementById('page-cover');
+if (pageCover) {
+  setTimeout(() => { pageCover.style.opacity = '0'; }, 60);
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('a[href]:not([href^="#"]):not([href^="mailto:"]):not([href^="tel:"])').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const dest = this.getAttribute('href');
+        if (!dest) return;
+        e.preventDefault();
+        pageCover.style.opacity = '1';
+        pageCover.style.pointerEvents = 'auto';
+        setTimeout(() => { window.location.href = dest; }, 320);
+      });
+    });
+  }
+}
 
 let menuOpen = false;
 function openMenu()   { menuOpen=true;  document.getElementById('mobile-menu').classList.add('open');    document.getElementById('icon-open').classList.add('hidden');    document.getElementById('icon-close').classList.remove('hidden'); document.getElementById('menu-btn').setAttribute('aria-expanded','true'); }
